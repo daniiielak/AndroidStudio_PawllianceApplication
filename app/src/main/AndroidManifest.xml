@@ -9,6 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <!-- APP ENTRY POINT ACTIVITY -->
         <activity android:name=".AppEntryPoint">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -16,6 +18,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- LOGIN ACTIVITY -->
+        <activity
+            android:name=".LoginActivity"
+            android:parentActivityName=".AppEntryPoint" />
+
+        <!-- REGISTER ACTIVITY -->
+        <activity
+            android:name=".SignUpActivity"
+            android:parentActivityName=".AppEntryPoint" />
+        <activity android:name=".LoginAreaMain"></activity>
     </application>
 
 </manifest>
