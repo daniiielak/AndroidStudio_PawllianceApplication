@@ -11,7 +11,7 @@
         android:theme="@style/AppTheme">
 
         <!-- APP ENTRY POINT ACTIVITY -->
-        <activity android:name=".AppEntryPoint">
+        <activity android:name=".activities.AppEntryPoint">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -21,14 +21,14 @@
 
         <!-- LOGIN ACTIVITY -->
         <activity
-            android:name=".LoginActivity"
-            android:parentActivityName=".AppEntryPoint" />
+            android:name=".activities.LoginActivity"
+            android:parentActivityName=".activities.AppEntryPoint" />
 
         <!-- REGISTER ACTIVITY -->
         <activity
-            android:name=".SignUpActivity"
-            android:parentActivityName=".AppEntryPoint" />
-        <activity android:name=".LoginAreaMain"></activity>
+            android:name=".activities.SignUpActivity"
+            android:parentActivityName=".activities.AppEntryPoint" />
+        <activity android:name=".activities.LoginAreaMain"></activity>
     </application>
 
 </manifest>

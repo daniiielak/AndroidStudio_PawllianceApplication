@@ -5,10 +5,12 @@
  * Focus: App Entry Point after opening the application.
  */
 
-package pawlliance.com.pawlliance;
+package pawlliance.com.pawlliance.activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import pawlliance.com.pawlliance.R;
 
 public class SignUpActivity extends AppCompatActivity {
 

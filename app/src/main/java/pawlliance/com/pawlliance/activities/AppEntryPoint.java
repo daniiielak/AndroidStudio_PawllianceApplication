@@ -6,13 +6,15 @@
  */
 
 
-package pawlliance.com.pawlliance;
+package pawlliance.com.pawlliance.activities;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import pawlliance.com.pawlliance.R;
 
 public class AppEntryPoint extends AppCompatActivity {
 
