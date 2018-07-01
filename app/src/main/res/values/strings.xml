@@ -43,11 +43,29 @@
         <item>Female</item>
     </string-array>
     <string-array name="dogBreeds_array">
+        <item>Akita</item>
+        <item>Beagle</item>
+        <item>Border Collie</item>
+        <item>Boxer</item>
+        <item>Bulldog</item>
         <item>Chihuahua</item>
+        <item>Chow Chow</item>
+        <item>Dalmatian</item>
         <item>German Shepherd</item>
+        <item>Golden Retriever</item>
         <item>Husky</item>
+        <item>Jack Russell Terrier</item>
+        <item>Labrador</item>
+        <item>Maltese</item>
+        <item>Mastiff</item>
+        <item>Pomeranian</item>
         <item>Poodle</item>
+        <item>Rottweiler</item>
+        <item>Saint Bernard</item>
+        <item>Spaniel</item>
         <item>Spitz</item>
+        <item>Yorkshire Terrier</item>
+        <item>Wolfhound</item>
         <item>Other</item>
     </string-array>
 </resources>
