@@ -354,6 +354,7 @@
         android:background="@color/colorFontHint"
         android:elevation="0dp"
         android:fontFamily="@font/ubuntu_bold"
+        android:onClick="signUpDogImageChoosePhotoFromGalleryMethod"
         android:text="@string/SignUpChooseImageButton"
         android:textAllCaps="false"
         android:textColor="@color/colorFontMain"
