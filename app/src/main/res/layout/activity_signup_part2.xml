@@ -305,7 +305,7 @@
         app:layout_constraintVertical_bias="0.731" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/SignUpDogScreenImageView"
         android:layout_width="78dp"
         android:layout_height="77dp"
         android:layout_marginBottom="8dp"
@@ -331,6 +331,7 @@
         android:background="@color/colorFontHint"
         android:elevation="0dp"
         android:fontFamily="@font/ubuntu_bold"
+        android:onClick="signUpDogImageTakePhotoMethod"
         android:text="@string/SignUpTakePhotoButton"
         android:textAllCaps="false"
         android:textColor="@color/colorFontMain"

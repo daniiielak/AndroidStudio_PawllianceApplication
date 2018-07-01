@@ -1,7 +1,7 @@
 /*
  * File: AppEntryPoint.java
  * @author daniela kepper
- * Date: 29.05.2018
+ * Date: 29.06.2018
  * Focus: App Entry Point after opening the application.
  */
 
