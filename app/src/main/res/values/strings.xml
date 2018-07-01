@@ -3,4 +3,35 @@
     <string name="WelcomeApplicationTextView">Welcome to Pawlliance!</string>
     <string name="LoginButton">Login</string>
     <string name="SignUpButton">Sign Up</string>
+    <string name="SignUpMainTextTop">Sign Up for Pawlliance!</string>
+    <string name="PawllianceLogoImageDescription">Pawlliance Logo</string>
+
+
+    <string name="SignUpDogOwnerSection">Step 1 - Dog Owner Section</string>
+    <string name="SignUpOwnersName">Name: </string>
+    <string name="SignUpOwnersCity">City: </string>
+    <string name="SignUpOwnersEmail">Email: </string>
+    <string name="SignUpOwnersPassword">Password: </string>
+    <string name="SignUpOwnersConfirmPassword">Confirm Password: </string>
+    <string name="SignUpOwnersFullNameHint">Please fill out your Full Name</string>
+    <string name="SignUpOwnersEmailHint">Please fill out your Email Address</string>
+    <string name="SignUpOwnersPasswordHint">Your Password</string>
+    <string name="SignUpDogName">Your Dog\'s Name</string>
+    <string name="SignUpNextPageButton">Next - Your Dog</string>
+    <string-array name="city_array">
+        <item>Dublin</item>
+        <item>Cork</item>
+        <item>Galway</item>
+    </string-array>
+
+
+    <string name="SignUpDogSection">Step 2 - Dog Section</string>
+    <string-array name="dogBreeds_array">
+        <item>Chihuahua</item>
+        <item>German Shepherd</item>
+        <item>Husky</item>
+        <item>Poodle</item>
+        <item>Spitz</item>
+        <item>Other</item>
+    </string-array>
 </resources>

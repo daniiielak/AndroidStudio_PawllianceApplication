@@ -24,11 +24,20 @@
             android:name=".activities.LoginActivity"
             android:parentActivityName=".activities.AppEntryPoint" />
 
-        <!-- REGISTER ACTIVITY -->
+        <!-- SIGN-UP ACTIVITY PAGE 1 -->
         <activity
-            android:name=".activities.SignUpActivity"
+            android:name=".activities.SignUpActivityPart1"
             android:parentActivityName=".activities.AppEntryPoint" />
-        <activity android:name=".activities.LoginAreaMain"></activity>
+
+        <!-- SIGN-UP ACTIVITY PAGE 2-->
+        <activity
+            android:name=".activities.SignUpActivityPart2"
+            android:parentActivityName=".activities.SignUpActivityPart1"/>
+
+        <!-- LOGIN MAIN AREA ACTIVITY -->
+        <activity
+            android:name=".activities.LoginAreaMain"
+            android:parentActivityName=".activities.LoginActivity"/>
     </application>
 
 </manifest>

@@ -33,12 +33,12 @@ public class AppEntryPoint extends AppCompatActivity {
             }
         });
 
-        // setting up register button redirect to SignUpActivity.class
+        // setting up register button redirect to SignUpActivityPart1.class
         Button signUpButton = (Button) findViewById(R.id.SignUpButton);
         signUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent signUpIntent = new Intent(getApplicationContext(), SignUpActivity.class);
+                Intent signUpIntent = new Intent(getApplicationContext(), SignUpActivityPart1.class);
                 startActivity(signUpIntent);
             }
         });

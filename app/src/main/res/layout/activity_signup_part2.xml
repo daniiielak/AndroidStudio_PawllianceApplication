@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.SignUpActivityPart2">
+
+
+    <ImageView
+        android:id="@+id/pawlliancelogo"
+        android:layout_width="46dp"
+        android:layout_height="43dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:contentDescription="@string/PawllianceLogoImageDescription"
+        android:src="@drawable/pawlliancelogo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.014" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="208dp"
+        android:layout_height="25dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/ubuntu_bold"
+        android:text="@string/SignUpMainTextTop"
+        android:textColor="@color/colorFontMain"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.111"
+        app:layout_constraintStart_toEndOf="@+id/pawlliancelogo"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.03" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="150dp"
+        android:layout_height="1dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/colorFontMain"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.567"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.117" />
+
+    <TextView
+        android:id="@+id/SignUpDogOwnerSectionTextView"
+        android:layout_width="239dp"
+        android:layout_height="25dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_weight="1"
+        android:fontFamily="@font/ubuntu_medium"
+        android:text="@string/SignUpDogSection"
+        android:textColor="@color/colorPrimary"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.743"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view"
+        app:layout_constraintVertical_bias="0.053" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="50dp"
+        android:layout_height="37dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/dogicon"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/SignUpDogOwnerSectionTextView"
+        app:layout_constraintHorizontal_bias="0.827"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.165" />
+
+    <Spinner
+
+        android:id="@+id/SignUpDogBreedSpinner"
+        android:layout_width="230dp"
+        android:layout_height="54dp"
+        android:background="@android:drawable/btn_dropdown"
+        android:gravity="center"
+        android:padding="10dip"
+        android:spinnerMode="dropdown"
+        tools:layout_editor_absoluteX="106dp"
+        tools:layout_editor_absoluteY="323dp" />
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:gravity="center"
+        tools:layout_editor_absoluteX="97dp"
+        tools:layout_editor_absoluteY="235dp">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/SignUpDogFullNameTextInputLayout"
+            android:layout_width="219dp"
+            android:layout_height="54dp"
+            android:background="@color/boxFiller"
+            android:fontFamily="@font/ubuntu_medium"
+            android:padding="10dip"
+            android:singleLine="true"
+            android:text="@string/SignUpDogName"
+            android:textColor="@color/colorFontHint"
+            android:textSize="12sp" />
+
+    </android.support.design.widget.TextInputLayout>
+
+</android.support.constraint.ConstraintLayout>

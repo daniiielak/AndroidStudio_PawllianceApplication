@@ -4,6 +4,8 @@
     <color name="colorPrimaryDark">#b45494</color>
     <color name="colorAccent">#FF4081</color>
     <color name="colorFontMain">#434343</color>
+    <color name="colorFontHint">#cccccc</color>
     <color name="colorFontBlack">#000000</color>
     <color name="colorFontWhite">#ffffff</color>
+    <color name="boxFiller">#efefef</color>
 </resources>
