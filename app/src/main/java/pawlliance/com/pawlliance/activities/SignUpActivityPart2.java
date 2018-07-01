@@ -23,16 +23,16 @@ public class SignUpActivityPart2 extends AppCompatActivity {
 
 
         // SPINNER ACTION FOR DOG BREED SELECTOR
-        Spinner staticSpinner = (Spinner) findViewById(R.id.SignUpDogBreedSpinner);
+        Spinner staticBreedSpinner = (Spinner) findViewById(R.id.SignUpDogBreedSpinner);
+        ArrayAdapter<CharSequence> staticBreedAdapter = ArrayAdapter.createFromResource(this, R.array.dogBreeds_array, android.R.layout.simple_spinner_item);         // Create an ArrayAdapter using the string array and a default spinner
+        staticBreedAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);         // Specify the layout to use when the list of choices appears
+        staticBreedSpinner.setAdapter(staticBreedAdapter);         // Apply the adapter to the spinner
 
-        // Create an ArrayAdapter using the string array and a default spinner
-        ArrayAdapter<CharSequence> staticAdapter = ArrayAdapter.createFromResource(this, R.array.dogBreeds_array, android.R.layout.simple_spinner_item);
-
-        // Specify the layout to use when the list of choices appears
-        staticAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        // Apply the adapter to the spinner
-        staticSpinner.setAdapter(staticAdapter);
+        // SPINNER ACTION FOR DOG GENDER SELECTOR
+        Spinner staticGenderSpinner = (Spinner) findViewById(R.id.SignUpDogGenderSpinner);
+        ArrayAdapter<CharSequence> staticGenderAdapter = ArrayAdapter.createFromResource(this, R.array.dogGender_array, android.R.layout.simple_spinner_item);  // Create an ArrayAdapter using the string array and a default spinner
+        staticGenderAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);  // Specify the layout to use when the list of choices appears
+        staticGenderSpinner.setAdapter(staticGenderAdapter);         // Apply the adapter to the spinner
 
     }
 }

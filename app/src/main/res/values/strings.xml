@@ -1,12 +1,15 @@
 <resources>
+    <!-- GENERAL STRINGS-->
     <string name="app_name">Pawlliance</string>
+    <string name="PawllianceLogoImageDescription">Pawlliance Logo</string>
+
+    <!-- APP ENTRY POINT-->
     <string name="WelcomeApplicationTextView">Welcome to Pawlliance!</string>
     <string name="LoginButton">Login</string>
     <string name="SignUpButton">Sign Up</string>
     <string name="SignUpMainTextTop">Sign Up for Pawlliance!</string>
-    <string name="PawllianceLogoImageDescription">Pawlliance Logo</string>
 
-
+    <!-- SIGN UP ACTIVITY PART 1-->
     <string name="SignUpDogOwnerSection">Step 1 - Dog Owner Section</string>
     <string name="SignUpOwnersName">Name: </string>
     <string name="SignUpOwnersCity">City: </string>
@@ -16,7 +19,6 @@
     <string name="SignUpOwnersFullNameHint">Please fill out your Full Name</string>
     <string name="SignUpOwnersEmailHint">Please fill out your Email Address</string>
     <string name="SignUpOwnersPasswordHint">Your Password</string>
-    <string name="SignUpDogName">Your Dog\'s Name</string>
     <string name="SignUpNextPageButton">Next - Your Dog</string>
     <string-array name="city_array">
         <item>Dublin</item>
@@ -24,8 +26,22 @@
         <item>Galway</item>
     </string-array>
 
-
+    <!-- SIGN UP ACTIVITY PART 2-->
     <string name="SignUpDogSection">Step 2 - Dog Section</string>
+    <string name="SignUpDogNameHint">Please fill out your Dog\'s Name</string>
+    <string name="SignUpDogName">Dog Name: </string>
+    <string name="SignUpDogBreed">Breed: </string>
+    <string name="SignUpDogBirthdayHint">DD/MM/YYYY (e.g. 03/03/2012)</string>
+    <string name="SignUpDogBirthday">Birthday: </string>
+    <string name="SignUpDogGender">Gender: </string>
+    <string name="SignUpCompleteSignUpButton">Complete Sign Up</string>
+    <string name="SignUpDogsImageIcon">Picture: </string>
+    <string name="SignUpTakePhotoButton">Take a Photo</string>
+    <string name="SignUpChooseImageButton">Choose Image</string>
+    <string-array name="dogGender_array">
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
     <string-array name="dogBreeds_array">
         <item>Chihuahua</item>
         <item>German Shepherd</item>
