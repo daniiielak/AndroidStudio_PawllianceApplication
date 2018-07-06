@@ -2,6 +2,7 @@
  * File: SignUpActivityPart2.java
  * @author daniela kepper
  * Date: 29.05.2018
+ * Source: https://github.com/discospiff/PlantPlaces15s305/blob/master/app/src/main/java/nw15s305/plantplaces/com/plantplaces15s305/ColorCaptureActivity.java
  */
 
 
