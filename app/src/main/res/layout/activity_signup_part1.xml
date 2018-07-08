@@ -126,8 +126,8 @@
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/SignUpOwnersEmailTextInputLayout"
-        android:layout_width="240dp"
-        android:layout_height="40dp"
+        android:layout_width="245dp"
+        android:layout_height="78dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="16dp"
         android:layout_marginStart="8dp"
@@ -155,8 +155,8 @@
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/SignUpOwnersPasswordTextInputLayout"
-        android:layout_width="240dp"
-        android:layout_height="40dp"
+        android:layout_width="243dp"
+        android:layout_height="79dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="16dp"
         android:layout_marginStart="8dp"
@@ -186,8 +186,8 @@
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/SignUpOwnersConfirmPasswordTextInputLayout"
-        android:layout_width="240dp"
-        android:layout_height="40dp"
+        android:layout_width="241dp"
+        android:layout_height="74dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
@@ -195,10 +195,10 @@
         android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.923"
+        app:layout_constraintHorizontal_bias="0.948"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.8">
+        app:layout_constraintVertical_bias="0.832">
 
         <android.support.design.widget.TextInputEditText
             android:id="@+id/SignUpOwnersConfirmPasswordTextInputEditText"
@@ -311,8 +311,8 @@
         android:layout_width="233dp"
         android:layout_height="44dp"
         android:layout_marginBottom="8dp"
-        android:layout_marginEnd="14dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginEnd="6dp"
+        android:layout_marginStart="6dp"
         android:layout_marginTop="8dp"
         android:background="@android:drawable/btn_dropdown"
         android:gravity="center"
@@ -320,10 +320,10 @@
         android:spinnerMode="dropdown"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.891"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.53" />
+        app:layout_constraintVertical_bias="0.517" />
 
     <Button
         android:id="@+id/SignUpNextPageButton"
@@ -341,10 +341,10 @@
         android:textColor="@color/colorFontWhite"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.729"
+        app:layout_constraintHorizontal_bias="0.753"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/SignUpOwnersConfirmPasswordTextInputLayout"
-        app:layout_constraintVertical_bias="0.272" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.968" />
 
 </android.support.constraint.ConstraintLayout>
 

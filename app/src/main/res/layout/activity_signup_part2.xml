@@ -154,11 +154,11 @@
         android:text="@string/SignUpDogBreed"
         android:textColor="@color/colorFontMain"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/SignUpDogBreedSpinner"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.049"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.395" />
+        app:layout_constraintVertical_bias="0.391" />
 
     <Spinner
         android:id="@+id/SignUpDogBreedSpinner"
@@ -174,10 +174,10 @@
         android:spinnerMode="dropdown"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.927"
+        app:layout_constraintHorizontal_bias="0.95"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.951" />
+        app:layout_constraintVertical_bias="0.784" />
 
     <TextView
         android:id="@+id/SignUpDogBirthdayTextView"
@@ -331,7 +331,6 @@
         android:background="@color/colorFontHint"
         android:elevation="0dp"
         android:fontFamily="@font/ubuntu_bold"
-        android:onClick="signUpDogImageTakePhotoMethod"
         android:text="@string/SignUpTakePhotoButton"
         android:textAllCaps="false"
         android:textColor="@color/colorFontMain"

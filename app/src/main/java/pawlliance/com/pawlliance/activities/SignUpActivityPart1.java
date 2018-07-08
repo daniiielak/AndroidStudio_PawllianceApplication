@@ -41,7 +41,7 @@ public class SignUpActivityPart1 extends AppCompatActivity implements View.OnCli
     private TextInputEditText signUpOwnersPasswordTextInputEditText;
     private TextInputEditText signUpOwnersConfirmPasswordTextInputEditText;
 
-    Button signUpNextPageButton;
+    private Button signUpNextPageButton;
 
     private InputValidation inputValidation;
     private DatabaseHelper databaseHelper;
@@ -135,9 +135,23 @@ public class SignUpActivityPart1 extends AppCompatActivity implements View.OnCli
             signUpNextPageButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    emptyInputEditText();
                     Intent signUpPage2Intent = new Intent(getApplicationContext(), SignUpActivityPart2.class);
+
+                    // pass the input values to next page for registration
+                    String ownerName = signUpOwnersFullNameTextInputEditText.getText().toString();
+                    signUpPage2Intent.putExtra("uniqueOwnerName", ownerName);
+
+                    String ownerEmail = signUpOwnersEmailTextInputEditText.getText().toString();
+                    signUpPage2Intent.putExtra("uniqueOwnerEmail", ownerEmail);
+
+                    String ownerCity = signUpCitySpinner.getSelectedItem().toString();
+                    signUpPage2Intent.putExtra("uniqueOwnerCity", ownerCity);
+
+                    String ownerPassword = signUpOwnersPasswordTextInputEditText.getText().toString();
+                    signUpPage2Intent.putExtra("uniqueOwnerPassword", ownerPassword);
+
                     startActivity(signUpPage2Intent);
+                    emptyInputEditText();
                 }
             });
         }
