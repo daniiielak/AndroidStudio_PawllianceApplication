@@ -16,12 +16,15 @@ import android.widget.Spinner;
 
 import pawlliance.com.pawlliance.R;
 
-public class SignUpActivityPart1 extends AppCompatActivity {
+public class SignUpActivityPart1 extends AppCompatActivity implements View.OnClickListener {
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup_part1);
+        getSupportActionBar().hide();
 
 
         // SPINNER ACTION FOR CITY SELECTOR

@@ -12,6 +12,7 @@ import java.text.DateFormat;
 public class User {
 
     // Member Variables
+    private int userID;
     private String ownerFullName;
     private String email;
     private String city;
@@ -26,7 +27,11 @@ public class User {
 
     // Constructors
 
-    public User(String ownerFullName, String email, String city, String password, String dogName, String dogBreed, String birthday, String dogGender, String imagePath) {
+    public User(){
+    }
+
+    public User(int userID, String ownerFullName, String email, String city, String password, String dogName, String dogBreed, String birthday, String dogGender, String imagePath) {
+        this.userID = userID;
         this.ownerFullName = ownerFullName;
         this.email = email;
         this.city = city;
@@ -39,7 +44,8 @@ public class User {
         this.description = "Hello there furry Friend! Welcome to my pawtastic Profile!";
     }
 
-    public User(String ownerFullName, String email, String city, String password, String dogName, String dogBreed, String birthday, String dogGender) {
+    public User(int userID, String ownerFullName, String email, String city, String password, String dogName, String dogBreed, String birthday, String dogGender) {
+        this.userID = userID;
         this.ownerFullName = ownerFullName;
         this.email = email;
         this.city = city;
@@ -52,7 +58,19 @@ public class User {
         this.description = "Hello there furry Friend! Welcome to my pawtastic Profile!";
     }
 
+    public User(int userID, String ownerFullName, String email, String city, String password){
+        this.userID = userID;
+        this.ownerFullName = ownerFullName;
+        this.email = email;
+        this.city = city;
+        this.password = password;
+    }
+
     // Setters
+    public void setUserID(int userID){
+        this.userID = userID;
+    }
+
     public void setOwnerFullName(String ownerFullName) {
         this.ownerFullName = ownerFullName;
     }
@@ -95,6 +113,10 @@ public class User {
 
 
     // Getters
+    public int getUserID(){
+        return userID;
+    }
+
     public String getOwnerFullName() {
         return ownerFullName;
     }
