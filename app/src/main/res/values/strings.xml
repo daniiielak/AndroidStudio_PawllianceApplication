@@ -77,4 +77,8 @@
         <item>Wolfhound</item>
         <item>Other</item>
     </string-array>
+
+    <!-- LOGIN ACTIVITY -->
+    <string name="LoginActivityWelcomeBackBuddy">Welcome back, Buddy!</string>
+
 </resources>
