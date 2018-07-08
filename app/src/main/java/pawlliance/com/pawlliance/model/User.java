@@ -19,7 +19,7 @@ public class User {
     private String password;
     private String dogName;
     private String dogBreed;
-    private String birthday; // DOUBLE CHECK
+    private String birthday;
     private String dogGender;
     private String imagePath;
     private String description;
@@ -41,20 +41,6 @@ public class User {
         this.birthday = birthday;
         this.dogGender = dogGender;
         this.imagePath = imagePath;
-        this.description = "Hello there furry Friend! Welcome to my pawtastic Profile!";
-    }
-
-    public User(int userID, String ownerFullName, String email, String city, String password, String dogName, String dogBreed, String birthday, String dogGender) {
-        this.userID = userID;
-        this.ownerFullName = ownerFullName;
-        this.email = email;
-        this.city = city;
-        this.password = password;
-        this.dogName = dogName;
-        this.dogBreed = dogBreed;
-        this.birthday = birthday;
-        this.dogGender = dogGender;
-        this.imagePath = "";
         this.description = "Hello there furry Friend! Welcome to my pawtastic Profile!";
     }
 

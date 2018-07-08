@@ -20,9 +20,9 @@
     <string name="SignUpOwnersEmailHint">Please fill out your Email Address</string>
     <string name="SignUpOwnersPasswordHint">Your Password</string>
     <string name="SignUpNextPageButton">Next - Your Dog</string>
-    <string name="SignUpErrorMessageOwnersName">Enter Your Full Name</string>
-    <string name="SignUpErrorMessageEmail">Enter Valid Email</string>
-    <string name="SignUpErrorMessagePassword">Enter Password</string>
+    <string name="SignUpErrorMessageOwnersName">Enter your correct Full Name</string>
+    <string name="SignUpErrorMessageEmail">Enter valid Email</string>
+    <string name="SignUpErrorMessagePassword">Enter correct Password</string>
     <string name="SignUpErrorMessageEmailExists">Email already Exists</string>
     <string name="SignUpErrorMessagePasswordMatch">Password does not Match</string>
     <string-array name="city_array">
@@ -43,6 +43,10 @@
     <string name="SignUpDogsImageIcon">Picture: </string>
     <string name="SignUpTakePhotoButton">Take a Photo</string>
     <string name="SignUpChooseImageButton">Choose Image</string>
+    <string name="SignUpErrorMessageDogName">Enter your Dog\'s correct Full Name</string>
+    <string name="SignUpErrorMessageDogBirthday">Enter your Dog\'s correct Birthday</string>
+    <string name="SignUpErrorMessageDogBirthdayFormat">Enter your Dog\'s correct Birthday Format</string>
+    <string name="SignUpSuccessMessage">You have successfully signed up for Pawlliance! Please Login below: </string>
     <string-array name="dogGender_array">
         <item>Male</item>
         <item>Female</item>

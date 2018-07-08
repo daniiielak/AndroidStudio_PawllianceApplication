@@ -4,8 +4,11 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.database.MatrixCursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,11 +30,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String COLUMN_USER_EMAIL = "user_email";
     private static final String COLUMN_USER_CITY = "user_city";
     private static final String COLUMN_USER_PASSWORD = "user_password";
+    private static final String COLUMN_USER_DOGNAME = "user_dogname";
+    private static final String COLUMN_USER_DOGBREED ="user_dogbreed";
+    private static final String COLUMN_USER_DOGBIRTHDAY = "user_dogbirthday";
+    private static final String COLUMN_USER_DOGGENDER = "user_doggender";
+    private static final String COLUMN_USER_DOGIMAGE = "user_dogimage";
+    private static final String COLUMN_USER_DOGDESCRIPTION = "user_dogdescription";
+
 
     // Create User Table SQL Query
     private String CREATE_USER_TABLE = "CREATE TABLE " + TABLE_USER + "("
             + COLUMN_USER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + COLUMN_USER_NAME + " TEXT,"
-            + COLUMN_USER_EMAIL + " TEXT," + COLUMN_USER_CITY + " TEXT," + COLUMN_USER_PASSWORD + " TEXT" + ")";
+            + COLUMN_USER_EMAIL + " TEXT," + COLUMN_USER_CITY + " TEXT," + COLUMN_USER_PASSWORD + " TEXT,"
+            + COLUMN_USER_DOGNAME + " TEXT," + COLUMN_USER_DOGBREED + " TEXT," + COLUMN_USER_DOGBIRTHDAY + " TEXT,"
+            + COLUMN_USER_DOGGENDER + " TEXT," + COLUMN_USER_DOGIMAGE + " BLOB," + COLUMN_USER_DOGDESCRIPTION + " TEXT" + ")";
 
     // Drop User Table SQL Query
     private String DROP_USER_TABLE = "DROP TABLE IF EXISTS " + TABLE_USER;
@@ -67,6 +79,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(COLUMN_USER_EMAIL, user.getEmail());
         values.put(COLUMN_USER_CITY, user.getCity());
         values.put(COLUMN_USER_PASSWORD, user.getPassword());
+        values.put(COLUMN_USER_DOGNAME, user.getDogName());
+        values.put(COLUMN_USER_DOGBREED, user.getDogBreed());
+        values.put(COLUMN_USER_DOGBIRTHDAY, user.getBirthday());
+        values.put(COLUMN_USER_DOGGENDER, user.getDogGender());
+        values.put(COLUMN_USER_DOGIMAGE, user.getImagePath());
+        values.put(COLUMN_USER_DOGDESCRIPTION, user.getDescription());
 
         db.insert(TABLE_USER, null, values);
         db.close();
@@ -171,7 +189,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 COLUMN_USER_EMAIL,
                 COLUMN_USER_NAME,
                 COLUMN_USER_PASSWORD,
-                COLUMN_USER_CITY
+                COLUMN_USER_CITY,
+                COLUMN_USER_DOGNAME,
+                COLUMN_USER_DOGBREED,
+                COLUMN_USER_DOGBIRTHDAY,
+                COLUMN_USER_DOGGENDER,
+                COLUMN_USER_DOGIMAGE,
+                COLUMN_USER_DOGDESCRIPTION
         };
 
         // sorting orders
@@ -199,6 +223,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 user.setEmail(cursor.getString(cursor.getColumnIndex(COLUMN_USER_EMAIL)));
                 user.setPassword(cursor.getString(cursor.getColumnIndex(COLUMN_USER_PASSWORD)));
                 user.setCity(cursor.getString(cursor.getColumnIndex(COLUMN_USER_CITY)));
+                user.setDogName(cursor.getString(cursor.getColumnIndex(COLUMN_USER_DOGNAME)));
+                user.setDogBreed(cursor.getString(cursor.getColumnIndex(COLUMN_USER_DOGBREED)));
+                user.setBirthday(cursor.getString(cursor.getColumnIndex(COLUMN_USER_DOGBIRTHDAY)));
+                user.setDogGender(cursor.getString(cursor.getColumnIndex(COLUMN_USER_DOGGENDER)));
+                user.setImagePath(cursor.getString(cursor.getColumnIndex(COLUMN_USER_DOGIMAGE)));
+                user.setDescription(cursor.getString(cursor.getColumnIndex(COLUMN_USER_DOGDESCRIPTION)));
 
                 //adding new user record to the list
                 userList.add(user);
@@ -225,6 +255,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(COLUMN_USER_EMAIL, user.getEmail());
         values.put(COLUMN_USER_PASSWORD, user.getPassword());
         values.put(COLUMN_USER_CITY, user.getCity());
+        values.put(COLUMN_USER_DOGNAME, user.getDogName());
+        values.put(COLUMN_USER_DOGBREED, user.getDogBreed());
+        values.put(COLUMN_USER_DOGBIRTHDAY, user.getBirthday());
+        values.put(COLUMN_USER_DOGGENDER, user.getDogGender());
+        values.put(COLUMN_USER_DOGIMAGE, user.getImagePath());
+        values.put(COLUMN_USER_DOGDESCRIPTION, user.getDescription());
 
         // updating row
         db.update(TABLE_USER, values, COLUMN_USER_ID + " = ?",
@@ -243,6 +279,55 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.delete(TABLE_USER, COLUMN_USER_ID + " = ?",
                 new String[]{String.valueOf(user.getUserID())});
 
+    }
+
+
+    /**
+     * This method iis for the AndroidDataBaseHelper to show data
+     *
+     */
+    public ArrayList<Cursor> getData(String Query){
+        //get writable database
+        SQLiteDatabase sqlDB = this.getWritableDatabase();
+        String[] columns = new String[] { "message" };
+        //an array list of cursor to save two cursors one has results from the query
+        //other cursor stores error message if any errors are triggered
+        ArrayList<Cursor> alc = new ArrayList<Cursor>(2);
+        MatrixCursor Cursor2= new MatrixCursor(columns);
+        alc.add(null);
+        alc.add(null);
+
+        try{
+            String maxQuery = Query ;
+            //execute the query results will be save in Cursor c
+            Cursor c = sqlDB.rawQuery(maxQuery, null);
+
+            //add value to cursor2
+            Cursor2.addRow(new Object[] { "Success" });
+
+            alc.set(1,Cursor2);
+            if (null != c && c.getCount() > 0) {
+
+                alc.set(0,c);
+                c.moveToFirst();
+
+                return alc ;
+            }
+            return alc;
+        } catch(SQLException sqlEx){
+            Log.d("printing exception", sqlEx.getMessage());
+            //if any exceptions are triggered save the error message to cursor an return the arraylist
+            Cursor2.addRow(new Object[] { ""+sqlEx.getMessage() });
+            alc.set(1,Cursor2);
+            return alc;
+        } catch(Exception ex){
+            Log.d("printing exception", ex.getMessage());
+
+            //if any exceptions are triggered save the error message to cursor an return the arraylist
+            Cursor2.addRow(new Object[] { ""+ex.getMessage() });
+            alc.set(1,Cursor2);
+            return alc;
+        }
     }
 
         // DNC - class closing

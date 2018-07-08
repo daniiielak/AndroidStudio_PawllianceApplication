@@ -57,6 +57,9 @@ public class SignUpActivityPart1 extends AppCompatActivity implements View.OnCli
         initObjects();
     }
 
+    /**
+     * This method is to initialize Views to be used
+     */
     private void initViews(){
         // TextInputLayouts
         signUpDogOwnersFullNameTextInputLayout = (TextInputLayout) findViewById(R.id.SignUpDogOwnersFullNameTextInputLayout);

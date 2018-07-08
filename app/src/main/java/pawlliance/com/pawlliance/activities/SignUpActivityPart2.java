@@ -9,34 +9,67 @@
 package pawlliance.com.pawlliance.activities;
 
 import android.Manifest;
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TextInputEditText;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 import pawlliance.com.pawlliance.R;
+import pawlliance.com.pawlliance.helper.InputValidation;
+import pawlliance.com.pawlliance.model.User;
+import pawlliance.com.pawlliance.sql.DatabaseHelper;
 
-public class SignUpActivityPart2 extends AppCompatActivity {
+public class SignUpActivityPart2 extends AppCompatActivity implements View.OnClickListener {
+    final Calendar dogBirthdayCalendar = Calendar.getInstance();
+    private final AppCompatActivity activity = SignUpActivityPart2.this;
 
+    // set all variables for input fields and layouts
+    private TextInputLayout signUpDogNameTextInputLayout;
+    private TextInputLayout signUpDogBirthdayTextInputLayout;
+
+    private TextInputEditText signUpDogsNameTextInputEditText;
+    private TextInputEditText signUpDogsBirthdayTextInputEditText;
+
+    private Spinner signUpDogBreedSpinner;
+    private Spinner signUpDogGenderSpinner;
+
+    private Button signUpCompleteSignUpButton;
+
+    private InputValidation inputValidation;
+    private DatabaseHelper databaseHelper;
+    private User user;
+
+    // Camera and Gallery variables
     public static final int CAMERA_REQUEST_CODE = 1;
     public static final int CAMERA_PERMISSION_REQUEST_CODE = 2;
     public static final int GALLERY_ACCESS_REQUEST_CODE = 3;
@@ -46,24 +79,161 @@ public class SignUpActivityPart2 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup_part2);
+        getSupportActionBar().hide();
 
+        initViews();
+        initListener();
+        initObjects();
+
+    }
+
+    /**
+     * This method is to initialize views to be used
+     */
+    private void initViews(){
+
+        signUpDogNameTextInputLayout = (TextInputLayout) findViewById(R.id.SignUpDogNameTextInputLayout);
+        signUpDogBirthdayTextInputLayout = (TextInputLayout) findViewById(R.id.SignUpDogBirthdayTextInputLayout);
+        signUpDogsNameTextInputEditText = (TextInputEditText) findViewById(R.id.SignUpDogsNameTextInputEditText);
+        signUpCompleteSignUpButton = (Button) findViewById(R.id.SignUpCompleteSignUpButton);
+
+        // Date Picker für Edit Text
+        signUpDogsBirthdayTextInputEditText = (TextInputEditText) findViewById(R.id.SignUpDogsBirthdayTextInputEditText);
+        final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                dogBirthdayCalendar.set(Calendar.YEAR, year);
+                dogBirthdayCalendar.set(Calendar.MONTH, month);
+                dogBirthdayCalendar.set(Calendar.DAY_OF_MONTH, day);
+                updateLabel();
+            }
+        };
+
+        signUpDogsBirthdayTextInputEditText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new DatePickerDialog(SignUpActivityPart2.this, date, dogBirthdayCalendar.get(Calendar.YEAR),
+                        dogBirthdayCalendar.get(Calendar.MONTH),
+                        dogBirthdayCalendar.get(Calendar.DAY_OF_MONTH)).show();
+            }
+        });
 
         // SPINNER ACTION FOR DOG BREED SELECTOR
-        Spinner staticBreedSpinner = (Spinner) findViewById(R.id.SignUpDogBreedSpinner);
+        signUpDogBreedSpinner = (Spinner) findViewById(R.id.SignUpDogBreedSpinner);
         ArrayAdapter<CharSequence> staticBreedAdapter = ArrayAdapter.createFromResource(this, R.array.dogBreeds_array, android.R.layout.simple_spinner_item);         // Create an ArrayAdapter using the string array and a default spinner
         staticBreedAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);         // Specify the layout to use when the list of choices appears
-        staticBreedSpinner.setAdapter(staticBreedAdapter);         // Apply the adapter to the spinner
+        signUpDogBreedSpinner.setAdapter(staticBreedAdapter);         // Apply the adapter to the spinner
 
         // SPINNER ACTION FOR DOG GENDER SELECTOR
-        Spinner staticGenderSpinner = (Spinner) findViewById(R.id.SignUpDogGenderSpinner);
+        signUpDogGenderSpinner = (Spinner) findViewById(R.id.SignUpDogGenderSpinner);
         ArrayAdapter<CharSequence> staticGenderAdapter = ArrayAdapter.createFromResource(this, R.array.dogGender_array, android.R.layout.simple_spinner_item);  // Create an ArrayAdapter using the string array and a default spinner
         staticGenderAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);  // Specify the layout to use when the list of choices appears
-        staticGenderSpinner.setAdapter(staticGenderAdapter);         // Apply the adapter to the spinner
+        signUpDogGenderSpinner.setAdapter(staticGenderAdapter);         // Apply the adapter to the spinner
 
         // GET ACCESS TO IMAGE VIEW IF USER DECIDES TO TAKE A PHOTO WITH CAMERA
         signUpUserImageDogPhoto = (ImageView) findViewById(R.id.SignUpDogScreenImageView);
-
     }
+
+    /**
+     * This method is to initialize objects to be used
+     */
+    private void initObjects(){
+        inputValidation = new InputValidation(activity);
+        databaseHelper = new DatabaseHelper(activity);
+        user = new User();
+    }
+
+    /**
+     * This method is to initialize listeners
+     */
+    public void initListener(){
+        signUpCompleteSignUpButton.setOnClickListener(this);
+    }
+
+    /**
+     * This implemented method is to listen the click on view
+     *
+     * @param v
+     */
+
+    @Override
+    public void onClick(View v){
+        switch(v.getId()){
+            case R.id.SignUpCompleteSignUpButton:
+                postDataToSQLite();
+                break;
+        }
+    }
+
+
+    /**
+     * This method is to validate the input text fields and post data to SQLite
+     */
+    private void postDataToSQLite() {
+        if(!inputValidation.isInputEditTextFilled(signUpDogsNameTextInputEditText, signUpDogNameTextInputLayout, getString(R.string.SignUpErrorMessageDogName))) {
+            return;
+        }
+        if(!inputValidation.isInputEditTextFilled(signUpDogsBirthdayTextInputEditText, signUpDogBirthdayTextInputLayout, getString(R.string.SignUpErrorMessageDogBirthday))) {
+            return;
+        }
+
+        // GET USER INPUT FROM PREVIOUS INTENT
+        Intent previousSignUpActivityPart1Intent = getIntent();
+
+        Bundle b = previousSignUpActivityPart1Intent.getExtras();
+        String ownerName;
+        String ownerEmail;
+        String ownerCity;
+        String ownerPassword;
+
+        //if(b!=null)
+        //{
+            ownerName = (String) b.get("uniqueOwnerName");
+            //System.out.println("Name: " + ownerName);
+            ownerEmail = (String) b.get("uniqueOwnerEmail");
+            //System.out.println("Email: " + ownerEmail);
+            ownerCity = (String) b.get("uniqueOwnerCity");
+            //System.out.println("City: " + ownerCity);
+            ownerPassword = (String) b.get("uniqueOwnerPassword");
+            //System.out.println("Password: " + ownerPassword);
+        //}
+
+        // adding user to the database with all full information
+        user.setOwnerFullName(ownerName);
+        user.setEmail(ownerEmail);
+        user.setCity(ownerCity);
+        user.setPassword(ownerPassword);
+        user.setDogName(signUpDogsNameTextInputEditText.getText().toString().trim());
+        user.setDogBreed(signUpDogBreedSpinner.getSelectedItem().toString());
+        user.setBirthday(signUpDogsBirthdayTextInputEditText.getText().toString());
+        user.setDogGender(signUpDogGenderSpinner.getSelectedItem().toString());
+        user.setImagePath("image path place holder");
+        user.setDescription("Welcome to " + signUpDogsNameTextInputEditText.getText().toString().trim() + " Pawlliance Page!");
+
+        databaseHelper.addUser(user);
+        System.out.println("Successfully added new user with ID" + user.getUserID() + " and user name " + user.getOwnerFullName() + " to the database.");
+
+        Intent finishRegistrationIntent = new Intent(getApplicationContext(), LoginActivity.class);
+        finishRegistrationIntent.putExtra("successfulMessage", R.string.SignUpSuccessMessage);
+        startActivity(finishRegistrationIntent);
+        emptyInputEditText();
+        //
+    }
+
+    private void updateLabel(){
+        String myDateFormat = "MM/dd/yyyy";
+        SimpleDateFormat sdf = new SimpleDateFormat(myDateFormat, Locale.GERMAN);
+        signUpDogsBirthdayTextInputEditText.setText(sdf.format(dogBirthdayCalendar.getTime()));
+    }
+
+    /**
+     * This method is to empty all input edit text
+     */
+    private void emptyInputEditText() {
+        signUpDogsNameTextInputEditText.setText(null);
+        signUpDogsBirthdayTextInputEditText.setText(null);
+    }
+
 
     /**
      * This method will be called when user decides to access device camera to take a profile picture for his/her dog.

@@ -91,10 +91,10 @@
         android:src="@drawable/dogicon"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/SignUpDogOwnerSectionTextView"
-        app:layout_constraintHorizontal_bias="0.942"
+        app:layout_constraintHorizontal_bias="0.907"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.157" />
+        app:layout_constraintVertical_bias="0.161" />
 
     <TextView
         android:id="@+id/SignUpDogsNameTextView"
@@ -102,21 +102,22 @@
         android:layout_height="25dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="152dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
         android:fontFamily="@font/ubuntu_medium"
         android:text="@string/SignUpDogName"
         android:textColor="@color/colorFontMain"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.302" />
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/SignUpDogNameTextInputLayout"
-        android:layout_width="240dp"
-        android:layout_height="36dp"
+        android:layout_width="241dp"
+        android:layout_height="57dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="16dp"
         android:layout_marginStart="8dp"
@@ -127,7 +128,7 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.289">
+        app:layout_constraintVertical_bias="0.281">
 
         <android.support.design.widget.TextInputEditText
             android:id="@+id/SignUpDogsNameTextInputEditText"
@@ -135,9 +136,9 @@
             android:layout_height="38dp"
             android:background="@color/boxFiller"
             android:fontFamily="@font/ubuntu_medium"
+            android:hint="@string/SignUpDogNameHint"
             android:padding="10dip"
             android:singleLine="true"
-            android:text="@string/SignUpDogNameHint"
             android:textColor="@color/colorFontHint"
             android:textSize="12sp" />
     </android.support.design.widget.TextInputLayout>
@@ -155,10 +156,10 @@
         android:textColor="@color/colorFontMain"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.049"
+        app:layout_constraintHorizontal_bias="0.084"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.391" />
+        app:layout_constraintVertical_bias="0.4" />
 
     <Spinner
         android:id="@+id/SignUpDogBreedSpinner"
@@ -192,15 +193,15 @@
         android:textColor="@color/colorFontMain"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.059"
+        app:layout_constraintHorizontal_bias="0.084"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.497" />
+        app:layout_constraintVertical_bias="0.498" />
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/SignUpDogBirthdayTextInputLayout"
-        android:layout_width="236dp"
-        android:layout_height="36dp"
+        android:layout_width="239dp"
+        android:layout_height="61dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
@@ -215,14 +216,16 @@
 
         <android.support.design.widget.TextInputEditText
             android:id="@+id/SignUpDogsBirthdayTextInputEditText"
+            android:clickable="true"
             android:layout_width="230dp"
             android:layout_height="38dp"
             android:background="@color/boxFiller"
             android:fontFamily="@font/ubuntu_medium"
+            android:hint="@string/SignUpDogBirthdayHint"
             android:inputType="date"
+            android:focusable="false"
             android:padding="10dip"
             android:singleLine="true"
-            android:text="@string/SignUpDogBirthdayHint"
             android:textColor="@color/colorFontHint"
             android:textSize="12sp" />
     </android.support.design.widget.TextInputLayout>
@@ -240,10 +243,10 @@
         android:textColor="@color/colorFontMain"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.059"
+        app:layout_constraintHorizontal_bias="0.084"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.593" />
+        app:layout_constraintVertical_bias="0.596" />
 
     <Spinner
         android:id="@+id/SignUpDogGenderSpinner"

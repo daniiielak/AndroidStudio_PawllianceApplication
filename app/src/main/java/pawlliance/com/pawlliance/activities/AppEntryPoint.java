@@ -24,7 +24,7 @@ public class AppEntryPoint extends AppCompatActivity {
         setContentView(R.layout.activity_app_entry_point);
 
         // setting up login button redirect to LoginActivity.class
-        Button loginButton = (Button) findViewById(R.id.LoginButton);
+        Button loginButton = (Button) findViewById(R.id.ManageDBButton);
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

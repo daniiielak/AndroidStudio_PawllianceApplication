@@ -46,6 +46,10 @@
         <activity
             android:name=".activities.LoginAreaMain"
             android:parentActivityName=".activities.LoginActivity"/>
+
+        <!-- DATABASEHELPER -->
+        <activity android:name=".databasedata.AndroidDatabaseManager"
+            android:label="@string/app_name"/>
     </application>
 
 </manifest>
