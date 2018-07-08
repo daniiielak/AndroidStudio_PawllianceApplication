@@ -98,7 +98,7 @@
     <android.support.design.widget.TextInputLayout
         android:id="@+id/SignUpDogOwnersFullNameTextInputLayout"
         android:layout_width="240dp"
-        android:layout_height="40dp"
+        android:layout_height="69dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="16dp"
         android:layout_marginStart="8dp"
@@ -117,9 +117,9 @@
             android:layout_height="38dp"
             android:background="@color/boxFiller"
             android:fontFamily="@font/ubuntu_medium"
+            android:hint="@string/SignUpOwnersFullNameHint"
             android:padding="10dip"
             android:singleLine="true"
-            android:text="@string/SignUpOwnersFullNameHint"
             android:textColor="@color/colorFontHint"
             android:textSize="12sp" />
     </android.support.design.widget.TextInputLayout>
@@ -146,9 +146,9 @@
             android:layout_height="38dp"
             android:background="@color/boxFiller"
             android:fontFamily="@font/ubuntu_medium"
+            android:hint="@string/SignUpOwnersEmailHint"
             android:padding="10dip"
             android:singleLine="true"
-            android:text="@string/SignUpOwnersEmailHint"
             android:textColor="@color/colorFontHint"
             android:textSize="12sp" />
     </android.support.design.widget.TextInputLayout>
@@ -175,10 +175,10 @@
             android:layout_height="38dp"
             android:background="@color/boxFiller"
             android:fontFamily="@font/ubuntu_medium"
+            android:hint="@string/SignUpOwnersPasswordHint"
             android:inputType="textPassword"
             android:padding="10dip"
             android:singleLine="true"
-            android:text="@string/SignUpOwnersPasswordHint"
             android:textColor="@color/colorFontHint"
             android:textColorHint="@color/colorFontHint"
             android:textSize="12sp" />
@@ -206,10 +206,10 @@
             android:layout_height="38dp"
             android:background="@color/boxFiller"
             android:fontFamily="@font/ubuntu_medium"
+            android:hint="@string/SignUpOwnersPasswordHint"
             android:inputType="textPassword"
             android:padding="10dip"
             android:singleLine="true"
-            android:text="@string/SignUpOwnersPasswordHint"
             android:textColor="@color/colorFontHint"
             android:textSize="12sp" />
     </android.support.design.widget.TextInputLayout>

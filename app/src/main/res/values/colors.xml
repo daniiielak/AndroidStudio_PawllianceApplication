@@ -8,4 +8,5 @@
     <color name="colorFontBlack">#000000</color>
     <color name="colorFontWhite">#ffffff</color>
     <color name="boxFiller">#efefef</color>
+    <color name="errorMessage">#be0000</color>
 </resources>
