@@ -20,6 +20,11 @@
     <string name="SignUpOwnersEmailHint">Please fill out your Email Address</string>
     <string name="SignUpOwnersPasswordHint">Your Password</string>
     <string name="SignUpNextPageButton">Next - Your Dog</string>
+    <string name="SignUpErrorMessageOwnersName">Enter Your Full Name</string>
+    <string name="SignUpErrorMessageEmail">Enter Valid Email</string>
+    <string name="SignUpErrorMessagePassword">Enter Password</string>
+    <string name="SignUpErrorMessageEmailExists">Email already Exists</string>
+    <string name="SignUpErrorMessagePasswordMatch">Password does not Match</string>
     <string-array name="city_array">
         <item>Dublin</item>
         <item>Cork</item>
