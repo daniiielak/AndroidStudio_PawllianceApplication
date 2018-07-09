@@ -24,13 +24,14 @@
 
     <TextView
         android:id="@+id/WelcomeBackBuddyTextView"
-        android:layout_width="298dp"
-        android:layout_height="47dp"
+        android:layout_width="311dp"
+        android:layout_height="61dp"
         android:layout_marginTop="17dp"
         android:fontFamily="@font/ubuntu_bold"
         android:text="@string/LoginActivityWelcomeBackBuddy"
         android:textAlignment="center"
         android:textColor="@color/colorFontMain"
+        android:textColorHint="@color/colorFontHint"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -67,7 +68,7 @@
             android:inputType="textPassword"
             android:padding="10dip"
             android:singleLine="true"
-            android:textColor="@color/colorFontHint"
+            android:textColor="@color/colorFontMain"
             android:textColorHint="@color/colorFontHint"
             android:textSize="12sp" />
     </android.support.design.widget.TextInputLayout>
@@ -97,7 +98,8 @@
             android:hint="@string/SignUpOwnersEmailHint"
             android:padding="10dip"
             android:singleLine="true"
-            android:textColor="@color/colorFontHint"
+            android:textColor="@color/colorFontMain"
+            android:textColorHint="@color/colorFontHint"
             android:textSize="12sp" />
     </android.support.design.widget.TextInputLayout>
 
@@ -156,7 +158,7 @@
         app:layout_constraintHorizontal_bias="0.702"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.918" />
+        app:layout_constraintVertical_bias="0.919" />
 
     <Button
         android:id="@+id/LoginAreaLoginButton"
@@ -177,6 +179,6 @@
         app:layout_constraintHorizontal_bias="0.702"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.776" />
+        app:layout_constraintVertical_bias="0.778" />
 
 </android.support.constraint.ConstraintLayout>

@@ -208,7 +208,7 @@ public class SignUpActivityPart2 extends AppCompatActivity implements View.OnCli
         user.setBirthday(signUpDogsBirthdayTextInputEditText.getText().toString());
         user.setDogGender(signUpDogGenderSpinner.getSelectedItem().toString());
         user.setImagePath("image path place holder");
-        user.setDescription("Welcome to " + signUpDogsNameTextInputEditText.getText().toString().trim() + " Pawlliance Page!");
+        user.setDescription("Welcome to " + signUpDogsNameTextInputEditText.getText().toString().trim() + "'s Pawlliance Page!");
 
         databaseHelper.addUser(user);
         System.out.println("Successfully added new user with ID" + user.getUserID() + " and user name " + user.getOwnerFullName() + " to the database.");

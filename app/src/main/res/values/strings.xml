@@ -79,6 +79,6 @@
     </string-array>
 
     <!-- LOGIN ACTIVITY -->
-    <string name="LoginActivityWelcomeBackBuddy">Welcome back, Buddy!</string>
+    <string name="LoginActivityWelcomeBackBuddy">Welcome back, Buddy! Let\'s go on a Playdate!</string>
 
 </resources>

@@ -139,7 +139,8 @@
             android:hint="@string/SignUpDogNameHint"
             android:padding="10dip"
             android:singleLine="true"
-            android:textColor="@color/colorFontHint"
+            android:textColor="@color/colorFontMain"
+            android:textColorHint="@color/colorFontHint"
             android:textSize="12sp" />
     </android.support.design.widget.TextInputLayout>
 
@@ -226,7 +227,8 @@
             android:focusable="false"
             android:padding="10dip"
             android:singleLine="true"
-            android:textColor="@color/colorFontHint"
+            android:textColor="@color/colorFontMain"
+            android:textColorHint="@color/colorFontHint"
             android:textSize="12sp" />
     </android.support.design.widget.TextInputLayout>
 
