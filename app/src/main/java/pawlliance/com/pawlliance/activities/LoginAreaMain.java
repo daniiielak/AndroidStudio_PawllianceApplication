@@ -67,6 +67,16 @@ public class LoginAreaMain extends AppCompatActivity implements View.OnClickList
     public void onClick(View v){
         switch(v.getId()){
             case R.id.LoginAreaLetsGoForAWalkButton:
+                // storing the user email for pass on to next class
+                Intent previousLoginAreaIntent = getIntent();
+                Bundle b = previousLoginAreaIntent.getExtras();
+                String userEmail = (String) b.get("ownersEmailForPassOn");
+                //Intent for maps class
+                Intent mapsActivityIntent = new Intent(activity, MapsActivity.class);
+                mapsActivityIntent.putExtra("ownersEmailForPassOn", userEmail);
+                startActivity(mapsActivityIntent);
+                //
+
                 break;
             case R.id.LoginAreaMyPawllianceBuddiesButton:
                 break;

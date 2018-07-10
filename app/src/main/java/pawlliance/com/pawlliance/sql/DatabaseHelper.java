@@ -242,11 +242,43 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     /**
+     * This method is to fetch a single user based on the email address provided
+     *
+     * @return list
+     */
+
+    public User getSpecificUser (String userEmail) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String selectQuery = "SELECT  * FROM " + TABLE_USER + " WHERE "
+                + COLUMN_USER_EMAIL + " = " + userEmail;
+
+        Cursor c = db.rawQuery(selectQuery, null);
+
+        if (c != null)
+            c.moveToFirst();
+
+        User specificUser = new User();
+        specificUser.setUserID(c.getInt(c.getColumnIndex(COLUMN_USER_ID)));
+        specificUser.setEmail(c.getString(c.getColumnIndex(COLUMN_USER_EMAIL)));
+        specificUser.setPassword(c.getString(c.getColumnIndex(COLUMN_USER_PASSWORD)));
+        specificUser.setCity(c.getString(c.getColumnIndex(COLUMN_USER_CITY)));
+        specificUser.setDogName(c.getString(c.getColumnIndex(COLUMN_USER_DOGNAME)));
+        specificUser.setDogBreed(c.getString(c.getColumnIndex(COLUMN_USER_DOGBREED)));
+        specificUser.setBirthday(c.getString(c.getColumnIndex(COLUMN_USER_DOGBIRTHDAY)));
+        specificUser.setDogGender(c.getString(c.getColumnIndex(COLUMN_USER_DOGGENDER)));
+        specificUser.setImagePath(c.getString(c.getColumnIndex(COLUMN_USER_DOGIMAGE)));
+        specificUser.setDescription(c.getString(c.getColumnIndex(COLUMN_USER_DOGDESCRIPTION)));
+
+        return specificUser;
+    }
+
+
+    /**
      * This method to update user record
      *
      * @param user
      */
-
     public void updateUser(User user) {
         SQLiteDatabase db = this.getWritableDatabase();
 

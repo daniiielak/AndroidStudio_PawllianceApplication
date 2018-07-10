@@ -87,5 +87,14 @@
     <string name="LoginActivityMyPawllianceBuddiesButton">My Pawlliance Buddies</string>
     <string name="LoginActivityFindNewFriendsButton">Find New Furry Friends</string>
     <string name="LoginActivityMyPawllianceCockpit">My Pawlliance Cockpit</string>
+    <string name="title_activity_maps">Map</string>
+
+    <!-- MAP ACTIVITY AREA -->
+    <string name="title_activity_map_tracking">Map Route Tracking</string>
+    <string name="track_path_on_map">Walk and route your path on map</string>
+    <string name="permission_notice">Please note that your location permission is important if you want to draw your route on map while walking with your buddy.</string>
+    <string name="permission_title">Location Permission Denied</string>
+    <string name="cancel_permission_notice">Please come back again when you need it and grant the permission</string>
+    <string name="MapActivityStartTrackingButton">Start Your Dog Walk</string>
 
 </resources>
