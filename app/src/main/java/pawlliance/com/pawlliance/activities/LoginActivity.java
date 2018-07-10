@@ -113,14 +113,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         , loginAreaPasswordTextInputEditText.getText().toString().trim())) {
 
             Intent loginMainAreaIntent = new Intent(activity, LoginAreaMain.class);
-            emptyInputEditText();
             Snackbar.make(loginAreaLoginButton, "Successfully Logged in!", Snackbar.LENGTH_LONG).show();
-            loginMainAreaIntent.putExtra("ownersEmailForPassOn", loginAreaEmailTextInputEditText.getText().toString().trim());
+            String userEmail = loginAreaEmailTextInputEditText.getText().toString().trim();
+            loginMainAreaIntent.putExtra("ownersEmailForPassOn", userEmail);
+            emptyInputEditText();
             startActivity(loginMainAreaIntent);
         }
         else {
             // Snack Bar to show error message that record already exists
-            Snackbar.make(loginAreaEmailTextInputLayout, getString(R.string.SignUpErrorMessageEmailExists), Snackbar.LENGTH_LONG).show();
+            Snackbar.make(loginAreaEmailTextInputLayout, getString(R.string.SignUpErrorMessageIncorrectPassword), Snackbar.LENGTH_LONG).show();
         }
 
     }

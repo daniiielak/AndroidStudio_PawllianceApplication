@@ -98,7 +98,7 @@ public class SignUpActivityPart1 extends AppCompatActivity implements View.OnCli
     /**
      * This method is to initialize listeners
      */
-    public void initListener(){
+    private void initListener(){
         signUpNextPageButton.setOnClickListener(this);
     }
 
