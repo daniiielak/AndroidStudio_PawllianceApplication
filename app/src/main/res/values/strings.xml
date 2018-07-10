@@ -80,5 +80,8 @@
 
     <!-- LOGIN ACTIVITY -->
     <string name="LoginActivityWelcomeBackBuddy">Welcome back, Buddy! Let\'s go on a Playdate!</string>
-
+    <string name="LoginActivityUpdateProfileButton">Update Profile</string>
+    <string name="LoginActivityMyPawllianceBuddiesButton">My Pawlliance Buddies</string>
+    <string name="LoginActivityFindNewFriendsButton">Find New Furry Friends</string>
+    <string name="LoginActivityMyPawllianceCockpit">My Pawlliance Cockpit</string>
 </resources>
