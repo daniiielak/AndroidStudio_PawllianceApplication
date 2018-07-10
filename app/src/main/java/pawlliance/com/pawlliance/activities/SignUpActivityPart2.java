@@ -255,7 +255,7 @@ public class SignUpActivityPart2 extends AppCompatActivity implements View.OnCli
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults){
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == CAMERA_PERMISSION_REQUEST_CODE){ // we have heard back from our request for camera and write external stroage.
+        if (requestCode == CAMERA_PERMISSION_REQUEST_CODE){ // we have heard back from our request for camera and write external storage.
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED){
                 invokeCamera();
             }
@@ -313,7 +313,7 @@ public class SignUpActivityPart2 extends AppCompatActivity implements View.OnCli
                 }
                 catch (FileNotFoundException e){
                     e.printStackTrace();
-                    Toast.makeText(this, "Unable to open image", Toast.LENGTH_LONG).show(); // show a message to user thaht the image is unavailable.
+                    Toast.makeText(this, "Unable to open image", Toast.LENGTH_LONG).show(); // show a message to user that the image is unavailable.
                 }
             }
         }
