@@ -47,8 +47,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         initViews();
         initListeners();
-        startActivity();
-
 
     }
 
@@ -141,9 +139,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        /*// Add a marker in Dublin and move the camera
+        // Add a marker in Dublin and move the camera
         LatLng dublin = new LatLng(-53, 6);
         mMap.addMarker(new MarkerOptions().position(dublin).title("Marker in Dublin"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(dublin));*/
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(dublin));
     }
 }
