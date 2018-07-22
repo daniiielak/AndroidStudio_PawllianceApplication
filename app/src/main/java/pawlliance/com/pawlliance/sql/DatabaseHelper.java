@@ -271,8 +271,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         specificUser.setImagePath(c.getString(c.getColumnIndex(COLUMN_USER_DOGIMAGE)));
         specificUser.setDescription(c.getString(c.getColumnIndex(COLUMN_USER_DOGDESCRIPTION)));
 
+        c.close();
+        db.close();
+
         return specificUser;
         }
+
+        c.close();
+        db.close();
     return null;
     }
 

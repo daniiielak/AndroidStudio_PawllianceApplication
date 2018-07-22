@@ -89,8 +89,22 @@
             android:exported="true"
             android:label="@string/title_activity_maps"
             android:parentActivityName=".activities.LoginAreaMain" />
-        <activity android:name=".activities.FindNewFriendsLoginAreaMain" />
-        <activity android:name=".activities.EditProfileInformationMainLoginArea"></activity>
+
+        <!-- FIND NEW FRIENDS LOGIN AREA MAIN -->
+        <activity
+            android:name=".activities.FindNewFriendsLoginAreaMain"
+            android:parentActivityName=".activities.LoginAreaMain" />
+
+        <!-- EDIT PROFILE INFORMATION MAIN LOGIN AREA -->
+        <activity
+            android:name=".activities.EditProfileInformationMainLoginArea"
+            android:parentActivityName=".activities.LoginAreaMain"/>
+
+        <!-- POPUP EDIT DOG DESCRIPTION  android:theme="@style/PopUpTheme"  -->
+        <activity
+            android:name=".popups.PopUpEditDescription"
+            android:parentActivityName=".activities.EditProfileInformationMainLoginArea" />
+
     </application>
 
 </manifest>

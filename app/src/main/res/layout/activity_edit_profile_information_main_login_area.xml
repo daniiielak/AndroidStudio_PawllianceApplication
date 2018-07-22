@@ -25,7 +25,7 @@
     <TextView
         android:id="@+id/EditProfileInformationTextView"
         android:layout_width="318dp"
-        android:layout_height="40dp"
+        android:layout_height="30dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="16dp"
         android:layout_marginStart="8dp"
@@ -35,13 +35,13 @@
         android:textAlignment="center"
         android:textColor="@color/colorFontMain"
         android:textColorHint="@color/colorFontHint"
-        android:textSize="24sp"
+        android:textSize="21sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.782"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.014"
+        app:layout_constraintVertical_bias="0.028"
         tools:text="@string/EditProfileInformationHeadline" />
 
     <ImageView
@@ -60,42 +60,6 @@
         app:srcCompat="@drawable/signupstandardprofilepicdog" />
 
     <TextView
-        android:id="@+id/ProfileInformationNameTextView"
-        android:layout_width="52dp"
-        android:layout_height="18dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
-        android:fontFamily="@font/ubuntu_medium"
-        android:text="@string/EditProfileInformationName"
-        android:textColor="@color/colorFontMain"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.091"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.342" />
-
-    <TextView
-        android:id="@+id/ProfileInformationOwnerNameTextView"
-        android:layout_width="199dp"
-        android:layout_height="21dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
-        android:fontFamily="@font/ubuntu_medium"
-        android:text="@string/EditProfileInformationOwnerName"
-        android:textColor="@color/colorFontHint"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.6"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.342" />
-
-    <TextView
         android:id="@+id/ProfileInformationEmailTextView"
         android:layout_width="52dp"
         android:layout_height="18dp"
@@ -111,7 +75,7 @@
         app:layout_constraintHorizontal_bias="0.091"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.4" />
+        app:layout_constraintVertical_bias="0.365" />
 
     <TextView
         android:id="@+id/ProfileInformationOwnerEmailTextView"
@@ -129,7 +93,7 @@
         app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.401" />
+        app:layout_constraintVertical_bias="0.363" />
 
 
     <TextView
@@ -148,7 +112,7 @@
         app:layout_constraintHorizontal_bias="0.026"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.465" />
+        app:layout_constraintVertical_bias="0.433" />
 
     <TextView
         android:id="@+id/ProfileInformationOwnerPasswordTextView"
@@ -166,7 +130,7 @@
         app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.466" />
+        app:layout_constraintVertical_bias="0.432" />
 
     <TextView
         android:id="@+id/ProfileInformationCityTextView"
@@ -181,10 +145,9 @@
         android:textColor="@color/colorFontMain"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.107"
+        app:layout_constraintHorizontal_bias="0.11"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.538" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/ProfileInformationOwnerCityTextView"
@@ -199,10 +162,9 @@
         android:textColor="@color/colorFontHint"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.594"
+        app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.537" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/ProfileInformationDogNameTextView"
@@ -220,7 +182,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.603" />
+        app:layout_constraintVertical_bias="0.572" />
 
     <TextView
         android:id="@+id/ProfileInformationOwnerDogNameTextView"
@@ -238,7 +200,7 @@
         app:layout_constraintHorizontal_bias="0.571"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.603" />
+        app:layout_constraintVertical_bias="0.573" />
 
     <TextView
         android:id="@+id/ProfileInformationDogBreedTextView"
@@ -256,7 +218,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.66" />
+        app:layout_constraintVertical_bias="0.635" />
 
     <TextView
         android:id="@+id/ProfileInformationOwnerDogBreedTextView"
@@ -271,10 +233,10 @@
         android:textColor="@color/colorFontHint"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.594"
+        app:layout_constraintHorizontal_bias="0.59"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.664" />
+        app:layout_constraintVertical_bias="0.635" />
 
     <TextView
         android:id="@+id/ProfileInformationDogBirthdayTextView"
@@ -292,7 +254,7 @@
         app:layout_constraintHorizontal_bias="0.023"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.732" />
+        app:layout_constraintVertical_bias="0.697" />
 
     <TextView
         android:id="@+id/ProfileInformationOwnerDogBirthdayTextView"
@@ -307,10 +269,10 @@
         android:textColor="@color/colorFontHint"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.594"
+        app:layout_constraintHorizontal_bias="0.571"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.736" />
+        app:layout_constraintVertical_bias="0.699" />
 
 
     <TextView
@@ -326,15 +288,15 @@
         android:textColor="@color/colorFontMain"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.007"
+        app:layout_constraintHorizontal_bias="0.003"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.796" />
+        app:layout_constraintVertical_bias="0.766" />
 
     <TextView
         android:id="@+id/ProfileInformationOwnerDogDescriptionTextView"
-        android:layout_width="174dp"
-        android:layout_height="73dp"
+        android:layout_width="185dp"
+        android:layout_height="99dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="24dp"
@@ -344,10 +306,10 @@
         android:textColor="@color/colorFontHint"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.56"
+        app:layout_constraintHorizontal_bias="0.556"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.879" />
+        app:layout_constraintVertical_bias="0.887" />
 
     <Button
         android:id="@+id/EditProfileInformationUpdateInformationImageGalleryButton"
@@ -391,7 +353,7 @@
         app:layout_constraintHorizontal_bias="0.976"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.459" />
+        app:layout_constraintVertical_bias="0.429" />
 
     <Button
         android:id="@+id/EditProfileInformationUpdateInformationCityButton"
@@ -412,8 +374,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.976"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.533" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/EditProfileInformationUpdateInformationDogNameButton"
@@ -435,7 +396,7 @@
         app:layout_constraintHorizontal_bias="0.976"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.6" />
+        app:layout_constraintVertical_bias="0.57" />
 
     <Button
         android:id="@+id/EditProfileInformationUpdateInformationDogBreedButton"
@@ -457,7 +418,7 @@
         app:layout_constraintHorizontal_bias="0.976"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.661" />
+        app:layout_constraintVertical_bias="0.633" />
 
     <Button
         android:id="@+id/EditProfileInformationUpdateInformationDogBirthdayButton"
@@ -479,7 +440,7 @@
         app:layout_constraintHorizontal_bias="0.976"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.731" />
+        app:layout_constraintVertical_bias="0.694" />
 
     <Button
         android:id="@+id/EditProfileInformationUpdateInformationDogDescriptionButton"
@@ -501,12 +462,12 @@
         app:layout_constraintHorizontal_bias="0.976"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.808" />
+        app:layout_constraintVertical_bias="0.789" />
 
     <Button
         android:id="@+id/EditProfileInformationBackToMainAreaButton"
-        android:layout_width="194dp"
-        android:layout_height="34dp"
+        android:layout_width="191dp"
+        android:layout_height="40dp"
         android:layout_marginBottom="4dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
@@ -519,9 +480,9 @@
         android:textColor="@color/colorFontWhite"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.611"
+        app:layout_constraintHorizontal_bias="0.607"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.962" />
+        app:layout_constraintVertical_bias="0.978" />
 
 </android.support.constraint.ConstraintLayout>

@@ -124,4 +124,10 @@
     <string name="EditProfileInformationButtonUpdateInformation">Update</string>
     <string name="EditProfileInformationUpdateImageButton">Open Gallery</string>
 
+    <!-- POP UP DESCRIPTION -->
+    <string name="PopUpDogDescription">Dog Description:</string>
+    <string name="PopUpDogEditDescription">Please insert a new description for your dog.</string>
+    <string name="PopUpDogEditDescriptionSaveButton">Save</string>
+    <string name="PopUpDogEditDescriptionCancelButton">Cancel</string>
+
 </resources>
