@@ -130,7 +130,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/ubuntu_bold"
-        android:text="My Pawlliance Cockpit"
+        android:text="@string/LoginActivityMyPawllianceCockpit"
         android:textAlignment="center"
         android:textColor="@color/colorFontMain"
         android:textColorHint="@color/colorFontHint"

@@ -247,20 +247,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      * @return list
      */
 
-    public User getSpecificUser (String userEmail) {
+    public User getSpecificUser(String userEmail) {
         SQLiteDatabase db = this.getReadableDatabase();
 
-        String selectQuery = "SELECT  * FROM " + TABLE_USER + " WHERE "
-                + COLUMN_USER_EMAIL + " = " + userEmail;
+        String selectQuery = "SELECT * FROM " + TABLE_USER + " WHERE "
+                + COLUMN_USER_EMAIL + "= '" + userEmail + "'";
 
         Cursor c = db.rawQuery(selectQuery, null);
 
-        if (c != null)
+        if (c != null) {
             c.moveToFirst();
 
         User specificUser = new User();
         specificUser.setUserID(c.getInt(c.getColumnIndex(COLUMN_USER_ID)));
         specificUser.setEmail(c.getString(c.getColumnIndex(COLUMN_USER_EMAIL)));
+        specificUser.setOwnerFullName(c.getString(c.getColumnIndex(COLUMN_USER_NAME)));
         specificUser.setPassword(c.getString(c.getColumnIndex(COLUMN_USER_PASSWORD)));
         specificUser.setCity(c.getString(c.getColumnIndex(COLUMN_USER_CITY)));
         specificUser.setDogName(c.getString(c.getColumnIndex(COLUMN_USER_DOGNAME)));
@@ -271,6 +272,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         specificUser.setDescription(c.getString(c.getColumnIndex(COLUMN_USER_DOGDESCRIPTION)));
 
         return specificUser;
+        }
+    return null;
     }
 
 

@@ -97,4 +97,31 @@
     <string name="cancel_permission_notice">Please come back again when you need it and grant the permission</string>
     <string name="MapActivityStartTrackingButton">Start Your Dog Walk</string>
 
+    <!-- FIND NEW FRIENDS LOGIN MAIN AREA MAIN -->
+    <string name="FindFriendsActivityHeadline">Find new Pawlliance Friends in your area</string>
+
+    <!-- EDIT PROFILE INFORMATION LOGIN MAIN AREA MAIN -->
+    <string name="EditProfileInformationHeadline">Your Pawlliance Profile</string>
+    <string name="EditProfileInformationEmail">Email:</string>
+    <string name="EditProfileInformationOwnerEmail">Your Email</string>
+    <string name="EditProfileInformationPassword">Password:</string>
+    <string name="EditProfileInformationOwnerPassword">*******</string>
+    <string name="EditProfileInformationCity">City:</string>
+    <string name="EditProfileInformationOwnerCity">Your City</string>
+    <string name="EditProfileInformationName">Name:</string>
+    <string name="EditProfileInformationOwnerName">Your Name</string>
+    <string name="EditProfileInformationDogName">Dog Name:</string>
+    <string name="EditProfileInformationOwnerDogName">Your Dog\'s Name</string>
+    <string name="EditProfileInformationDogBreed">Dog Breed:</string>
+    <string name="EditProfileInformationOwnerDogBreed">Your Dog\'s Breed</string>
+    <string name="EditProfileInformationDogBirthday">Dog Birthday:</string>
+    <string name="EditProfileInformationOwnerDogBirthday">Your Dog\'s Birthday</string>
+    <string name="EditProfileInformationDogGender">Dog Gender:</string>
+    <string name="EditProfileInformationOwnerDogGender">Your Dog\'s Gender</string>
+    <string name="EditProfileInformationDogDescription">Dog Description:</string>
+    <string name="EditProfileInformationOwnerDogDescription">Your Dog\'s Description</string>
+    <string name="EditProfileInformationBackToMainAreaButton">Back To Your Cockpit</string>
+    <string name="EditProfileInformationButtonUpdateInformation">Update</string>
+    <string name="EditProfileInformationUpdateImageButton">Open Gallery</string>
+
 </resources>

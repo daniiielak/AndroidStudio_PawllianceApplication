@@ -248,8 +248,8 @@ public class SignUpActivityPart2 extends AppCompatActivity implements View.OnCli
             requestPermissions(permissionRequest, CAMERA_PERMISSION_REQUEST_CODE);
         }
 
-        //Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        //startActivityForResult(cameraIntent, CAMERA_REQUEST_CODE);
+        Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(cameraIntent, CAMERA_REQUEST_CODE);
     }
 
     @Override

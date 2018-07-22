@@ -13,7 +13,7 @@
      The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
      Google Maps Android API v2, but you must specify either coarse or fine
      location permissions for the 'MyLocation' functionality.
--->
+    -->
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -21,9 +21,9 @@
 
     <permission
         android:name="pawlliance.com.pawlliance.permission.MAPS_RECEIVE"
-        android:protectionLevel="signature"/>
+        android:protectionLevel="signature" />
 
-    <uses-permission android:name="pawlliance.com.pawlliance.permission.MAPS_RECEIVE"/>
+    <uses-permission android:name="pawlliance.com.pawlliance.permission.MAPS_RECEIVE" />
 
     <application
         android:allowBackup="true"
@@ -75,7 +75,6 @@
              You can define the keys for the debug and release targets in src/debug/ and src/release/. 
         -->
 
-
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyBeYSYSxrMhZkBPap75JLDDxrMhr7VBaJI" />
@@ -84,15 +83,14 @@
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyBeYSYSxrMhZkBPap75JLDDxrMhr7VBaJI" />
-
         -->
         <activity
-            android:exported="true"
             android:name=".activities.MapsActivity"
+            android:exported="true"
             android:label="@string/title_activity_maps"
-            android:parentActivityName=".activities.LoginAreaMain"></activity>
-
-
+            android:parentActivityName=".activities.LoginAreaMain" />
+        <activity android:name=".activities.FindNewFriendsLoginAreaMain" />
+        <activity android:name=".activities.EditProfileInformationMainLoginArea"></activity>
     </application>
 
 </manifest>

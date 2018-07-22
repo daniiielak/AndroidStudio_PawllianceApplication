@@ -20,6 +20,7 @@ public class LoginAreaMain extends AppCompatActivity implements View.OnClickList
     Button loginAreaFindNewFurryFriendsButton;
     Button loginAreaUpdateProfileButton;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,14 +76,31 @@ public class LoginAreaMain extends AppCompatActivity implements View.OnClickList
                 Intent mapsActivityIntent = new Intent(activity, MapsActivity.class);
                 mapsActivityIntent.putExtra("ownersEmailForPassOn", userEmail);
                 startActivity(mapsActivityIntent);
-                //
-
                 break;
+
             case R.id.LoginAreaMyPawllianceBuddiesButton:
                 break;
+
             case R.id.LoginAreaFindNewFurryFriendsButton:
+                // storing the user email for pass on to next class
+                Intent previousLoginAreaIntent2 = getIntent();
+                Bundle b2 = previousLoginAreaIntent2.getExtras();
+                String userEmail2 = (String) b2.get("ownersEmailForPassOn");
+                //Intent for new friends class
+                Intent findNewFriendsActivityIntent = new Intent(activity, FindNewFriendsLoginAreaMain.class);
+                findNewFriendsActivityIntent.putExtra("ownersEmailForPassOn", userEmail2);
+                startActivity(findNewFriendsActivityIntent);
                 break;
+
             case R.id.LoginAreaUpdateProfileButton:
+                // storing the user email for pass on to next class
+                Intent previousLoginAreaIntent3 = getIntent();
+                Bundle b3 = previousLoginAreaIntent3.getExtras();
+                String userEmail3 = (String) b3.get("ownersEmailForPassOn");
+                //Intent for new friends class
+                Intent updateProfileActivityIntent = new Intent(activity, EditProfileInformationMainLoginArea.class);
+                updateProfileActivityIntent.putExtra("ownersEmailForPassOn", userEmail3);
+                startActivity(updateProfileActivityIntent);
                 break;
         }
     }
