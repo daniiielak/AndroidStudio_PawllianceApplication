@@ -98,13 +98,13 @@
         <!-- EDIT PROFILE INFORMATION MAIN LOGIN AREA -->
         <activity
             android:name=".activities.EditProfileInformationMainLoginArea"
-            android:parentActivityName=".activities.LoginAreaMain"/>
+            android:parentActivityName=".activities.LoginAreaMain" />
 
-        <!-- POPUP EDIT DOG DESCRIPTION  android:theme="@style/PopUpTheme"  -->
+        <!-- POPUP EDIT DOG DESCRIPTION  android:theme="@style/PopUpTheme" -->
         <activity
             android:name=".popups.PopUpEditDescription"
             android:parentActivityName=".activities.EditProfileInformationMainLoginArea" />
-
+        <activity android:name=".popups.PopUpEditBirthday"></activity>
     </application>
 
 </manifest>

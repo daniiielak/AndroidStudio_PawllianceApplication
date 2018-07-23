@@ -1,5 +1,6 @@
 package pawlliance.com.pawlliance.popups;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
@@ -8,23 +9,27 @@ import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
+import android.widget.DatePicker;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
 
 import pawlliance.com.pawlliance.R;
 import pawlliance.com.pawlliance.activities.EditProfileInformationMainLoginArea;
-import pawlliance.com.pawlliance.activities.MapsActivity;
 import pawlliance.com.pawlliance.activities.SignUpActivityPart2;
-import pawlliance.com.pawlliance.helper.InputValidation;
 import pawlliance.com.pawlliance.model.User;
 import pawlliance.com.pawlliance.sql.DatabaseHelper;
 
-public class PopUpEditDescription extends AppCompatActivity implements View.OnClickListener {
-    private final AppCompatActivity activity = PopUpEditDescription.this;
+public class PopUpEditBirthday extends AppCompatActivity implements View.OnClickListener {
+    final Calendar dogBirthdayCalendar = Calendar.getInstance();
+    private final AppCompatActivity activity = PopUpEditBirthday.this;
 
-    private TextInputLayout popUpEditDescriptionTextInputLayout;
-    private TextInputEditText popUpEditDescriptionTextInputEditText;
-    private Button popUpDescriptionCancelButton;
-    private Button popUpDescriptionSaveButton;
+    private TextInputLayout popUpEditBirthdayTextInputLayout;
+    private TextInputEditText popUpEditBirthdayTextInputEditText;
+
+    private Button popUpBirthdaySaveButton;
+    private Button popUpBirthdayCancelButton;
 
     private DatabaseHelper databaseHelper;
     private User currentUser;
@@ -32,7 +37,7 @@ public class PopUpEditDescription extends AppCompatActivity implements View.OnCl
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pop_up_edit_description);
+        setContentView(R.layout.activity_pop_up_edit_birthday);
 
         initViews();
         initObjects();
@@ -50,20 +55,38 @@ public class PopUpEditDescription extends AppCompatActivity implements View.OnCl
         // saving display metrics width and height and set Pop-Up Window smaller than background
         int width = dm.widthPixels;
         int height = dm.heightPixels;
+        getWindow().setLayout((int) (width * 0.8), (int) (height * 0.4));
 
-        getWindow().setLayout((int)(width*0.8),(int)(height*0.6));
+        popUpEditBirthdayTextInputLayout = (TextInputLayout) findViewById(R.id.PopUpEditBirthdayTextInputLayout);
+        popUpBirthdaySaveButton = (Button) findViewById(R.id.PopUpBirthdaySaveButton);
+        popUpBirthdayCancelButton = (Button) findViewById(R.id.PopUpBirthdayCancelButton);
 
-        popUpEditDescriptionTextInputLayout = (TextInputLayout) findViewById(R.id.PopUpDescriptionTextInputLayout);
-        popUpEditDescriptionTextInputEditText = (TextInputEditText) findViewById(R.id.PopUpDescriptionTextInputEditText);
-        popUpDescriptionCancelButton = (Button) findViewById(R.id.PopUpDescriptionCancelButton);
-        popUpDescriptionSaveButton = (Button) findViewById(R.id.PopUpDescriptionSaveButton);
+        // Date Picker für Edit Text
+        popUpEditBirthdayTextInputEditText = (TextInputEditText) findViewById(R.id.PopUpEditBirthdayTextInputEditText);
+        final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                dogBirthdayCalendar.set(Calendar.YEAR, year);
+                dogBirthdayCalendar.set(Calendar.MONTH, month);
+                dogBirthdayCalendar.set(Calendar.DAY_OF_MONTH, day);
+                updateLabel();
+            }
+        };
 
+        popUpEditBirthdayTextInputEditText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new DatePickerDialog(PopUpEditBirthday.this, date, dogBirthdayCalendar.get(Calendar.YEAR),
+                        dogBirthdayCalendar.get(Calendar.MONTH),
+                        dogBirthdayCalendar.get(Calendar.DAY_OF_MONTH)).show();
+            }
+        });
     }
 
     /**
      * This method is to initialize objects to be used
      */
-    private void initObjects(){
+    private void initObjects() {
         databaseHelper = new DatabaseHelper(activity);
         currentUser = new User();
     }
@@ -71,9 +94,9 @@ public class PopUpEditDescription extends AppCompatActivity implements View.OnCl
     /**
      * This method is to initialize listeners
      */
-    public void initListener(){
-        popUpDescriptionCancelButton.setOnClickListener(this);
-        popUpDescriptionSaveButton.setOnClickListener(this);
+    public void initListener() {
+        popUpBirthdaySaveButton.setOnClickListener(this);
+        popUpBirthdayCancelButton.setOnClickListener(this);
     }
 
     /**
@@ -83,9 +106,9 @@ public class PopUpEditDescription extends AppCompatActivity implements View.OnCl
      */
 
     @Override
-    public void onClick(View v){
-        switch(v.getId()){
-            case R.id.PopUpDescriptionCancelButton:
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.PopUpBirthdayCancelButton:
                 // storing the user email for pass on to next class
                 Intent previousEditProfileInformationIntent = getIntent();
                 Bundle b = previousEditProfileInformationIntent.getExtras();
@@ -96,7 +119,7 @@ public class PopUpEditDescription extends AppCompatActivity implements View.OnCl
                 startActivity(goBackToEditProfileInformationPageIntent);
                 break;
 
-            case R.id.PopUpDescriptionSaveButton:
+            case R.id.PopUpBirthdaySaveButton:
                 // set text view to user email address by getting the extra from previous activity
                 previousEditProfileInformationIntent = getIntent();
                 b = previousEditProfileInformationIntent.getExtras();
@@ -104,12 +127,12 @@ public class PopUpEditDescription extends AppCompatActivity implements View.OnCl
                 System.out.println("This is the owner's email: " + userEmail);
 
                 // getting specific user based on email address to update description
-                String newDescription = popUpEditDescriptionTextInputEditText.getText().toString();
-                    if (!newDescription.equals("")) {
-                        currentUser = databaseHelper.getSpecificUser(userEmail);
-                        currentUser.setDescription(newDescription);
-                        databaseHelper.updateUser(currentUser);
-                    }
+                String newBirthday = popUpEditBirthdayTextInputEditText.getText().toString();
+                if (!newBirthday.equals("")) {
+                    currentUser = databaseHelper.getSpecificUser(userEmail);
+                    currentUser.setBirthday(newBirthday);
+                    databaseHelper.updateUser(currentUser);
+                }
 
                 //Intent for previous class
                 goBackToEditProfileInformationPageIntent = new Intent(activity, EditProfileInformationMainLoginArea.class);
@@ -118,4 +141,12 @@ public class PopUpEditDescription extends AppCompatActivity implements View.OnCl
                 break;
         }
     }
+
+    private void updateLabel(){
+        String myDateFormat = "MM/dd/yyyy";
+        SimpleDateFormat sdf = new SimpleDateFormat(myDateFormat, Locale.GERMAN);
+        popUpEditBirthdayTextInputEditText.setText(sdf.format(dogBirthdayCalendar.getTime()));
+    }
+
+    // DNC - class closing
 }

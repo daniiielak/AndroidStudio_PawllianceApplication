@@ -18,6 +18,7 @@ import android.view.LayoutInflater;
 import pawlliance.com.pawlliance.R;
 import pawlliance.com.pawlliance.helper.InputValidation;
 import pawlliance.com.pawlliance.model.User;
+import pawlliance.com.pawlliance.popups.PopUpEditBirthday;
 import pawlliance.com.pawlliance.popups.PopUpEditDescription;
 import pawlliance.com.pawlliance.sql.DatabaseHelper;
 
@@ -158,6 +159,14 @@ public class EditProfileInformationMainLoginArea extends AppCompatActivity imple
                 break;
 
             case R.id.EditProfileInformationUpdateInformationDogBirthdayButton:
+                // storing the user email for pass on to next class
+                previousMainAreaIntent = getIntent();
+                b = previousMainAreaIntent.getExtras();
+                userEmail = (String) b.get("ownersEmailForPassOn");
+                //Intent for description popup class
+                Intent updateDogBirthdayPopUpIntent = new Intent(activity, PopUpEditBirthday.class);
+                updateDogBirthdayPopUpIntent.putExtra("ownersEmailForPassOn", userEmail);
+                startActivity(updateDogBirthdayPopUpIntent);
                 break;
 
             case R.id.EditProfileInformationUpdateInformationDogDescriptionButton:

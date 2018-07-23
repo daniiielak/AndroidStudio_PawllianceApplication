@@ -217,14 +217,14 @@
 
         <android.support.design.widget.TextInputEditText
             android:id="@+id/SignUpDogsBirthdayTextInputEditText"
-            android:clickable="true"
             android:layout_width="230dp"
             android:layout_height="38dp"
             android:background="@color/boxFiller"
+            android:clickable="true"
+            android:focusable="false"
             android:fontFamily="@font/ubuntu_medium"
             android:hint="@string/SignUpDogBirthdayHint"
             android:inputType="date"
-            android:focusable="false"
             android:padding="10dip"
             android:singleLine="true"
             android:textColor="@color/colorFontMain"

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".popups.PopUpEditBirthday">
+
+    <TextView
+        android:id="@+id/PopUpEditBirthdayTextView"
+        android:layout_width="74dp"
+        android:layout_height="25dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="12dp"
+        android:fontFamily="@font/ubuntu_medium"
+        android:text="@string/SignUpDogBirthday"
+        android:textColor="@color/colorFontMain"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.118"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.142" />
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/PopUpEditBirthdayTextInputLayout"
+        android:layout_width="292dp"
+        android:layout_height="86dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.375"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.499">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/PopUpEditBirthdayTextInputEditText"
+            android:layout_width="261dp"
+            android:layout_height="57dp"
+            android:background="@color/boxFiller"
+            android:clickable="true"
+            android:focusable="false"
+            android:fontFamily="@font/ubuntu_medium"
+            android:hint="@string/SignUpDogBirthdayHint"
+            android:inputType="date"
+            android:padding="10dip"
+            android:singleLine="true"
+            android:textColor="@color/colorFontMain"
+            android:textColorHint="@color/colorFontHint"
+            android:textSize="12sp" />
+    </android.support.design.widget.TextInputLayout>
+
+    <Button
+        android:id="@+id/PopUpBirthdaySaveButton"
+        android:layout_width="101dp"
+        android:layout_height="25dp"
+        android:layout_marginBottom="4dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/colorPrimary"
+        android:elevation="0dp"
+        android:fontFamily="@font/ubuntu_bold"
+        android:text="@string/PopUpDogEditDescriptionSaveButton"
+        android:textAllCaps="false"
+        android:textColor="@color/colorFontWhite"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.744"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.943" />
+
+    <Button
+        android:id="@+id/PopUpBirthdayCancelButton"
+        android:layout_width="101dp"
+        android:layout_height="25dp"
+        android:layout_marginBottom="4dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/colorPrimary"
+        android:elevation="0dp"
+        android:fontFamily="@font/ubuntu_bold"
+        android:text="@string/PopUpDogEditDescriptionCancelButton"
+        android:textAllCaps="false"
+        android:textColor="@color/colorFontWhite"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.112"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.945" />
+
+</android.support.constraint.ConstraintLayout>
