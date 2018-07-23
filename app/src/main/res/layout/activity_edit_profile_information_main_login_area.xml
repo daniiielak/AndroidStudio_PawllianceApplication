@@ -321,28 +321,6 @@
         app:layout_constraintVertical_bias="0.803" />
 
     <Button
-        android:id="@+id/EditProfileInformationUpdateInformationImageGalleryButton"
-        android:layout_width="82dp"
-        android:layout_height="18dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:background="@color/colorFontHint"
-        android:elevation="0dp"
-        android:fontFamily="@font/ubuntu_bold"
-        android:text="@string/EditProfileInformationUpdateImageButton"
-        android:textAllCaps="false"
-        android:textColor="@color/colorFontMain"
-        android:textSize="8sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.875"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.165" />
-
-    <Button
         android:id="@+id/EditProfileInformationUpdateInformationPasswordButton"
         android:layout_width="56dp"
         android:layout_height="17dp"

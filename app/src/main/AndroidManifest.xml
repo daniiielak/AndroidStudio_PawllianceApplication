@@ -108,7 +108,8 @@
         <activity android:name=".popups.PopUpEditDogBreed" />
         <activity android:name=".popups.PopUpDeleteAccount" />
         <activity android:name=".popups.PopUpEditDogName" />
-        <activity android:name=".popups.PopUpEditCity"></activity>
+        <activity android:name=".popups.PopUpEditCity" />
+        <activity android:name=".popups.PopUpEditPassword"></activity>
     </application>
 
 </manifest>

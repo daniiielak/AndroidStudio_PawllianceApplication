@@ -1,38 +1,45 @@
 package pawlliance.com.pawlliance.popups;
 
 import android.content.Intent;
+import android.support.design.widget.TextInputEditText;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.Spinner;
 
 import pawlliance.com.pawlliance.R;
 import pawlliance.com.pawlliance.activities.EditProfileInformationMainLoginArea;
+import pawlliance.com.pawlliance.helper.InputValidation;
 import pawlliance.com.pawlliance.model.User;
 import pawlliance.com.pawlliance.sql.DatabaseHelper;
 
-public class PopUpEditDogBreed extends AppCompatActivity implements View.OnClickListener{
-    private final AppCompatActivity activity = PopUpEditDogBreed.this;
+public class PopUpEditPassword extends AppCompatActivity implements View.OnClickListener{
+    private final AppCompatActivity activity = PopUpEditPassword.this;
 
-    private Spinner popUpEditDogBreedSpinner;
+    private TextInputLayout popUpEditPasswordTextInputLayout;
+    private TextInputLayout popUpEditPasswordConfirmPasswordTextInputLayout;
 
-    private Button popUpDogBreedSaveButton;
-    private Button popUpDogBreedCancelButton;
+    private TextInputEditText popUpEditPasswordTextInputEditText;
+    private TextInputEditText popUpEditPasswordConfirmPasswordTextInputEditText;
 
+    private Button popUpEditPasswordCancelButton;
+    private Button popUpEditPasswordSaveButton;
+
+    private InputValidation inputValidation;
     private DatabaseHelper databaseHelper;
     private User currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pop_up_edit_dog_breed);
+        setContentView(R.layout.activity_pop_up_edit_password);
 
         initViews();
-        initObjects();
         initListener();
+        initObjects();
+
     }
 
     /**
@@ -47,18 +54,14 @@ public class PopUpEditDogBreed extends AppCompatActivity implements View.OnClick
         // saving display metrics width and height and set Pop-Up Window smaller than background
         int width = dm.widthPixels;
         int height = dm.heightPixels;
-        getWindow().setLayout((int) (width * 0.8), (int) (height * 0.4));
+        getWindow().setLayout((int) (width * 0.8), (int) (height * 0.6));
 
-
-        popUpDogBreedSaveButton = (Button) findViewById(R.id.PopUpDogBreedSaveButton);
-        popUpDogBreedCancelButton = (Button) findViewById(R.id.PopUpDogBreedCancelButton);
-
-        // SPINNER ACTION FOR DOG BREED SELECTOR
-        popUpEditDogBreedSpinner = (Spinner) findViewById(R.id.PopUpEditDogBreedSpinner);
-        ArrayAdapter<CharSequence> staticBreedAdapter = ArrayAdapter.createFromResource(this, R.array.dogBreeds_array, android.R.layout.simple_spinner_item);         // Create an ArrayAdapter using the string array and a default spinner
-        staticBreedAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);         // Specify the layout to use when the list of choices appears
-        popUpEditDogBreedSpinner.setAdapter(staticBreedAdapter);         // Apply the adapter to the spinner
-
+        popUpEditPasswordTextInputLayout = (TextInputLayout) findViewById(R.id.PopUpEditPasswordTextInputLayout);
+        popUpEditPasswordConfirmPasswordTextInputLayout = (TextInputLayout) findViewById(R.id.PopUpEditPasswordConfirmPasswordTextInputLayout);
+        popUpEditPasswordTextInputEditText = (TextInputEditText) findViewById(R.id.PopUpEditPasswordTextInputEditText);
+        popUpEditPasswordConfirmPasswordTextInputEditText = (TextInputEditText) findViewById(R.id.PopUpEditPasswordConfirmPasswordTextInputEditText);
+        popUpEditPasswordCancelButton = (Button) findViewById(R.id.PopUpEditPasswordCancelButton);
+        popUpEditPasswordSaveButton = (Button) findViewById(R.id.PopUpEditPasswordSaveButton);
     }
 
     /**
@@ -67,14 +70,15 @@ public class PopUpEditDogBreed extends AppCompatActivity implements View.OnClick
     private void initObjects() {
         databaseHelper = new DatabaseHelper(activity);
         currentUser = new User();
+        inputValidation = new InputValidation(activity);
     }
 
     /**
      * This method is to initialize listeners
      */
     public void initListener() {
-        popUpDogBreedSaveButton.setOnClickListener(this);
-        popUpDogBreedCancelButton.setOnClickListener(this);
+        popUpEditPasswordCancelButton.setOnClickListener(this);
+        popUpEditPasswordSaveButton.setOnClickListener(this);
     }
 
     /**
@@ -86,7 +90,7 @@ public class PopUpEditDogBreed extends AppCompatActivity implements View.OnClick
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.PopUpDogBreedCancelButton:
+            case R.id.PopUpEditPasswordCancelButton:
                 // storing the user email for pass on to next class
                 Intent previousEditProfileInformationIntent = getIntent();
                 Bundle b = previousEditProfileInformationIntent.getExtras();
@@ -97,7 +101,7 @@ public class PopUpEditDogBreed extends AppCompatActivity implements View.OnClick
                 startActivity(goBackToEditProfileInformationPageIntent);
                 break;
 
-            case R.id.PopUpDogBreedSaveButton:
+            case R.id.PopUpEditPasswordSaveButton:
                 // set text view to user email address by getting the extra from previous activity
                 previousEditProfileInformationIntent = getIntent();
                 b = previousEditProfileInformationIntent.getExtras();
@@ -105,11 +109,22 @@ public class PopUpEditDogBreed extends AppCompatActivity implements View.OnClick
                 System.out.println("This is the owner's email: " + userEmail);
 
                 // getting specific user based on email address to update description
-                String newDogBreed = popUpEditDogBreedSpinner.getSelectedItem().toString();
-                if (!newDogBreed.equals("")) {
-                    currentUser = databaseHelper.getSpecificUser(userEmail);
-                    currentUser.setDogBreed(newDogBreed);
-                    databaseHelper.updateUser(currentUser);
+                String newPasswordField1 = popUpEditPasswordTextInputEditText.getText().toString();
+                String newPasswordField2 = popUpEditPasswordConfirmPasswordTextInputEditText.getText().toString();
+
+                // passing that both fields are filled out
+                if ((!newPasswordField1.equals("")) && (!newPasswordField2.equals(""))) {
+
+                    if(!inputValidation.isInputEditTextMatches(popUpEditPasswordTextInputEditText, popUpEditPasswordConfirmPasswordTextInputEditText,
+                            popUpEditPasswordConfirmPasswordTextInputLayout, getString(R.string.SignUpErrorMessagePasswordMatch))) {
+                        return;
+                    }
+
+                    else {
+                        currentUser = databaseHelper.getSpecificUser(userEmail);
+                        currentUser.setPassword(newPasswordField1);
+                        databaseHelper.updateUser(currentUser);
+                    }
                 }
 
                 //Intent for previous class
@@ -120,6 +135,5 @@ public class PopUpEditDogBreed extends AppCompatActivity implements View.OnClick
         }
     }
 
-    // DNC - class closing
+// DNC - class closing
 }
-

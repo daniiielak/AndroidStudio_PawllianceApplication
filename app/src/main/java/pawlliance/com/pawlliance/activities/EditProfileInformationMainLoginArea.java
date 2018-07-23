@@ -20,9 +20,11 @@ import pawlliance.com.pawlliance.helper.InputValidation;
 import pawlliance.com.pawlliance.model.User;
 import pawlliance.com.pawlliance.popups.PopUpDeleteAccount;
 import pawlliance.com.pawlliance.popups.PopUpEditBirthday;
+import pawlliance.com.pawlliance.popups.PopUpEditCity;
 import pawlliance.com.pawlliance.popups.PopUpEditDescription;
 import pawlliance.com.pawlliance.popups.PopUpEditDogBreed;
 import pawlliance.com.pawlliance.popups.PopUpEditDogName;
+import pawlliance.com.pawlliance.popups.PopUpEditPassword;
 import pawlliance.com.pawlliance.sql.DatabaseHelper;
 
 public class EditProfileInformationMainLoginArea extends AppCompatActivity implements View.OnClickListener {
@@ -36,7 +38,6 @@ public class EditProfileInformationMainLoginArea extends AppCompatActivity imple
     private TextView profileInformationOwnerDogBirthdayTextView;
     private TextView profileInformationOwnerDogDescriptionTextView;
 
-    private Button editProfileInformationUpdateInformationImageGalleryButton;
     private Button editProfileInformationUpdateInformationPasswordButton;
     private Button editProfileInformationUpdateInformationCityButton;
     private Button editProfileInformationUpdateInformationDogNameButton;
@@ -66,7 +67,6 @@ public class EditProfileInformationMainLoginArea extends AppCompatActivity imple
      */
     private void initViews() {
 
-        editProfileInformationUpdateInformationImageGalleryButton = (Button) findViewById(R.id.EditProfileInformationUpdateInformationImageGalleryButton);
         editProfileInformationUpdateInformationPasswordButton = (Button) findViewById(R.id.EditProfileInformationUpdateInformationPasswordButton);
         editProfileInformationUpdateInformationCityButton = (Button) findViewById(R.id.EditProfileInformationUpdateInformationCityButton);
         editProfileInformationUpdateInformationDogNameButton = (Button) findViewById(R.id.EditProfileInformationUpdateInformationDogNameButton);
@@ -124,7 +124,6 @@ public class EditProfileInformationMainLoginArea extends AppCompatActivity imple
      * This method is to initialize listeners
      */
     private void initListener() {
-        editProfileInformationUpdateInformationImageGalleryButton.setOnClickListener(this);
         editProfileInformationUpdateInformationPasswordButton.setOnClickListener(this);;
         editProfileInformationUpdateInformationCityButton.setOnClickListener(this);;
         editProfileInformationUpdateInformationDogNameButton.setOnClickListener(this);;
@@ -145,18 +144,15 @@ public class EditProfileInformationMainLoginArea extends AppCompatActivity imple
     public void onClick(View v) {
         switch (v.getId()) {
 
-            case R.id.EditProfileInformationUpdateInformationImageGalleryButton:
+            case R.id.EditProfileInformationUpdateInformationPasswordButton:
                 // storing the user email for pass on to next class
                 Intent previousMainAreaIntent = getIntent();
                 Bundle b = previousMainAreaIntent.getExtras();
                 String userEmail = (String) b.get("ownersEmailForPassOn");
-                break;
-
-            case R.id.EditProfileInformationUpdateInformationPasswordButton:
-                // storing the user email for pass on to next class
-                previousMainAreaIntent = getIntent();
-                b = previousMainAreaIntent.getExtras();
-                userEmail = (String) b.get("ownersEmailForPassOn");
+                //Intent for description popup class
+                Intent updatePasswordPopUpIntent = new Intent(activity, PopUpEditPassword.class);
+                updatePasswordPopUpIntent.putExtra("ownersEmailForPassOn", userEmail);
+                startActivity(updatePasswordPopUpIntent);
                 break;
 
             case R.id.EditProfileInformationUpdateInformationCityButton:
@@ -164,6 +160,10 @@ public class EditProfileInformationMainLoginArea extends AppCompatActivity imple
                 previousMainAreaIntent = getIntent();
                 b = previousMainAreaIntent.getExtras();
                 userEmail = (String) b.get("ownersEmailForPassOn");
+                //Intent for description popup class
+                Intent updateCityPopUpIntent = new Intent(activity, PopUpEditCity.class);
+                updateCityPopUpIntent.putExtra("ownersEmailForPassOn", userEmail);
+                startActivity(updateCityPopUpIntent);
                 break;
 
             case R.id.EditProfileInformationUpdateInformationDogNameButton:
