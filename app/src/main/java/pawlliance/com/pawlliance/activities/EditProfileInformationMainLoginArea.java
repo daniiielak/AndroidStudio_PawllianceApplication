@@ -22,6 +22,7 @@ import pawlliance.com.pawlliance.popups.PopUpDeleteAccount;
 import pawlliance.com.pawlliance.popups.PopUpEditBirthday;
 import pawlliance.com.pawlliance.popups.PopUpEditDescription;
 import pawlliance.com.pawlliance.popups.PopUpEditDogBreed;
+import pawlliance.com.pawlliance.popups.PopUpEditDogName;
 import pawlliance.com.pawlliance.sql.DatabaseHelper;
 
 public class EditProfileInformationMainLoginArea extends AppCompatActivity implements View.OnClickListener {
@@ -152,12 +153,29 @@ public class EditProfileInformationMainLoginArea extends AppCompatActivity imple
                 break;
 
             case R.id.EditProfileInformationUpdateInformationPasswordButton:
+                // storing the user email for pass on to next class
+                previousMainAreaIntent = getIntent();
+                b = previousMainAreaIntent.getExtras();
+                userEmail = (String) b.get("ownersEmailForPassOn");
                 break;
 
             case R.id.EditProfileInformationUpdateInformationCityButton:
+                // storing the user email for pass on to next class
+                previousMainAreaIntent = getIntent();
+                b = previousMainAreaIntent.getExtras();
+                userEmail = (String) b.get("ownersEmailForPassOn");
                 break;
 
             case R.id.EditProfileInformationUpdateInformationDogNameButton:
+                // storing the user email for pass on to next class
+                previousMainAreaIntent = getIntent();
+                b = previousMainAreaIntent.getExtras();
+                userEmail = (String) b.get("ownersEmailForPassOn");
+                //Intent for description popup class
+                Intent updateDogNamePopUpIntent = new Intent(activity, PopUpEditDogName.class);
+                updateDogNamePopUpIntent.putExtra("ownersEmailForPassOn", userEmail);
+                startActivity(updateDogNamePopUpIntent);
+
                 break;
 
             case R.id.EditProfileInformationUpdateInformationDogBreedButton:

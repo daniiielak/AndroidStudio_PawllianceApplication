@@ -106,7 +106,9 @@
             android:parentActivityName=".activities.EditProfileInformationMainLoginArea" />
         <activity android:name=".popups.PopUpEditBirthday" />
         <activity android:name=".popups.PopUpEditDogBreed" />
-        <activity android:name=".popups.PopUpDeleteAccount"></activity>
+        <activity android:name=".popups.PopUpDeleteAccount" />
+        <activity android:name=".popups.PopUpEditDogName" />
+        <activity android:name=".popups.PopUpEditCity"></activity>
     </application>
 
 </manifest>
