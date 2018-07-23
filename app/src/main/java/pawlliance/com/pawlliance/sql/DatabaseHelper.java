@@ -319,6 +319,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // delete user record by id
         db.delete(TABLE_USER, COLUMN_USER_ID + " = ?",
                 new String[]{String.valueOf(user.getUserID())});
+        db.close();
 
     }
 

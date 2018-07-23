@@ -18,8 +18,10 @@ import android.view.LayoutInflater;
 import pawlliance.com.pawlliance.R;
 import pawlliance.com.pawlliance.helper.InputValidation;
 import pawlliance.com.pawlliance.model.User;
+import pawlliance.com.pawlliance.popups.PopUpDeleteAccount;
 import pawlliance.com.pawlliance.popups.PopUpEditBirthday;
 import pawlliance.com.pawlliance.popups.PopUpEditDescription;
+import pawlliance.com.pawlliance.popups.PopUpEditDogBreed;
 import pawlliance.com.pawlliance.sql.DatabaseHelper;
 
 public class EditProfileInformationMainLoginArea extends AppCompatActivity implements View.OnClickListener {
@@ -36,11 +38,12 @@ public class EditProfileInformationMainLoginArea extends AppCompatActivity imple
     private Button editProfileInformationUpdateInformationImageGalleryButton;
     private Button editProfileInformationUpdateInformationPasswordButton;
     private Button editProfileInformationUpdateInformationCityButton;
-    private  Button editProfileInformationUpdateInformationDogNameButton;
+    private Button editProfileInformationUpdateInformationDogNameButton;
     private Button editProfileInformationUpdateInformationDogBreedButton;
     private Button editProfileInformationUpdateInformationDogBirthdayButton;
     private Button editProfileInformationUpdateInformationDogDescriptionButton;
     private Button editProfileInformationBackToMainAreaButton;
+    private Button editProfileInformationDeleteProfileButton;
 
     private DatabaseHelper databaseHelper;
     private User currentUser;
@@ -70,6 +73,7 @@ public class EditProfileInformationMainLoginArea extends AppCompatActivity imple
         editProfileInformationUpdateInformationDogBirthdayButton = (Button) findViewById(R.id.EditProfileInformationUpdateInformationDogBirthdayButton);
         editProfileInformationUpdateInformationDogDescriptionButton = (Button) findViewById(R.id.EditProfileInformationUpdateInformationDogDescriptionButton);
         editProfileInformationBackToMainAreaButton = (Button) findViewById(R.id.EditProfileInformationBackToMainAreaButton);
+        editProfileInformationDeleteProfileButton = (Button) findViewById(R.id.EditProfileInformationDeleteProfileButton);
 
         // set text view to user email address by getting the extra from login activity
         profileInformationOwnerEmailTextView = (TextView) findViewById(R.id.ProfileInformationOwnerEmailTextView);
@@ -127,6 +131,7 @@ public class EditProfileInformationMainLoginArea extends AppCompatActivity imple
         editProfileInformationUpdateInformationDogBirthdayButton.setOnClickListener(this);;
         editProfileInformationUpdateInformationDogDescriptionButton.setOnClickListener(this);;
         editProfileInformationBackToMainAreaButton.setOnClickListener(this);;
+        editProfileInformationDeleteProfileButton.setOnClickListener(this);
     }
 
     /**
@@ -156,6 +161,14 @@ public class EditProfileInformationMainLoginArea extends AppCompatActivity imple
                 break;
 
             case R.id.EditProfileInformationUpdateInformationDogBreedButton:
+                // storing the user email for pass on to next class
+                previousMainAreaIntent = getIntent();
+                b = previousMainAreaIntent.getExtras();
+                userEmail = (String) b.get("ownersEmailForPassOn");
+                //Intent for description popup class
+                Intent updateDogBreedPopUpIntent = new Intent(activity, PopUpEditDogBreed.class);
+                updateDogBreedPopUpIntent.putExtra("ownersEmailForPassOn", userEmail);
+                startActivity(updateDogBreedPopUpIntent);
                 break;
 
             case R.id.EditProfileInformationUpdateInformationDogBirthdayButton:
@@ -189,6 +202,17 @@ public class EditProfileInformationMainLoginArea extends AppCompatActivity imple
                 Intent backToMainAreaActivityIntent = new Intent(activity, LoginAreaMain.class);
                 backToMainAreaActivityIntent.putExtra("ownersEmailForPassOn", userEmail);
                 startActivity(backToMainAreaActivityIntent);
+                break;
+
+            case R.id.EditProfileInformationDeleteProfileButton:
+                // storing the user email for pass on to next class
+                previousMainAreaIntent = getIntent();
+                b = previousMainAreaIntent.getExtras();
+                userEmail = (String) b.get("ownersEmailForPassOn");
+                //Intent for maps class
+                Intent deleteAccountPopUpIntent = new Intent(activity, PopUpDeleteAccount.class);
+                deleteAccountPopUpIntent.putExtra("ownersEmailForPassOn", userEmail);
+                startActivity(deleteAccountPopUpIntent);
                 break;
         }
     }

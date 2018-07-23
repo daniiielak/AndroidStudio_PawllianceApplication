@@ -58,7 +58,7 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/WelcomeApplicationTextView"
-        app:layout_constraintVertical_bias="0.022" />
+        app:layout_constraintVertical_bias="0.045" />
 
     <Button
         android:id="@+id/SignUpButton"
@@ -79,7 +79,7 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ManageDBButton"
-        app:layout_constraintVertical_bias="0.038" />
+        app:layout_constraintVertical_bias="0.042" />
 
     <ImageView
         android:id="@+id/imageView2"
@@ -93,6 +93,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/SignUpButton"
+        app:layout_constraintVertical_bias="0.527"
         app:srcCompat="@drawable/welcomedogappentry" />
 
 </android.support.constraint.ConstraintLayout>
