@@ -234,4 +234,16 @@ public class EditProfileInformationMainLoginArea extends AppCompatActivity imple
                 break;
         }
     }
+
+    @Override
+    public void onBackPressed(){
+        // storing the user email for pass on to next class
+        Intent previousMainAreaIntent = getIntent();
+        Bundle b = previousMainAreaIntent.getExtras();
+        String userEmail = (String) b.get("ownersEmailForPassOn");
+        //Intent for maps class
+        Intent backToMainAreaActivityIntent = new Intent(activity, LoginAreaMain.class);
+        backToMainAreaActivityIntent.putExtra("ownersEmailForPassOn", userEmail);
+        startActivity(backToMainAreaActivityIntent);
+    }
 }

@@ -52,6 +52,13 @@ public class User {
         this.password = password;
     }
 
+    public User(String dogName, String city, String dogBreed, String description){
+        this.dogName = dogName;
+        this.city = city;
+        this.dogBreed = dogBreed;
+        this.description = description;
+    }
+
     // Setters
     public void setUserID(int userID){
         this.userID = userID;

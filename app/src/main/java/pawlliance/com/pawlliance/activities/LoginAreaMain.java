@@ -41,10 +41,11 @@ public class LoginAreaMain extends AppCompatActivity implements View.OnClickList
         loginAreaUpdateProfileButton = (Button) findViewById(R.id.LoginAreaUpdateProfileButton);
 
         // set text view to user email address by getting the extra from login activity
+        String userEmail = "You're logged in!";
         loginAreaEmailTextView = (TextView) findViewById(R.id.LoginAreaEmailTextView);
         Intent previousLoginAreaIntent = getIntent();
         Bundle b = previousLoginAreaIntent.getExtras();
-        String userEmail = (String) b.get("ownersEmailForPassOn");
+        userEmail = (String) b.get("ownersEmailForPassOn");
         loginAreaEmailTextView.setText(userEmail);
     }
 
@@ -87,7 +88,7 @@ public class LoginAreaMain extends AppCompatActivity implements View.OnClickList
                 Bundle b2 = previousLoginAreaIntent2.getExtras();
                 String userEmail2 = (String) b2.get("ownersEmailForPassOn");
                 //Intent for new friends class
-                Intent findNewFriendsActivityIntent = new Intent(activity, FindNewFriendsLoginAreaMain.class);
+                Intent findNewFriendsActivityIntent = new Intent(activity, MyPawllianceFriendsLoginArea.class);
                 findNewFriendsActivityIntent.putExtra("ownersEmailForPassOn", userEmail2);
                 startActivity(findNewFriendsActivityIntent);
                 break;
@@ -104,4 +105,5 @@ public class LoginAreaMain extends AppCompatActivity implements View.OnClickList
                 break;
         }
     }
+
 }

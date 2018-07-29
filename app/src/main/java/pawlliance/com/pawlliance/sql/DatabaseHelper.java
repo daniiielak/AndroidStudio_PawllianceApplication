@@ -182,7 +182,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      * @return list
      */
 
-    public List<User> getAllUser(){
+    public ArrayList<User> getAllUser(){
         // array of columns to fetch
         String[] columns = {
                 COLUMN_USER_ID,
@@ -201,7 +201,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // sorting orders
         String sortOrder = COLUMN_USER_NAME + " ASC";
 
-        List<User> userList = new ArrayList<User>();
+        ArrayList<User> userList = new ArrayList<User>();
 
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -284,6 +284,51 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
     /**
+     * This method is to fetch all user and return the list of user records
+     *
+     * @return list
+     */
+
+    public ArrayList<User> getAllUserDogNames(){
+        // array of columns to fetch
+        String[] columns = {
+                COLUMN_USER_DOGNAME,
+        };
+
+        // sorting orders
+        String sortOrder = COLUMN_USER_DOGNAME + " ASC";
+
+        ArrayList<User> dogNamesList = new ArrayList<User>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        //query the user table
+        Cursor cursor = db.query(TABLE_USER, //Table to query
+                columns,    //columns to return
+                null,        //columns for the WHERE clause
+                null,        //The values for the WHERE clause
+                null,       //group the rows
+                null,       //filter by row groups
+                sortOrder); //The sort order
+
+        // Traversing through all rows and adding to list
+        if (cursor.moveToFirst()){
+            do {
+                User user = new User();
+                user.setDogName(cursor.getString(cursor.getColumnIndex(COLUMN_USER_DOGNAME)));
+
+                //adding new user record to the list
+                dogNamesList.add(user);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+
+        // return user List
+        return dogNamesList;
+    }
+
+    /**
      * This method to update user record
      *
      * @param user
@@ -325,7 +370,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
     /**
-     * This method iis for the AndroidDataBaseHelper to show data
+     * This method is for the AndroidDataBaseHelper to show data
      *
      */
     public ArrayList<Cursor> getData(String Query){

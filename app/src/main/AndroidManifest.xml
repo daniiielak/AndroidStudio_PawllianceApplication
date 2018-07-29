@@ -92,7 +92,7 @@
 
         <!-- FIND NEW FRIENDS LOGIN AREA MAIN -->
         <activity
-            android:name=".activities.FindNewFriendsLoginAreaMain"
+            android:name=".activities.MyPawllianceFriendsLoginArea"
             android:parentActivityName=".activities.LoginAreaMain" />
 
         <!-- EDIT PROFILE INFORMATION MAIN LOGIN AREA -->

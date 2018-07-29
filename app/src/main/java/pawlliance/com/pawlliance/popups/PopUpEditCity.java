@@ -47,7 +47,7 @@ public class PopUpEditCity extends AppCompatActivity implements View.OnClickList
         // saving display metrics width and height and set Pop-Up Window smaller than background
         int width = dm.widthPixels;
         int height = dm.heightPixels;
-        getWindow().setLayout((int) (width * 0.8), (int) (height * 0.5));
+        getWindow().setLayout((int) (width * 0.8), (int) (height * 0.4));
 
 
         popUpCitySaveButton = (Button) findViewById(R.id.PopUpCitySaveButton);

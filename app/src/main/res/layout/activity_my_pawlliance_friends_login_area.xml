@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.FindNewFriendsLoginAreaMain">
+    tools:context=".activities.MyPawllianceFriendsLoginArea">
 
     <ImageView
         android:id="@+id/imageView"
@@ -31,7 +31,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/ubuntu_bold"
-        android:text="My Pawlliance Cockpit"
+        android:text="@string/FindFriendsActivityHeadline"
         android:textAlignment="center"
         android:textColor="@color/colorFontMain"
         android:textColorHint="@color/colorFontHint"
@@ -41,7 +41,36 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.02"
-        tools:text="@string/FindFriendsActivityHeadline" />
+        app:layout_constraintVertical_bias="0.02" />
+
+    <Button
+        android:id="@+id/MyPawllianceFriendsBackToMainAreaButton"
+        android:layout_width="191dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="4dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/colorPrimary"
+        android:elevation="0dp"
+        android:fontFamily="@font/ubuntu_bold"
+        android:text="@string/EditProfileInformationBackToMainAreaButton"
+        android:textAllCaps="false"
+        android:textColor="@color/colorFontWhite"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.978" />
+
+    <ListView
+        android:id="@+id/ListViewPawllianceFriends"
+        android:layout_width="365dp"
+        android:layout_height="413dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.552" />
 
 </android.support.constraint.ConstraintLayout>
