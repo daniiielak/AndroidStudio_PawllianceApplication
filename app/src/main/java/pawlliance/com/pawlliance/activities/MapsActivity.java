@@ -27,17 +27,20 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
 
 import java.io.IOException;
+import java.sql.Date;
+import java.sql.Time;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.sql.Date;
-import java.sql.Time;
 import java.util.List;
 
 import pawlliance.com.pawlliance.R;
+import pawlliance.com.pawlliance.model.User;
+import pawlliance.com.pawlliance.model.WalkingActivity;
 import pawlliance.com.pawlliance.popups.PopUpEditPassword;
 import pawlliance.com.pawlliance.popups.PopUpThanksForTheDogWalk;
+import pawlliance.com.pawlliance.sql.DatabaseHelper;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, View.OnClickListener {
 
@@ -54,12 +57,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private LatLng mapEndPoint;
     private double totalWalkingDistance = 0;
     private LocalDate currentDate;
-    private Date currentDateSQLFormat;
     private LocalTime walkingStartTime;
-    private Time walkingStartTimeSQLFormat;
     private LocalTime walkingEndTime;
-    private Time walkingEndTimeSQLFormat;
     private double totalWalkingTime;
+
+    private DatabaseHelper databaseHelper;
+    private User user;
+    private WalkingActivity walkingActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,8 +80,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         Bundle b = previousLoginAreaIntent.getExtras();
         String userEmail = (String) b.get("ownersEmailForPassOn");
 
-        initViews();
         initObjects();
+        initViews();
         initListeners();
 
     }
@@ -93,6 +97,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
      * This method is to initialize objects to be used
      */
     private void initObjects() {
+
+        // init objects
+        databaseHelper = new DatabaseHelper(MapsActivity.this);
+        user = new User();
+        walkingActivity = new WalkingActivity();
+
+
+        // mapPoints
         mapPoints = new ArrayList<LatLng>();
         polylineOptions = new PolylineOptions();
         numberChanges = 0;
@@ -183,11 +195,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         // save walking date and start time
                         currentDate = currentDate.now();
                         System.out.println("This is the current date: " + currentDate);
-                        currentDateSQLFormat = Date.valueOf(currentDate.toString());
 
                         walkingStartTime = walkingStartTime.now();
                         System.out.println("This is the start time: " + walkingStartTime);
-                        walkingStartTimeSQLFormat = Time.valueOf(walkingStartTime.toString());
 
                         // increment changes to pass on to else on next change
                         numberChanges++;
@@ -238,7 +248,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         // set walking end time and duration
         walkingEndTime = walkingEndTime.now();
         System.out.println("This is the end time: " + walkingEndTime);
-        walkingEndTimeSQLFormat = Time.valueOf(walkingEndTime.toString());
 
         totalWalkingTime = Duration.between(walkingStartTime, walkingEndTime).toMinutes();
         System.out.println("Total walking minutes: " + totalWalkingTime);
@@ -254,6 +263,26 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         totalWalkingDistance += endLocation.distanceTo(startLocation);
         System.out.println("Total Walking Distance: " + totalWalkingDistance);
+
+        // getting user email to store relevant information
+        Intent previousMainAreaIntent = getIntent();
+        Bundle b = previousMainAreaIntent.getExtras();
+        String userEmail = (String) b.get("ownersEmailForPassOn");
+        user = databaseHelper.getSpecificUser(userEmail);
+        int userID = user.getUserID();
+        String dog = user.getDogName();
+
+        // save new walking activity information in Object
+        walkingActivity.setUserID(userID);
+        walkingActivity.setDog(dog);
+        walkingActivity.setWalkingDate(currentDate.toString());
+        walkingActivity.setWalkingStartTime(walkingStartTime.toString());
+        walkingActivity.setWalkingEndTime(walkingEndTime.toString());
+        walkingActivity.setTotalWalkingTime(totalWalkingTime);
+        walkingActivity.setTotalWalkingDistance(totalWalkingDistance);
+
+        databaseHelper.addWalkingActivity(walkingActivity);
+        System.out.println("Successfully added new walking activity with walking ID" + walkingActivity.getWalkingID() + " and user id " + walkingActivity.getUserID() + " to the database.");
 
         // setting back num changes in case another activity is started in same field.
         numberChanges = 0;
