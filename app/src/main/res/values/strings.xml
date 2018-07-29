@@ -133,5 +133,8 @@
     <string name="PopUpDogDontDeleteAccountButton">Stay with Pawlliance</string>
     <string name="PopUpDogDeleteAccountButton">Delete Account</string>
     <string name="PopUpDogDeleteAccountDescription">Are you sure you want to delete your account and leave your furry friends?</string>
+    <string name="PopUpThanksForTheDogWalkDescription">Thank you for taking your Furry Friend for a Walk with Pawlliance!</string>
+    <string name="PopUpThanksForTheDogWalkWalkedDog">Walked Dog:</string>
+    <string name="PopUpThanksForTheDogWalkWalkedDistance">Distance:</string>
 
 </resources>

@@ -99,17 +99,47 @@
             android:name=".activities.EditProfileInformationMainLoginArea"
             android:parentActivityName=".activities.LoginAreaMain" />
 
-        <!-- POPUP EDIT DOG DESCRIPTION  android:theme="@style/PopUpTheme" -->
+        <!-- POPUP EDIT DOG DESCRIPTION -->
         <activity
             android:name=".popups.PopUpEditDescription"
             android:parentActivityName=".activities.EditProfileInformationMainLoginArea" />
-        <activity android:name=".popups.PopUpEditBirthday" />
-        <activity android:name=".popups.PopUpEditDogBreed" />
-        <activity android:name=".popups.PopUpDeleteAccount" />
-        <activity android:name=".popups.PopUpEditDogName" />
-        <activity android:name=".popups.PopUpEditCity" />
-        <activity android:name=".popups.PopUpEditPassword" />
-        <activity android:name=".popups.PopUpThanksForTheDogWalk"></activity>
+
+        <!-- POPUP EDIT DOG BIRTHDAY -->
+        <activity
+            android:name=".popups.PopUpEditBirthday"
+            android:parentActivityName=".activities.EditProfileInformationMainLoginArea" />
+
+        <!-- POPUP EDIT DOG BREED -->
+        <activity
+            android:name=".popups.PopUpEditDogBreed"
+            android:parentActivityName=".activities.EditProfileInformationMainLoginArea" />
+
+        <!-- POPUP DELETE ACCOUNT  -->
+        <activity
+            android:name=".popups.PopUpDeleteAccount"
+            android:parentActivityName=".activities.EditProfileInformationMainLoginArea" />
+
+        <!-- POPUP EDIT DOG NAME -->
+        <activity
+            android:name=".popups.PopUpEditDogName"
+            android:parentActivityName=".activities.EditProfileInformationMainLoginArea" />
+
+        <!-- POPUP EDIT CITY -->
+        <activity
+            android:name=".popups.PopUpEditCity"
+            android:parentActivityName=".activities.EditProfileInformationMainLoginArea" />
+
+        <!-- POPUP EDIT PASSWORD -->
+        <activity
+            android:name=".popups.PopUpEditPassword"
+            android:parentActivityName=".activities.EditProfileInformationMainLoginArea"/>
+
+
+        <!-- POPUP THANKS FOR YOUR DOG WALK -->
+        <activity
+            android:name=".popups.PopUpThanksForTheDogWalk"
+            android:parentActivityName=".activities.LoginAreaMain"></activity>
+
     </application>
 
 </manifest>

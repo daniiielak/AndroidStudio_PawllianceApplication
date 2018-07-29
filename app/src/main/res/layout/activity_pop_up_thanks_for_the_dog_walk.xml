@@ -4,6 +4,116 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".popups.PopUpThanksForTheDogWalk">
+    tools:context=".popups.PopUpDeleteAccount">
+
+    <TextView
+        android:id="@+id/PopUpThanksForTheDogWalkHeadlineTextView"
+        android:layout_width="293dp"
+        android:layout_height="58dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/ubuntu_medium"
+        android:text="@string/PopUpThanksForTheDogWalkDescription"
+        android:textColor="@color/colorFontMain"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.055" />
+
+    <Button
+        android:id="@+id/PopUpThanksForTheDogWalkBackToCockpitButton"
+        android:layout_width="252dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="4dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/colorPrimary"
+        android:elevation="0dp"
+        android:fontFamily="@font/ubuntu_bold"
+        android:text="@string/EditProfileInformationBackToMainAreaButton"
+        android:textAllCaps="false"
+        android:textColor="@color/colorFontWhite"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.517"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.933" />
+
+
+    <ImageView
+        android:id="@+id/PopUpDeleteAccountSadDogImageView"
+        android:layout_width="167dp"
+        android:layout_height="153dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.686"
+        app:srcCompat="@drawable/thanksforthedogwalkimage" />
+
+    <TextView
+        android:id="@+id/PopUpThanksForTheDogWalkWalkedDogTextView"
+        android:layout_width="95dp"
+        android:layout_height="19dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/ubuntu_medium"
+        android:text="@string/PopUpThanksForTheDogWalkWalkedDog"
+        android:textColor="@color/colorFontMain"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.01"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.255" />
+
+    <TextView
+        android:id="@+id/PopUpThanksForTheDogWalkWalkedDogOwnerDogTextView"
+        android:layout_width="190dp"
+        android:layout_height="20dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/ubuntu_medium"
+        android:text="@string/EditProfileInformationOwnerDogName"
+        android:textColor="@color/colorFontHint"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.851"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.257" />
+
+    <TextView
+        android:id="@+id/PopUpThanksForTheDogWalkWalkedDistanceTextView"
+        android:layout_width="95dp"
+        android:layout_height="19dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/ubuntu_medium"
+        android:text="@string/PopUpThanksForTheDogWalkWalkedDistance"
+        android:textColor="@color/colorFontMain"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.01"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.341" />
 
 </android.support.constraint.ConstraintLayout>

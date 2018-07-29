@@ -12,6 +12,7 @@ import android.location.LocationManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -26,10 +27,16 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
 
 import java.io.IOException;
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import pawlliance.com.pawlliance.R;
+import pawlliance.com.pawlliance.popups.PopUpEditPassword;
+import pawlliance.com.pawlliance.popups.PopUpThanksForTheDogWalk;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, View.OnClickListener {
 
@@ -44,6 +51,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private int numberChanges;
     private LatLng mapStartPoint;
     private LatLng mapEndPoint;
+    private float totalWalkingDistance = 0;
+    private LocalDate currentDate;
+    private LocalTime walkingStartTime;
+    private LocalTime walkingEndTime;
+    private long totalWalkingTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +66,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+        // store user email address by getting the extra from login activity
+        Intent previousLoginAreaIntent = getIntent();
+        Bundle b = previousLoginAreaIntent.getExtras();
+        String userEmail = (String) b.get("ownersEmailForPassOn");
 
         initViews();
         initObjects();
@@ -66,11 +83,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
      */
     private void initViews(){
         mapsActivityStartDogWalkButton = (Button) findViewById(R.id.MapsActivityStartDogWalkButton);
-
-        // store user email address by getting the extra from login activity
-        Intent previousLoginAreaIntent = getIntent();
-        Bundle b = previousLoginAreaIntent.getExtras();
-        String userEmail = (String) b.get("ownersEmailForPassOn");
     }
 
     /**
@@ -82,7 +94,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         numberChanges = 0;
 
         // Setting the color & width of the polyline
-        polylineOptions.color(Color.RED);
+        polylineOptions.color(Color.BLUE);
         polylineOptions.width(15);
     }
 
@@ -108,8 +120,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     break;
                 }
                 else if(mapsActivityStartDogWalkButton.getText().equals("Finish Your Dog Walk")){
-                    mapsActivityStartDogWalkButton.setText("Start Your Dog Walk");
                     endActivity();
+                    //mapsActivityStartDogWalkButton.setText("Start Your Dog Walk");
+
+                    // storing the user email for pass on to next class
+                    Intent previousMainAreaIntent = getIntent();
+                    Bundle b = previousMainAreaIntent.getExtras();
+                    String userEmail = (String) b.get("ownersEmailForPassOn");
+
+                    //Intent for description popup class
+                    Intent thanksForTheDogWalkPopUpIntent = new Intent(MapsActivity.this, PopUpThanksForTheDogWalk.class);
+                    thanksForTheDogWalkPopUpIntent.putExtra("ownersEmailForPassOn", userEmail);
+                    startActivity(thanksForTheDogWalkPopUpIntent);
                     break;
                 }
                 else {
@@ -141,7 +163,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     if (numberChanges < 1){
                         LatLng startPoint = new LatLng(latitude, longitude);
 
-                        // save map start point in varialbe
+                        // save map start point in variable
                         mapStartPoint = startPoint;
 
                         // save in array list
@@ -153,6 +175,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         mMap.addMarker(new MarkerOptions().position(startPoint).title("Your Dog Walk Starting Location"));
                         mMap.setMaxZoomPreference(20);
                         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(startPoint, 12.0f));
+
+                        // save walking date and start time
+                        currentDate = currentDate.now();
+                        System.out.println("This is the current date: " + currentDate);
+                        walkingStartTime = walkingStartTime.now();
+                        System.out.println("This is the start time: " + walkingStartTime);
 
                         // increment changes to pass on to else on next change
                         numberChanges++;
@@ -199,6 +227,24 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private void endActivity(){
         System.out.println("Activity finished!");
+
+        // set walking end time and duration
+        walkingEndTime = walkingEndTime.now();
+        System.out.println("This is the end time: " + walkingEndTime);
+        totalWalkingTime = Duration.between(walkingStartTime, walkingEndTime).toMinutes();
+        System.out.println("Total walking minutes: " + totalWalkingTime);
+
+        // set walking distance
+        Location startLocation = new Location("Starting Point");
+        startLocation.setLatitude(mapStartPoint.latitude);
+        startLocation.setLongitude(mapStartPoint.longitude);
+
+        Location endLocation = new Location("End Point");
+        endLocation.setLatitude(mapEndPoint.latitude);
+        endLocation.setLongitude(mapEndPoint.longitude);
+
+        totalWalkingDistance += endLocation.distanceTo(startLocation);
+        System.out.println("Total Walking Distance: " + totalWalkingDistance);
 
         // setting back num changes in case another activity is started in same field.
         numberChanges = 0;
