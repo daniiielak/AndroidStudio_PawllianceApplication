@@ -31,7 +31,8 @@ import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Date;
+import java.sql.Date;
+import java.sql.Time;
 import java.util.List;
 
 import pawlliance.com.pawlliance.R;
@@ -51,11 +52,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private int numberChanges;
     private LatLng mapStartPoint;
     private LatLng mapEndPoint;
-    private float totalWalkingDistance = 0;
+    private double totalWalkingDistance = 0;
     private LocalDate currentDate;
+    private Date currentDateSQLFormat;
     private LocalTime walkingStartTime;
+    private Time walkingStartTimeSQLFormat;
     private LocalTime walkingEndTime;
-    private long totalWalkingTime;
+    private Time walkingEndTimeSQLFormat;
+    private double totalWalkingTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -179,8 +183,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         // save walking date and start time
                         currentDate = currentDate.now();
                         System.out.println("This is the current date: " + currentDate);
+                        currentDateSQLFormat = Date.valueOf(currentDate.toString());
+
                         walkingStartTime = walkingStartTime.now();
                         System.out.println("This is the start time: " + walkingStartTime);
+                        walkingStartTimeSQLFormat = Time.valueOf(walkingStartTime.toString());
 
                         // increment changes to pass on to else on next change
                         numberChanges++;
@@ -231,6 +238,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         // set walking end time and duration
         walkingEndTime = walkingEndTime.now();
         System.out.println("This is the end time: " + walkingEndTime);
+        walkingEndTimeSQLFormat = Time.valueOf(walkingEndTime.toString());
+
         totalWalkingTime = Duration.between(walkingStartTime, walkingEndTime).toMinutes();
         System.out.println("Total walking minutes: " + totalWalkingTime);
 
