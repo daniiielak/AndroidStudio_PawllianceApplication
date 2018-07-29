@@ -8,6 +8,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="pawlliance.com.pawlliance.permission.MAPS_RECEIVE" />
 
     <!--
      The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
@@ -22,8 +23,6 @@
     <permission
         android:name="pawlliance.com.pawlliance.permission.MAPS_RECEIVE"
         android:protectionLevel="signature" />
-
-    <uses-permission android:name="pawlliance.com.pawlliance.permission.MAPS_RECEIVE" />
 
     <application
         android:allowBackup="true"
@@ -109,7 +108,8 @@
         <activity android:name=".popups.PopUpDeleteAccount" />
         <activity android:name=".popups.PopUpEditDogName" />
         <activity android:name=".popups.PopUpEditCity" />
-        <activity android:name=".popups.PopUpEditPassword"></activity>
+        <activity android:name=".popups.PopUpEditPassword" />
+        <activity android:name=".popups.PopUpThanksForTheDogWalk"></activity>
     </application>
 
 </manifest>

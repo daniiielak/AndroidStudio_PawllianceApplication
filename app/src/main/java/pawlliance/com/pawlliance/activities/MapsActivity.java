@@ -3,6 +3,7 @@ package pawlliance.com.pawlliance.activities;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -22,20 +23,27 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.PolylineOptions;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import pawlliance.com.pawlliance.R;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, View.OnClickListener {
 
-    Button mapsActivityStartDogWalkButton;
+    private Button mapsActivityStartDogWalkButton;
     private GoogleMap mMap;
-    LocationManager locationManager;
+    private LocationManager locationManager;
     private static final int REQUEST_LOCATION_PERMISSION = 1;
-    Marker marker;
-    LocationListener locationListener;
+    private Marker marker;
+    private LocationListener locationListener;
+    private ArrayList<LatLng> mapPoints;
+    private PolylineOptions polylineOptions;
+    private int numberChanges;
+    private LatLng mapStartPoint;
+    private LatLng mapEndPoint;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +56,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mapFragment.getMapAsync(this);
 
         initViews();
+        initObjects();
         initListeners();
 
     }
@@ -58,11 +67,23 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private void initViews(){
         mapsActivityStartDogWalkButton = (Button) findViewById(R.id.MapsActivityStartDogWalkButton);
 
-
         // store user email address by getting the extra from login activity
         Intent previousLoginAreaIntent = getIntent();
         Bundle b = previousLoginAreaIntent.getExtras();
         String userEmail = (String) b.get("ownersEmailForPassOn");
+    }
+
+    /**
+     * This method is to initialize objects to be used
+     */
+    private void initObjects() {
+        mapPoints = new ArrayList<LatLng>();
+        polylineOptions = new PolylineOptions();
+        numberChanges = 0;
+
+        // Setting the color & width of the polyline
+        polylineOptions.color(Color.RED);
+        polylineOptions.width(15);
     }
 
     /**
@@ -81,12 +102,24 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onClick(View v) {
         switch(v.getId()){
             case R.id.MapsActivityStartDogWalkButton:
-                startActivity();
-                break;
+                if(mapsActivityStartDogWalkButton.getText().equals("Start Your Dog Walk")) {
+                    mapsActivityStartDogWalkButton.setText("Finish Your Dog Walk");
+                    startActivity();
+                    break;
+                }
+                else if(mapsActivityStartDogWalkButton.getText().equals("Finish Your Dog Walk")){
+                    mapsActivityStartDogWalkButton.setText("Start Your Dog Walk");
+                    endActivity();
+                    break;
+                }
+                else {
+                    break;
+                }
         }
     }
 
     private void startActivity(){
+        System.out.println("Activity started!");
         // locations manager object
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -99,16 +132,46 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             public void onLocationChanged(Location location) {
                 double latitude = location.getLatitude();
                 double longitude = location.getLongitude();
+
                 // get the location name from latitude and longitude
                 Geocoder geocoder = new Geocoder(getApplicationContext());
                 try {
                     List<Address> addresses = geocoder.getFromLocation(latitude, longitude, 1);
-                    String result = addresses.get(0).getLocality()+":";
-                    result += addresses.get(0).getCountryName();
-                    LatLng latLng = new LatLng(latitude, longitude);
-                    mMap.addMarker(new MarkerOptions().position(latLng).title(result));
-                    mMap.setMaxZoomPreference(20);
-                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 12.0f));
+
+                    if (numberChanges < 1){
+                        LatLng startPoint = new LatLng(latitude, longitude);
+
+                        // save map start point in varialbe
+                        mapStartPoint = startPoint;
+
+                        // save in array list
+                        mapPoints.add(startPoint);
+                        // Setting points of polyline
+                        polylineOptions.add(startPoint);
+                        // Adding the polyline to the map
+                        mMap.addPolyline(polylineOptions);
+                        mMap.addMarker(new MarkerOptions().position(startPoint).title("Your Dog Walk Starting Location"));
+                        mMap.setMaxZoomPreference(20);
+                        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(startPoint, 12.0f));
+
+                        // increment changes to pass on to else on next change
+                        numberChanges++;
+                    }
+
+                    if(numberChanges >= 1) {
+                        LatLng lastPoint = new LatLng(latitude, longitude);
+
+                        // save in array list
+                        mapPoints.add(lastPoint);
+                        // save new end point
+                        mapEndPoint = lastPoint;
+                        // Setting points of polyline
+                        polylineOptions.add(lastPoint);
+                        //polylineOptions.addAll(mapPoints);
+                        // Adding the polyline to the map
+                        mMap.addPolyline(polylineOptions);
+                    }
+
                 }
                 catch (IOException e){
                     e.printStackTrace();
@@ -134,6 +197,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
     }
 
+    private void endActivity(){
+        System.out.println("Activity finished!");
+
+        // setting back num changes in case another activity is started in same field.
+        numberChanges = 0;
+        mMap.clear();
+    }
+
     /**
      * Manipulates the map once available.
      * This callback is triggered when the map is ready to be used.
@@ -152,4 +223,5 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.addMarker(new MarkerOptions().position(dublin).title("Marker in Dublin"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(dublin));
     }
+
 }
