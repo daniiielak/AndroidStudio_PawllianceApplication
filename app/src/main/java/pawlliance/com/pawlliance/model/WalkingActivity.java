@@ -9,9 +9,9 @@ public class WalkingActivity {
     private int walkingID;
     private int userID;
     private String dog;
-    private Date walkingDate;
-    private Time walkingStartTime;
-    private Time walkingEndTime;
+    private String walkingDate;
+    private String walkingStartTime;
+    private String walkingEndTime;
     private double totalWalkingTime;
     private double totalWalkingDistance;
 
@@ -19,7 +19,7 @@ public class WalkingActivity {
     public WalkingActivity(){
     }
 
-    public WalkingActivity(int walkingID, int userID, String dog, Date walkingDate, Time walkingStartTime, Time walkingEndTime, double totalWalkingTime, double totalWalkingDistance) {
+    public WalkingActivity(int walkingID, int userID, String dog, String walkingDate, String walkingStartTime, String walkingEndTime, double totalWalkingTime, double totalWalkingDistance) {
         this.walkingID = walkingID;
         this.userID = userID;
         this.dog = dog;
@@ -43,15 +43,15 @@ public class WalkingActivity {
         this.dog = dog;
     }
 
-    public void setWalkingDate(Date walkingDate) {
+    public void setWalkingDate(String walkingDate) {
         this.walkingDate = walkingDate;
     }
 
-    public void setWalkingStartTime(Time walkingStartTime) {
+    public void setWalkingStartTime(String walkingStartTime) {
         this.walkingStartTime = walkingStartTime;
     }
 
-    public void setWalkingEndTime(Time walkingEndTime) {
+    public void setWalkingEndTime(String walkingEndTime) {
         this.walkingEndTime = walkingEndTime;
     }
 
@@ -78,15 +78,15 @@ public class WalkingActivity {
         return dog;
     }
 
-    public Date getWalkingDate() {
+    public String getWalkingDate() {
         return walkingDate;
     }
 
-    public Time getWalkingStartTime() {
+    public String getWalkingStartTime() {
         return walkingStartTime;
     }
 
-    public Time getWalkingEndTime() {
+    public String getWalkingEndTime() {
         return walkingEndTime;
     }
 

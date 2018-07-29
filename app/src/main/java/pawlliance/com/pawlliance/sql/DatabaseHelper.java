@@ -10,18 +10,50 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import java.sql.Date;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
 import pawlliance.com.pawlliance.model.User;
+import pawlliance.com.pawlliance.model.WalkingActivity;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
+
+    public DatabaseHelper(Context context){
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
+    }
+
+    @Override
+    public void onCreate(SQLiteDatabase db){
+        db.execSQL(CREATE_USER_TABLE);
+        db.execSQL(CREATE_WALKINGACTIVITY_TABLE);
+    }
+
+
+    @Override
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion){
+        // drop User Table is exists
+        db.execSQL(DROP_USER_TABLE);
+        db.execSQL(DROP_WALKINGACTIVITY_TABLE);
+        // create tables again
+        onCreate(db);
+    }
 
     // setting database version
     private static final int DATABASE_VERSION = 1;
 
     // database name
     private static final String DATABASE_NAME = "PawllianceDatabase.db";
+
+    /**
+     *
+     *
+     * These method are specifically for the USER Table
+     * TABLE_USER = "user"
+     *
+     *
+     */
 
     // setting up Pawlliance user (profile) table
     private static final String TABLE_USER = "user";
@@ -48,30 +80,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     // Drop User Table SQL Query
     private String DROP_USER_TABLE = "DROP TABLE IF EXISTS " + TABLE_USER;
 
-
-    /**
-     * Constructor
-     *
-     * @param context
-     */
-
-    public DatabaseHelper(Context context){
-        super(context, DATABASE_NAME, null, DATABASE_VERSION);
-    }
-
-    @Override
-    public void onCreate(SQLiteDatabase db){
-        db.execSQL(CREATE_USER_TABLE);
-    }
-
-    @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion){
-        // drop User Table is exists
-        db.execSQL(DROP_USER_TABLE);
-        // create tables again
-        onCreate(db);
-    }
-
+    // method to add a new user
     public void addUser(User user){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -90,6 +99,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
     }
 
+    // method checks whether a user already exists or not with email only
     public boolean checkUser(String email){
         // array of columns to fetch
         String[] columns = {
@@ -131,14 +141,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    /**
-     * This method to check user exist or not
-     *
-     * @param email
-     * @param password
-     * @return true/false
-     */
-
+    // method checks whether a user already exists or not with email and password
     public boolean checkUser(String email, String password){
         // array of columns to fetch
         String[] columns = {
@@ -176,12 +179,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return false;
     }
 
-    /**
-     * This method is to fetch all user and return the list of user records
-     *
-     * @return list
-     */
-
+    // method to fetch all users
     public ArrayList<User> getAllUser(){
         // array of columns to fetch
         String[] columns = {
@@ -241,12 +239,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return userList;
     }
 
-    /**
-     * This method is to fetch a single user based on the email address provided
-     *
-     * @return list
-     */
 
+    // method to fetch a single user based on email
     public User getSpecificUser(String userEmail) {
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -283,12 +277,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-    /**
-     * This method is to fetch all user and return the list of user records
-     *
-     * @return list
-     */
-
+    // method to return all dog names
     public ArrayList<User> getAllUserDogNames(){
         // array of columns to fetch
         String[] columns = {
@@ -328,11 +317,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return dogNamesList;
     }
 
-    /**
-     * This method to update user record
-     *
-     * @param user
-     */
+    // method to update the user
     public void updateUser(User user) {
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -354,16 +339,179 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
     }
 
-    /**
-     * This method is to delete user record
-     *
-     * @param user
-     */
+    // method to delete user record
     public void deleteUser(User user) {
         SQLiteDatabase db = this.getWritableDatabase();
         // delete user record by id
         db.delete(TABLE_USER, COLUMN_USER_ID + " = ?",
                 new String[]{String.valueOf(user.getUserID())});
+        db.close();
+
+    }
+
+    /**
+     *
+     *
+     * These method are specifically for the WALKINGACTIVITY Table
+     * TABLE_WALKINGACTIVITY = "walkingactivity"
+     *
+     *
+     */
+
+
+    // setting up Pawlliance walking activity table
+    private static final String TABLE_WALKINGACTIVITY = "walkingactivity";
+    private static final String COLUMN_WALKINGACTIVITY_ID = "walkingactivity_id";
+    private static final String COLUMN_WALKINGACTIVITY_USERID = "walkingactivity_userid";
+    private static final String COLUMN_WALKINGACTIVITY_DOG = "walkingactivity_dog";
+    private static final String COLUMN_WALKINGACTIVITY_WALKINGDATE = "walkingactivity_walkingdate";
+    private static final String COLUMN_WALKINGACTIVITY_WALKINGSTARTTIME = "walkingactivity_walkingstarttime";
+    private static final String COLUMN_WALKINGACTIVITY_WALKINGENDTIME = "walkingactivity_walkingendtime";
+    private static final String COLUMN_WALKINGACTIVITY_TOTALWALKINGTIME ="walkingactivity_totalwalkingtime";
+    private static final String COLUMN_WALKINGACTIVITY_TOTALWALKINGDISTANCE = "walkingactivity_totalwalkingdistance";
+
+
+    // Create Walking Activity Table SQL Query
+    private String CREATE_WALKINGACTIVITY_TABLE = "CREATE TABLE " + TABLE_WALKINGACTIVITY + "("
+            + COLUMN_WALKINGACTIVITY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + COLUMN_WALKINGACTIVITY_USERID + " INTEGER,"
+            + COLUMN_WALKINGACTIVITY_DOG + " TEXT," + COLUMN_WALKINGACTIVITY_WALKINGDATE + " TEXT," + COLUMN_WALKINGACTIVITY_WALKINGSTARTTIME + " TEXT,"
+            + COLUMN_WALKINGACTIVITY_WALKINGENDTIME + " TEXT," + COLUMN_WALKINGACTIVITY_TOTALWALKINGTIME + " DOUBLE," + COLUMN_WALKINGACTIVITY_TOTALWALKINGDISTANCE + " DOUBLE" + ")";
+
+
+    // Drop Walking Activity Table SQL Query
+    private String DROP_WALKINGACTIVITY_TABLE = "DROP TABLE IF EXISTS " + TABLE_WALKINGACTIVITY;
+
+
+    // method to add a new Walking Activity
+    public void addWalkingActivity(WalkingActivity walkingActivity){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_WALKINGACTIVITY_ID, walkingActivity.getWalkingID());
+        values.put(COLUMN_WALKINGACTIVITY_USERID, walkingActivity.getUserID());
+        values.put(COLUMN_WALKINGACTIVITY_DOG, walkingActivity.getDog());
+        values.put(COLUMN_WALKINGACTIVITY_WALKINGDATE, walkingActivity.getWalkingDate());
+        values.put(COLUMN_WALKINGACTIVITY_WALKINGSTARTTIME, walkingActivity.getWalkingStartTime());
+        values.put(COLUMN_WALKINGACTIVITY_WALKINGENDTIME, walkingActivity.getWalkingEndTime());
+        values.put(COLUMN_WALKINGACTIVITY_TOTALWALKINGTIME, walkingActivity.getTotalWalkingTime());
+        values.put(COLUMN_WALKINGACTIVITY_TOTALWALKINGDISTANCE, walkingActivity.getTotalWalkingDistance());
+
+        db.insert(TABLE_WALKINGACTIVITY, null, values);
+        db.close();
+    }
+
+    // method to fetch all Walking Activity
+    public ArrayList<WalkingActivity> getAllWalkingActivities(){
+        // array of columns to fetch
+        String[] columns = {
+                COLUMN_WALKINGACTIVITY_ID,
+                COLUMN_WALKINGACTIVITY_USERID,
+                COLUMN_WALKINGACTIVITY_DOG,
+                COLUMN_WALKINGACTIVITY_WALKINGDATE,
+                COLUMN_WALKINGACTIVITY_WALKINGSTARTTIME,
+                COLUMN_WALKINGACTIVITY_WALKINGENDTIME,
+                COLUMN_WALKINGACTIVITY_TOTALWALKINGTIME,
+                COLUMN_WALKINGACTIVITY_TOTALWALKINGDISTANCE
+        };
+
+        // sorting orders
+        String sortOrder = COLUMN_WALKINGACTIVITY_USERID + " ASC";
+
+        ArrayList<WalkingActivity> walkingActivityList = new ArrayList<WalkingActivity>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        //query the walking activity table
+        Cursor cursor = db.query(TABLE_WALKINGACTIVITY, //Table to query
+                columns,    //columns to return
+                null,        //columns for the WHERE clause
+                null,        //The values for the WHERE clause
+                null,       //group the rows
+                null,       //filter by row groups
+                sortOrder); //The sort order
+
+        // Traversing through all rows and adding to list
+        if (cursor.moveToFirst()){
+            do {
+                WalkingActivity walkingActivity = new WalkingActivity();
+                walkingActivity.setWalkingID(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_WALKINGACTIVITY_ID))));
+                walkingActivity.setUserID(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_WALKINGACTIVITY_USERID))));
+                walkingActivity.setDog(cursor.getString(cursor.getColumnIndex(COLUMN_WALKINGACTIVITY_DOG)));
+                walkingActivity.setWalkingDate(cursor.getString(cursor.getColumnIndex(COLUMN_WALKINGACTIVITY_WALKINGDATE)));
+                walkingActivity.setWalkingStartTime(cursor.getString(cursor.getColumnIndex(COLUMN_WALKINGACTIVITY_WALKINGSTARTTIME)));
+                walkingActivity.setWalkingEndTime(cursor.getString(cursor.getColumnIndex(COLUMN_WALKINGACTIVITY_WALKINGENDTIME)));
+                walkingActivity.setTotalWalkingTime(Double.parseDouble(cursor.getString(cursor.getColumnIndex(COLUMN_WALKINGACTIVITY_TOTALWALKINGTIME))));
+                walkingActivity.setTotalWalkingDistance(Double.parseDouble(cursor.getString(cursor.getColumnIndex(COLUMN_WALKINGACTIVITY_TOTALWALKINGDISTANCE))));
+
+                //adding new walking activity record to the list
+                walkingActivityList.add(walkingActivity);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+
+        // return walking activity List
+        return walkingActivityList;
+    }
+
+    // method to fetch a single walking activity based on activity ID
+    public WalkingActivity getSpecificWalkingActivity(int walkingID) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String selectQuery = "SELECT * FROM " + TABLE_WALKINGACTIVITY + " WHERE "
+                + COLUMN_WALKINGACTIVITY_ID + "= '" + walkingID + "'";
+
+        Cursor c = db.rawQuery(selectQuery, null);
+
+        if (c != null) {
+            c.moveToFirst();
+
+            WalkingActivity specificWalkingActivity = new WalkingActivity();
+            specificWalkingActivity.setWalkingID(Integer.parseInt(c.getString(c.getColumnIndex(COLUMN_WALKINGACTIVITY_ID))));
+            specificWalkingActivity.setUserID(Integer.parseInt(c.getString(c.getColumnIndex(COLUMN_WALKINGACTIVITY_USERID))));
+            specificWalkingActivity.setDog(c.getString(c.getColumnIndex(COLUMN_WALKINGACTIVITY_DOG)));
+            specificWalkingActivity.setWalkingDate(c.getString(c.getColumnIndex(COLUMN_WALKINGACTIVITY_WALKINGDATE)));
+            specificWalkingActivity.setWalkingStartTime(c.getString(c.getColumnIndex(COLUMN_WALKINGACTIVITY_WALKINGSTARTTIME)));
+            specificWalkingActivity.setWalkingEndTime(c.getString(c.getColumnIndex(COLUMN_WALKINGACTIVITY_WALKINGENDTIME)));
+            specificWalkingActivity.setTotalWalkingTime(Double.parseDouble(c.getString(c.getColumnIndex(COLUMN_WALKINGACTIVITY_TOTALWALKINGTIME))));
+            specificWalkingActivity.setTotalWalkingDistance(Double.parseDouble(c.getString(c.getColumnIndex(COLUMN_WALKINGACTIVITY_TOTALWALKINGDISTANCE))));
+
+            c.close();
+            db.close();
+
+            return specificWalkingActivity;
+        }
+
+        c.close();
+        db.close();
+        return null;
+    }
+
+    // method to update the walking activity
+    public void updateWalkingActivity(WalkingActivity walkingActivity) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_WALKINGACTIVITY_ID, walkingActivity.getWalkingID());
+        values.put(COLUMN_WALKINGACTIVITY_USERID, walkingActivity.getUserID());
+        values.put(COLUMN_WALKINGACTIVITY_DOG, walkingActivity.getDog());
+        values.put(COLUMN_WALKINGACTIVITY_WALKINGDATE, walkingActivity.getWalkingDate());
+        values.put(COLUMN_WALKINGACTIVITY_WALKINGSTARTTIME, walkingActivity.getWalkingStartTime());
+        values.put(COLUMN_WALKINGACTIVITY_WALKINGENDTIME, walkingActivity.getWalkingEndTime());
+        values.put(COLUMN_WALKINGACTIVITY_TOTALWALKINGTIME, walkingActivity.getTotalWalkingTime());
+        values.put(COLUMN_WALKINGACTIVITY_TOTALWALKINGDISTANCE, walkingActivity.getTotalWalkingDistance());
+
+        // updating row
+        db.update(TABLE_WALKINGACTIVITY, values, COLUMN_WALKINGACTIVITY_ID + " = ?",
+                new String[]{String.valueOf(walkingActivity.getWalkingID())});
+        db.close();
+    }
+
+    // method to delete walking activity record
+    public void deleteWalkingActivity(WalkingActivity walkingActivity) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        // delete user record by id
+        db.delete(TABLE_WALKINGACTIVITY, COLUMN_WALKINGACTIVITY_ID + " = ?",
+                new String[]{String.valueOf(walkingActivity.getWalkingID())});
         db.close();
 
     }
