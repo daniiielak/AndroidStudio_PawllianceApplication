@@ -7,49 +7,126 @@
 
 
     <TextView
+        android:id="@+id/LayoutFriendsDogNameStandard"
+        android:layout_width="90dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/LayoutFriendsDogName"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="0dp"
+        android:fontFamily="@font/ubuntu_medium"
+        android:text="Dog Name:"
+        android:textColor="@color/colorFontMain"
+        android:textSize="14sp" />
+
+
+    <TextView
         android:id="@+id/LayoutFriendsDogName"
-        android:layout_width="234dp"
+        android:layout_width="214dp"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="35dp"
+        android:layout_marginStart="103dp"
         android:layout_marginTop="34dp"
         android:fontFamily="@font/ubuntu_medium"
         android:text="Dog Name"
+        android:textColor="@color/colorFontHint"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/LayoutFriendsCityStandard"
+        android:layout_width="90dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/LayoutFriendsDogNameStandard"
+        android:layout_below="@+id/LayoutFriendsDogName"
+        android:fontFamily="@font/ubuntu_medium"
+        android:text="City:"
         android:textColor="@color/colorFontMain"
         android:textSize="14sp" />
 
     <TextView
         android:id="@+id/LayoutFriendsDogCity"
-        android:layout_width="232dp"
+        android:layout_width="211dp"
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/LayoutFriendsDogName"
         android:layout_below="@+id/LayoutFriendsDogName"
         android:fontFamily="@font/ubuntu_medium"
         android:text="City"
+        android:textColor="@color/colorFontHint"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/LayoutFriendsDogBreedStandard"
+        android:layout_width="90dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/LayoutFriendsDogCity"
+        android:layout_marginEnd="-103dp"
+        android:layout_toStartOf="@+id/LayoutFriendsDogName"
+        android:fontFamily="@font/ubuntu_medium"
+        android:text="Dog Breed:"
         android:textColor="@color/colorFontMain"
         android:textSize="14sp" />
 
     <TextView
         android:id="@+id/LayoutFriendsDogBreed"
-        android:layout_width="234dp"
+        android:layout_width="212dp"
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/LayoutFriendsDogName"
         android:layout_below="@+id/LayoutFriendsDogCity"
         android:fontFamily="@font/ubuntu_medium"
         android:text="Breed"
+        android:textColor="@color/colorFontHint"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/LayoutFriendsDogDescriptionStandard"
+        android:layout_width="90dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/LayoutFriendsDogBreed"
+        android:layout_marginEnd="-103dp"
+        android:layout_toStartOf="@+id/LayoutFriendsDogName"
+        android:fontFamily="@font/ubuntu_medium"
+        android:text="Description:"
         android:textColor="@color/colorFontMain"
         android:textSize="14sp" />
 
     <TextView
         android:id="@+id/LayoutFriendsDogDescription"
-        android:layout_width="234dp"
-        android:layout_height="50dp"
+        android:layout_width="211dp"
+        android:layout_height="51dp"
         android:layout_alignStart="@+id/LayoutFriendsDogName"
         android:layout_below="@+id/LayoutFriendsDogBreed"
         android:fontFamily="@font/ubuntu_medium"
         android:text="Description"
-        android:textColor="@color/colorFontMain"
+        android:textColor="@color/colorFontHint"
         android:textSize="14sp" />
+
+    <ImageView
+        android:id="@+id/PawllianceFriendsImageView"
+        android:layout_width="73dp"
+        android:layout_height="68dp"
+        android:layout_alignTop="@+id/LayoutFriendsDogName"
+        android:layout_toEndOf="@+id/LayoutFriendsDogCity"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.394"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.803"
+        app:srcCompat="@drawable/signupstandardprofilepicdog" />
+
+    <Button
+        android:id="@+id/SignUpCompleteSignUpButton"
+        android:layout_width="67dp"
+        android:layout_height="21dp"
+        android:layout_below="@+id/LayoutFriendsDogDescriptionStandard"
+        android:layout_toEndOf="@+id/LayoutFriendsDogName"
+        android:background="@color/colorPrimary"
+        android:elevation="0dp"
+        android:fontFamily="@font/ubuntu_bold"
+        android:text="Add"
+        android:textAllCaps="false"
+        android:textColor="@color/colorFontWhite"
+        android:textSize="14dp" />
 
 </RelativeLayout>

@@ -8,6 +8,7 @@
 package pawlliance.com.pawlliance.model;
 
 import java.text.DateFormat;
+import java.util.ArrayList;
 
 public class User {
 
@@ -24,6 +25,11 @@ public class User {
     private String imagePath;
     private String description;
 
+    // Array Lists
+    public static ArrayList<String> dogNameList = new ArrayList<String>();
+    public static ArrayList<String> cityList = new ArrayList<String>();
+    public static ArrayList<String> dogBreedList = new ArrayList<String>();
+    public static ArrayList<String> dogDescriptionList = new ArrayList<String>();
 
     // Constructors
     public User(){

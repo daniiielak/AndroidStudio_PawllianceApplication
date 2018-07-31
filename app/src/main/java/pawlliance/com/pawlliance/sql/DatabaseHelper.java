@@ -278,16 +278,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
     // method to return all dog names
-    public ArrayList<User> getAllUserDogNames(){
+    public ArrayList<String> getAllUserDogNames(){
         // array of columns to fetch
         String[] columns = {
                 COLUMN_USER_DOGNAME,
         };
 
         // sorting orders
-        String sortOrder = COLUMN_USER_DOGNAME + " ASC";
+        String sortOrder = COLUMN_USER_CITY + " ASC";
 
-        ArrayList<User> dogNamesList = new ArrayList<User>();
+        ArrayList<String> dogNamesList = new ArrayList<String>();
 
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -305,9 +305,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             do {
                 User user = new User();
                 user.setDogName(cursor.getString(cursor.getColumnIndex(COLUMN_USER_DOGNAME)));
+                String dogName = user.getDogName();
 
                 //adding new user record to the list
-                dogNamesList.add(user);
+                dogNamesList.add(dogName);
             } while (cursor.moveToNext());
         }
         cursor.close();
@@ -316,6 +317,132 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // return user List
         return dogNamesList;
     }
+
+
+    // method to return all cities
+    public ArrayList<String> getAllCities(){
+        // array of columns to fetch
+        String[] columns = {
+                COLUMN_USER_CITY,
+        };
+
+        // sorting orders
+        String sortOrder = COLUMN_USER_CITY + " ASC";
+
+        ArrayList<String> cityList = new ArrayList<String>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        //query the user table
+        Cursor cursor = db.query(TABLE_USER, //Table to query
+                columns,    //columns to return
+                null,        //columns for the WHERE clause
+                null,        //The values for the WHERE clause
+                null,       //group the rows
+                null,       //filter by row groups
+                sortOrder); //The sort order
+
+        // Traversing through all rows and adding to list
+        if (cursor.moveToFirst()){
+            do {
+                User user = new User();
+                user.setCity(cursor.getString(cursor.getColumnIndex(COLUMN_USER_CITY)));
+                String city = user.getCity();
+
+                //adding new user record to the list
+                cityList.add(city);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+
+        // return user List
+        return cityList;
+    }
+
+    // method to return all breeds
+    public ArrayList<String> getAllDogBreeds(){
+        // array of columns to fetch
+        String[] columns = {
+                COLUMN_USER_DOGBREED,
+        };
+
+        // sorting orders
+        String sortOrder = COLUMN_USER_CITY + " ASC";
+
+        ArrayList<String> dogBreedList = new ArrayList<String>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        //query the user table
+        Cursor cursor = db.query(TABLE_USER, //Table to query
+                columns,    //columns to return
+                null,        //columns for the WHERE clause
+                null,        //The values for the WHERE clause
+                null,       //group the rows
+                null,       //filter by row groups
+                sortOrder); //The sort order
+
+        // Traversing through all rows and adding to list
+        if (cursor.moveToFirst()){
+            do {
+                User user = new User();
+                user.setDogBreed(cursor.getString(cursor.getColumnIndex(COLUMN_USER_DOGBREED)));
+                String dogBreed = user.getDogBreed();
+
+                //adding new user record to the list
+                dogBreedList.add(dogBreed);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+
+        // return user List
+        return dogBreedList;
+    }
+
+
+    // method to return all dog descriptions
+    public ArrayList<String> getAllDogDescriptions(){
+        // array of columns to fetch
+        String[] columns = {
+                COLUMN_USER_DOGDESCRIPTION,
+        };
+
+        // sorting orders
+        String sortOrder = COLUMN_USER_CITY + " ASC";
+
+        ArrayList<String> dogDescriptionList = new ArrayList<String>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        //query the user table
+        Cursor cursor = db.query(TABLE_USER, //Table to query
+                columns,    //columns to return
+                null,        //columns for the WHERE clause
+                null,        //The values for the WHERE clause
+                null,       //group the rows
+                null,       //filter by row groups
+                sortOrder); //The sort order
+
+        // Traversing through all rows and adding to list
+        if (cursor.moveToFirst()){
+            do {
+                User user = new User();
+                user.setDescription(cursor.getString(cursor.getColumnIndex(COLUMN_USER_DOGDESCRIPTION)));
+                String dogDescription = user.getDescription();
+
+                //adding new user record to the list
+                dogDescriptionList.add(dogDescription);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+
+        // return user List
+        return dogDescriptionList;
+    }
+
 
     // method to update the user
     public void updateUser(User user) {

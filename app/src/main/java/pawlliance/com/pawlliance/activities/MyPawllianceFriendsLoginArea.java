@@ -87,9 +87,12 @@ public class MyPawllianceFriendsLoginArea extends AppCompatActivity implements V
     }
 
     private void populateListView(){
-        ArrayList<User> userList = databaseHelper.getAllUser();
+        ArrayList<String> dogNamesList = databaseHelper.getAllUserDogNames();
+        ArrayList<String> cityList = databaseHelper.getAllCities();
+        ArrayList<String> dogBreedList = databaseHelper.getAllDogBreeds();
+        ArrayList<String> dogDescriptionList = databaseHelper.getAllDogDescriptions();
 
-        UserListAdapter adapter = new UserListAdapter(getBaseContext(), R.layout.layout_pawlliance_friends, userList);
+        UserListAdapter adapter = new UserListAdapter(this, dogNamesList, cityList, dogBreedList, dogDescriptionList);
         listViewPawllianceFriends.setAdapter(adapter);
     }
 

@@ -7,55 +7,70 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.zip.Inflater;
 
 import pawlliance.com.pawlliance.R;
-import pawlliance.com.pawlliance.model.User;
 
-public class UserListAdapter extends ArrayAdapter<User>{
+public class UserListAdapter extends BaseAdapter{
 
-    private static final String TAG ="UserListAdapter";
-    private Context mContext;
-    int mResource;
+    LayoutInflater mInflater;
+    ArrayList<String> dogNamesList;
+    ArrayList<String> cityList;
+    ArrayList<String> dogBreedList;
+    ArrayList<String> dogDescriptionList;
 
-    public UserListAdapter(@NonNull Context context, int resource, ArrayList<User> objects) {
-        super(context, resource);
-        this.mContext = context;
-        this.mResource = resource;
+
+    public UserListAdapter(@NonNull Context context, ArrayList<String> dogNamesList, ArrayList<String> cityList, ArrayList<String> dogBreedList, ArrayList<String> dogDescriptionList) {
+        this.dogNamesList = dogNamesList;
+        this.cityList = cityList;
+        this.dogBreedList = dogBreedList;
+        this.dogDescriptionList = dogDescriptionList;
+        mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    }
+
+    @Override
+    public int getCount(){
+        return dogNamesList.size();
+    }
+
+    @Override
+    public Object getItem(int i){
+        return dogNamesList.get(i);
+    }
+
+    @Override
+    public long getItemId(int i){
+        return i;
     }
 
     @NonNull
     @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+    public View getView(int i, View view, ViewGroup viewGroup) {
+
+        View v = mInflater.inflate(R.layout.layout_pawlliance_friends, null);
+
+        TextView layoutFriendsDogName = (TextView) v.findViewById(R.id.LayoutFriendsDogName);
+        TextView layoutFriendsDogCity = (TextView) v.findViewById(R.id.LayoutFriendsDogCity);
+        TextView layoutFriendsDogBreed = (TextView) v.findViewById(R.id.LayoutFriendsDogBreed);
+        TextView layoutFriendsDogDescription = (TextView) v.findViewById(R.id.LayoutFriendsDogDescription);
 
         // get the user information that we need for item layout
-        String dogName = getItem(position).getDogName();
-        String city = getItem(position).getCity();
-        String dogBreed = getItem(position).getDogBreed();
-        String description = getItem(position).getDescription();
+        String dogName = dogNamesList.get(i);
+        String city = cityList.get(i);
+        String dogBreed = dogBreedList.get(i);
+        String description = dogDescriptionList.get(i);
 
-        // creating the user object with the information
-        User currentUser = new User(dogName, city, dogBreed, description);
+        layoutFriendsDogName.setText(dogName);
+        layoutFriendsDogCity.setText(city);
+        layoutFriendsDogBreed.setText(dogBreed);
+        layoutFriendsDogDescription.setText(description);
 
-        LayoutInflater inflater = LayoutInflater.from(mContext);
-        convertView = inflater.inflate(R.layout.layout_pawlliance_friends, parent, false);
-
-        TextView layoutFriendsDogName = (TextView) convertView.findViewById(R.id.LayoutFriendsDogName);
-        TextView layoutFriendsDogCity = (TextView) convertView.findViewById(R.id.LayoutFriendsDogCity);
-        TextView layoutFriendsDogBreed = (TextView) convertView.findViewById(R.id.LayoutFriendsDogBreed);
-        TextView layoutFriendsDogDescription = (TextView) convertView.findViewById(R.id.LayoutFriendsDogDescription);
-
-        layoutFriendsDogName.setText(currentUser.getDogName());
-        layoutFriendsDogCity.setText(currentUser.getCity());
-        layoutFriendsDogBreed.setText(currentUser.getDogBreed());
-        layoutFriendsDogDescription.setText(currentUser.getDescription());
-
-        return convertView;
+        return v;
     }
 }
