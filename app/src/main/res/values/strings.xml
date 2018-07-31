@@ -136,5 +136,15 @@
     <string name="PopUpThanksForTheDogWalkDescription">Thank you for taking your Furry Friend for a Walk with Pawlliance!</string>
     <string name="PopUpThanksForTheDogWalkWalkedDog">Walked Dog:</string>
     <string name="PopUpThanksForTheDogWalkWalkedDistance">Distance:</string>
+    <string name="PopUpDogThanksForTheDogWalkWalkedDate">Date: </string>
+    <string name="PopUpDogThanksForTheDogWalkWalkedDistance">Distance (m): </string>
+    <string name="PopUpDogThanksForTheDogWalkWalkedMinutes">Duration (min): </string>
+    <string name="PopUpDogThankForTheDogWalkDeleteWalkButton">Delete Walk</string>
+    <string name="PopUpThanksForTheDogWalkWalkedDogOwnerDateTextView">Date of Walk</string>
+    <string name="PopUpThanksForTheDogWalkWalkedDogOwnerDistanceTextView">Your Distance</string>
+    <string name="PopUpThanksForTheDogWalkWalkedDogOwnerDurationTextView">Your Duration</string>
+    <string name="PopUpThanksForTheDogWalkWalkedDogOwnerDescriptionTextView">Your Description</string>
+    <string name="PopUpThanksForTheDogWalkWalkingDescriptionTextView">Description:</string>
+
 
 </resources>

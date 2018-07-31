@@ -8,10 +8,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import pawlliance.com.pawlliance.R;
 import pawlliance.com.pawlliance.activities.EditProfileInformationMainLoginArea;
 import pawlliance.com.pawlliance.activities.LoginAreaMain;
+import pawlliance.com.pawlliance.activities.MapsActivity;
 import pawlliance.com.pawlliance.model.User;
+import pawlliance.com.pawlliance.model.WalkingActivity;
 import pawlliance.com.pawlliance.sql.DatabaseHelper;
 
 public class PopUpThanksForTheDogWalk extends AppCompatActivity implements View.OnClickListener {
@@ -19,10 +23,16 @@ public class PopUpThanksForTheDogWalk extends AppCompatActivity implements View.
     private final AppCompatActivity activity = PopUpThanksForTheDogWalk.this;
 
     private Button popUpThanksForTheDogWalkBackToCockpitButton;
+    private Button popUpThanksForTheDogWalkEditDescriptionButton;
     private TextView popUpThanksForTheDogWalkWalkedDogOwnerDogTextView;
+    private TextView popUpThanksForTheDogWalkWalkedDogOwnerDateTextView;
+    private TextView popUpThanksForTheDogWalkWalkedDogOwnerDistanceTextView;
+    private TextView popUpThanksForTheDogWalkWalkedDogOwnerDurationTextView;
+    private TextView popUpThanksForTheDogWalkWalkedDogOwnerDescriptionTextView;
 
     private DatabaseHelper databaseHelper;
     private User currentUser;
+    private WalkingActivity currentWalkingActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,27 +49,42 @@ public class PopUpThanksForTheDogWalk extends AppCompatActivity implements View.
      */
     private void initViews() {
 
-        // getting Display Metrics of screen
-        DisplayMetrics dm = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(dm);
-
-        // saving display metrics width and height and set Pop-Up Window smaller than background
-        int width = dm.widthPixels;
-        int height = dm.heightPixels;
-        getWindow().setLayout((int) (width * 0.9), (int) (height * 0.8));
-
         popUpThanksForTheDogWalkBackToCockpitButton = (Button) findViewById(R.id.PopUpThanksForTheDogWalkBackToCockpitButton);
+        popUpThanksForTheDogWalkEditDescriptionButton = (Button) findViewById(R.id.PopUpThanksForTheDogWalkEditDescriptionButton);
 
-        // get user-email for DB
+        // get user-email and walkingID for DB
         Intent previousLoginAreaIntent = getIntent();
         Bundle b = previousLoginAreaIntent.getExtras();
         String userEmail = (String) b.get("ownersEmailForPassOn");
         currentUser = databaseHelper.getSpecificUser(userEmail);
+        int currentWalkingID = (Integer) b.get("walkingIDForPassOn");
+        currentWalkingActivity = databaseHelper.getSpecificWalkingActivity(currentWalkingID);
 
         // set text view to dog name
         popUpThanksForTheDogWalkWalkedDogOwnerDogTextView = (TextView) findViewById(R.id.PopUpThanksForTheDogWalkWalkedDogOwnerDogTextView);
         String dogName = currentUser.getDogName();
         popUpThanksForTheDogWalkWalkedDogOwnerDogTextView.setText(dogName);
+
+        // set text view to date
+        popUpThanksForTheDogWalkWalkedDogOwnerDateTextView = (TextView) findViewById(R.id.PopUpThanksForTheDogWalkWalkedDogOwnerDateTextView);
+        String date = currentWalkingActivity.getWalkingDate();
+        popUpThanksForTheDogWalkWalkedDogOwnerDateTextView.setText(date);
+
+        // set text view to distance
+        popUpThanksForTheDogWalkWalkedDogOwnerDistanceTextView = (TextView) findViewById(R.id.PopUpThanksForTheDogWalkWalkedDogOwnerDistanceTextView);
+        Double distance = currentWalkingActivity.getTotalWalkingDistance();
+        popUpThanksForTheDogWalkWalkedDogOwnerDistanceTextView.setText(distance.toString());
+
+        // set text view to duration
+        popUpThanksForTheDogWalkWalkedDogOwnerDurationTextView = (TextView) findViewById(R.id.PopUpThanksForTheDogWalkWalkedDogOwnerDurationTextView);
+        Double duration = currentWalkingActivity.getTotalWalkingTime();
+        popUpThanksForTheDogWalkWalkedDogOwnerDurationTextView.setText(duration.toString());
+
+        // set text view to description
+        popUpThanksForTheDogWalkWalkedDogOwnerDescriptionTextView = (TextView) findViewById(R.id.PopUpThanksForTheDogWalkWalkedDogOwnerDescriptionTextView);
+        String walkingDescription = currentWalkingActivity.getWalkingDescription();
+        popUpThanksForTheDogWalkWalkedDogOwnerDescriptionTextView.setText(walkingDescription);
+
     }
 
     /**
@@ -68,6 +93,7 @@ public class PopUpThanksForTheDogWalk extends AppCompatActivity implements View.
     private void initObjects() {
         databaseHelper = new DatabaseHelper(activity);
         currentUser = new User();
+        currentWalkingActivity = new WalkingActivity();
     }
 
     /**
@@ -75,6 +101,7 @@ public class PopUpThanksForTheDogWalk extends AppCompatActivity implements View.
      */
     public void initListener() {
         popUpThanksForTheDogWalkBackToCockpitButton.setOnClickListener(this);
+        popUpThanksForTheDogWalkEditDescriptionButton.setOnClickListener(this);
     }
 
     /**
@@ -95,6 +122,21 @@ public class PopUpThanksForTheDogWalk extends AppCompatActivity implements View.
                 Intent goBackToCockpitIntent = new Intent(activity, LoginAreaMain.class);
                 goBackToCockpitIntent.putExtra("ownersEmailForPassOn", userEmail);
                 startActivity(goBackToCockpitIntent);
+                break;
+
+            case R.id.PopUpThanksForTheDogWalkEditDescriptionButton:
+
+                // storing the user email for pass on to next class
+                previousIntent = getIntent();
+                b = previousIntent.getExtras();
+                userEmail = (String) b.get("ownersEmailForPassOn");
+                int passOnWalkingID = currentWalkingActivity.getWalkingID();
+
+                //Intent for description popup class
+                Intent editWalkingDescriptionPopUp = new Intent (activity, PopUpEditWalkingDescription.class);
+                editWalkingDescriptionPopUp.putExtra("ownersEmailForPassOn", userEmail);
+                editWalkingDescriptionPopUp.putExtra("walkingIDForPassOn", passOnWalkingID);
+                startActivity(editWalkingDescriptionPopUp);
                 break;
         }
     }

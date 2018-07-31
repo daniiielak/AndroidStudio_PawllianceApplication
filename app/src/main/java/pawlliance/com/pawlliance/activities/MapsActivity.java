@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -45,6 +46,10 @@ import pawlliance.com.pawlliance.sql.DatabaseHelper;
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, View.OnClickListener {
 
     private Button mapsActivityStartDogWalkButton;
+    private ImageView mapsActivityDogParkIcon;
+    private ImageView mapsActivityDogRestaurantIcon;
+    private ImageView mapsActivityDogGroomerIcon;
+
     private GoogleMap mMap;
     private LocationManager locationManager;
     private static final int REQUEST_LOCATION_PERMISSION = 1;
@@ -91,6 +96,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
      */
     private void initViews(){
         mapsActivityStartDogWalkButton = (Button) findViewById(R.id.MapsActivityStartDogWalkButton);
+        mapsActivityDogParkIcon = (ImageView) findViewById(R.id.MapsActivityDogParkIcon);
+        mapsActivityDogRestaurantIcon = (ImageView) findViewById(R.id.MapsActivityDogRestaurantIcon);
+        mapsActivityDogGroomerIcon = (ImageView) findViewById(R.id.MapsActivityDogGroomerIcon);
     }
 
     /**
@@ -119,6 +127,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
      */
     public void initListeners(){
         mapsActivityStartDogWalkButton.setOnClickListener(this);
+        mapsActivityDogParkIcon.setOnClickListener(this);
+        mapsActivityDogRestaurantIcon.setOnClickListener(this);
+        mapsActivityDogGroomerIcon.setOnClickListener(this);
     }
 
     /**
@@ -143,10 +154,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     Intent previousMainAreaIntent = getIntent();
                     Bundle b = previousMainAreaIntent.getExtras();
                     String userEmail = (String) b.get("ownersEmailForPassOn");
+                    int passOnWalkingID = walkingActivity.getWalkingID();
 
                     //Intent for description popup class
                     Intent thanksForTheDogWalkPopUpIntent = new Intent(MapsActivity.this, PopUpThanksForTheDogWalk.class);
                     thanksForTheDogWalkPopUpIntent.putExtra("ownersEmailForPassOn", userEmail);
+                    thanksForTheDogWalkPopUpIntent.putExtra("walkingIDForPassOn", passOnWalkingID);
                     startActivity(thanksForTheDogWalkPopUpIntent);
                     break;
                 }
@@ -280,8 +293,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         walkingActivity.setWalkingEndTime(walkingEndTime.toString());
         walkingActivity.setTotalWalkingTime(totalWalkingTime);
         walkingActivity.setTotalWalkingDistance(totalWalkingDistance);
+        walkingActivity.setWalkingDescription("This was such a fun walk with " + dog);
 
         databaseHelper.addWalkingActivity(walkingActivity);
+        walkingActivity = databaseHelper.getlastWalkingActivity();
+
         System.out.println("Successfully added new walking activity with walking ID" + walkingActivity.getWalkingID() + " and user id " + walkingActivity.getUserID() + " to the database.");
 
         // setting back num changes in case another activity is started in same field.

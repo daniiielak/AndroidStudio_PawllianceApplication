@@ -1,10 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <ImageView
+        android:id="@+id/MapsActivityDogParkIcon"
+        android:layout_gravity="top"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="15dp"
+        app:srcCompat="@drawable/parkicongooglemaps" />
+
+    <ImageView
+        android:id="@+id/MapsActivityDogRestaurantIcon"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="15dp"
+        app:srcCompat="@drawable/restauranticongooglemaps" />
+
+    <ImageView
+        android:id="@+id/MapsActivityDogGroomerIcon"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginStart="180dp"
+        android:layout_marginTop="15dp"
+        app:srcCompat="@drawable/doggroomericongooglemaps" />
 
     <fragment xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
@@ -19,17 +50,16 @@
         android:id="@+id/MapsActivityStartDogWalkButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp"
-        android:background="@color/colorPrimaryDark"
-        android:textAllCaps="false"
-        android:textColor="@color/colorFontWhite"
-        android:fontFamily="@font/ubuntu_bold"
-        android:text="Start Your Dog Walk"
         android:layout_gravity="bottom"
         android:layout_marginBottom="40dp"
-        android:layout_marginRight="16dp"
         android:layout_marginLeft="16dp"
-        android:gravity="center"/>
+        android:layout_marginRight="16dp"
+        android:background="@color/colorPrimaryDark"
+        android:fontFamily="@font/ubuntu_bold"
+        android:gravity="center"
+        android:padding="16dp"
+        android:text="Start Your Dog Walk"
+        android:textAllCaps="false"
+        android:textColor="@color/colorFontWhite" />
 
 </FrameLayout>
-

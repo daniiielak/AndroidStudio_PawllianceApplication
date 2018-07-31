@@ -14,12 +14,13 @@ public class WalkingActivity {
     private String walkingEndTime;
     private double totalWalkingTime;
     private double totalWalkingDistance;
+    private String walkingDescription;
 
     // Constructors
     public WalkingActivity(){
     }
 
-    public WalkingActivity(int walkingID, int userID, String dog, String walkingDate, String walkingStartTime, String walkingEndTime, double totalWalkingTime, double totalWalkingDistance) {
+    public WalkingActivity(int walkingID, int userID, String dog, String walkingDate, String walkingStartTime, String walkingEndTime, double totalWalkingTime, double totalWalkingDistance, String walkingDescription) {
         this.walkingID = walkingID;
         this.userID = userID;
         this.dog = dog;
@@ -28,6 +29,7 @@ public class WalkingActivity {
         this.walkingEndTime = walkingEndTime;
         this.totalWalkingTime = totalWalkingTime;
         this.totalWalkingDistance = totalWalkingDistance;
+        this.walkingDescription = walkingDescription;
     }
 
     // Setters
@@ -63,6 +65,10 @@ public class WalkingActivity {
         this.totalWalkingDistance = totalWalkingDistance;
     }
 
+    public void setWalkingDescription(String walkingDescription){
+        this.walkingDescription = walkingDescription;
+    }
+
 
     // Getters
 
@@ -96,6 +102,10 @@ public class WalkingActivity {
 
     public double getTotalWalkingDistance() {
         return totalWalkingDistance;
+    }
+
+    public String getWalkingDescription(){
+        return walkingDescription;
     }
 
     // DNC - class closing

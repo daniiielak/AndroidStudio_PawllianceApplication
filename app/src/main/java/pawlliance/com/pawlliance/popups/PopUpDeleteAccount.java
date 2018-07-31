@@ -96,6 +96,8 @@ public class PopUpDeleteAccount extends AppCompatActivity implements View.OnClic
 
                 // getting specific user based on email address to update description
                 currentUser = databaseHelper.getSpecificUser(userEmail);
+                int userID = currentUser.getUserID();
+                databaseHelper.deleteAllUserWalkingActivity(userID);
                 databaseHelper.deleteUser(currentUser);
 
                 //Intent for previous class

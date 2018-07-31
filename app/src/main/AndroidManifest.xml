@@ -114,7 +114,7 @@
             android:name=".popups.PopUpEditDogBreed"
             android:parentActivityName=".activities.EditProfileInformationMainLoginArea" />
 
-        <!-- POPUP DELETE ACCOUNT  -->
+        <!-- POPUP DELETE ACCOUNT -->
         <activity
             android:name=".popups.PopUpDeleteAccount"
             android:parentActivityName=".activities.EditProfileInformationMainLoginArea" />
@@ -132,14 +132,13 @@
         <!-- POPUP EDIT PASSWORD -->
         <activity
             android:name=".popups.PopUpEditPassword"
-            android:parentActivityName=".activities.EditProfileInformationMainLoginArea"/>
-
+            android:parentActivityName=".activities.EditProfileInformationMainLoginArea" />
 
         <!-- POPUP THANKS FOR YOUR DOG WALK -->
         <activity
             android:name=".popups.PopUpThanksForTheDogWalk"
-            android:parentActivityName=".activities.LoginAreaMain"></activity>
-
+            android:parentActivityName=".activities.LoginAreaMain" />
+        <activity android:name=".popups.PopUpEditWalkingDescription"></activity>
     </application>
 
 </manifest>

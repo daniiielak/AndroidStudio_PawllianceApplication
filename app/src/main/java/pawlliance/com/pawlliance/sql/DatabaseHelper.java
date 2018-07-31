@@ -369,13 +369,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String COLUMN_WALKINGACTIVITY_WALKINGENDTIME = "walkingactivity_walkingendtime";
     private static final String COLUMN_WALKINGACTIVITY_TOTALWALKINGTIME ="walkingactivity_totalwalkingtime";
     private static final String COLUMN_WALKINGACTIVITY_TOTALWALKINGDISTANCE = "walkingactivity_totalwalkingdistance";
+    private static final String COLUMN_WALKINGACTIVITY_WALKINGDESCRIPTION = "walkingactivity_walkingdescription";
 
 
     // Create Walking Activity Table SQL Query
     private String CREATE_WALKINGACTIVITY_TABLE = "CREATE TABLE " + TABLE_WALKINGACTIVITY + "("
             + COLUMN_WALKINGACTIVITY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + COLUMN_WALKINGACTIVITY_USERID + " INTEGER,"
             + COLUMN_WALKINGACTIVITY_DOG + " TEXT," + COLUMN_WALKINGACTIVITY_WALKINGDATE + " TEXT," + COLUMN_WALKINGACTIVITY_WALKINGSTARTTIME + " TEXT,"
-            + COLUMN_WALKINGACTIVITY_WALKINGENDTIME + " TEXT," + COLUMN_WALKINGACTIVITY_TOTALWALKINGTIME + " DOUBLE," + COLUMN_WALKINGACTIVITY_TOTALWALKINGDISTANCE + " DOUBLE" + ")";
+            + COLUMN_WALKINGACTIVITY_WALKINGENDTIME + " TEXT," + COLUMN_WALKINGACTIVITY_TOTALWALKINGTIME + " DOUBLE," + COLUMN_WALKINGACTIVITY_TOTALWALKINGDISTANCE + " DOUBLE," + COLUMN_WALKINGACTIVITY_WALKINGDESCRIPTION + " TEXT" + ")";
 
 
     // Drop Walking Activity Table SQL Query
@@ -386,7 +387,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void addWalkingActivity(WalkingActivity walkingActivity){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(COLUMN_WALKINGACTIVITY_ID, walkingActivity.getWalkingID());
         values.put(COLUMN_WALKINGACTIVITY_USERID, walkingActivity.getUserID());
         values.put(COLUMN_WALKINGACTIVITY_DOG, walkingActivity.getDog());
         values.put(COLUMN_WALKINGACTIVITY_WALKINGDATE, walkingActivity.getWalkingDate());
@@ -394,6 +394,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(COLUMN_WALKINGACTIVITY_WALKINGENDTIME, walkingActivity.getWalkingEndTime());
         values.put(COLUMN_WALKINGACTIVITY_TOTALWALKINGTIME, walkingActivity.getTotalWalkingTime());
         values.put(COLUMN_WALKINGACTIVITY_TOTALWALKINGDISTANCE, walkingActivity.getTotalWalkingDistance());
+        values.put(COLUMN_WALKINGACTIVITY_WALKINGDESCRIPTION, walkingActivity.getWalkingDescription());
 
         db.insert(TABLE_WALKINGACTIVITY, null, values);
         db.close();
@@ -410,7 +411,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 COLUMN_WALKINGACTIVITY_WALKINGSTARTTIME,
                 COLUMN_WALKINGACTIVITY_WALKINGENDTIME,
                 COLUMN_WALKINGACTIVITY_TOTALWALKINGTIME,
-                COLUMN_WALKINGACTIVITY_TOTALWALKINGDISTANCE
+                COLUMN_WALKINGACTIVITY_TOTALWALKINGDISTANCE,
+                COLUMN_WALKINGACTIVITY_WALKINGDESCRIPTION
         };
 
         // sorting orders
@@ -441,6 +443,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 walkingActivity.setWalkingEndTime(cursor.getString(cursor.getColumnIndex(COLUMN_WALKINGACTIVITY_WALKINGENDTIME)));
                 walkingActivity.setTotalWalkingTime(Double.parseDouble(cursor.getString(cursor.getColumnIndex(COLUMN_WALKINGACTIVITY_TOTALWALKINGTIME))));
                 walkingActivity.setTotalWalkingDistance(Double.parseDouble(cursor.getString(cursor.getColumnIndex(COLUMN_WALKINGACTIVITY_TOTALWALKINGDISTANCE))));
+                walkingActivity.setWalkingDescription(cursor.getString(cursor.getColumnIndex(COLUMN_WALKINGACTIVITY_WALKINGDESCRIPTION)));
 
                 //adding new walking activity record to the list
                 walkingActivityList.add(walkingActivity);
@@ -474,11 +477,46 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             specificWalkingActivity.setWalkingEndTime(c.getString(c.getColumnIndex(COLUMN_WALKINGACTIVITY_WALKINGENDTIME)));
             specificWalkingActivity.setTotalWalkingTime(Double.parseDouble(c.getString(c.getColumnIndex(COLUMN_WALKINGACTIVITY_TOTALWALKINGTIME))));
             specificWalkingActivity.setTotalWalkingDistance(Double.parseDouble(c.getString(c.getColumnIndex(COLUMN_WALKINGACTIVITY_TOTALWALKINGDISTANCE))));
+            specificWalkingActivity.setWalkingDescription(c.getString(c.getColumnIndex(COLUMN_WALKINGACTIVITY_WALKINGDESCRIPTION)));
 
             c.close();
             db.close();
 
             return specificWalkingActivity;
+        }
+
+        c.close();
+        db.close();
+        return null;
+    }
+
+    // method to fetch a single walking activity based on activity ID
+    public WalkingActivity getlastWalkingActivity() {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String selectQuery = "SELECT * FROM " + TABLE_WALKINGACTIVITY + " ORDER BY "
+                + COLUMN_WALKINGACTIVITY_ID + " DESC LIMIT 1";
+
+        Cursor c = db.rawQuery(selectQuery, null);
+
+        if (c != null) {
+            c.moveToFirst();
+
+            WalkingActivity lastWalkingActivity = new WalkingActivity();
+            lastWalkingActivity.setWalkingID(Integer.parseInt(c.getString(c.getColumnIndex(COLUMN_WALKINGACTIVITY_ID))));
+            lastWalkingActivity.setUserID(Integer.parseInt(c.getString(c.getColumnIndex(COLUMN_WALKINGACTIVITY_USERID))));
+            lastWalkingActivity.setDog(c.getString(c.getColumnIndex(COLUMN_WALKINGACTIVITY_DOG)));
+            lastWalkingActivity.setWalkingDate(c.getString(c.getColumnIndex(COLUMN_WALKINGACTIVITY_WALKINGDATE)));
+            lastWalkingActivity.setWalkingStartTime(c.getString(c.getColumnIndex(COLUMN_WALKINGACTIVITY_WALKINGSTARTTIME)));
+            lastWalkingActivity.setWalkingEndTime(c.getString(c.getColumnIndex(COLUMN_WALKINGACTIVITY_WALKINGENDTIME)));
+            lastWalkingActivity.setTotalWalkingTime(Double.parseDouble(c.getString(c.getColumnIndex(COLUMN_WALKINGACTIVITY_TOTALWALKINGTIME))));
+            lastWalkingActivity.setTotalWalkingDistance(Double.parseDouble(c.getString(c.getColumnIndex(COLUMN_WALKINGACTIVITY_TOTALWALKINGDISTANCE))));
+            lastWalkingActivity.setWalkingDescription(c.getString(c.getColumnIndex(COLUMN_WALKINGACTIVITY_WALKINGDESCRIPTION)));
+
+            c.close();
+            db.close();
+
+            return lastWalkingActivity;
         }
 
         c.close();
@@ -499,6 +537,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(COLUMN_WALKINGACTIVITY_WALKINGENDTIME, walkingActivity.getWalkingEndTime());
         values.put(COLUMN_WALKINGACTIVITY_TOTALWALKINGTIME, walkingActivity.getTotalWalkingTime());
         values.put(COLUMN_WALKINGACTIVITY_TOTALWALKINGDISTANCE, walkingActivity.getTotalWalkingDistance());
+        values.put(COLUMN_WALKINGACTIVITY_WALKINGDESCRIPTION, walkingActivity.getWalkingDescription());
 
         // updating row
         db.update(TABLE_WALKINGACTIVITY, values, COLUMN_WALKINGACTIVITY_ID + " = ?",
@@ -512,6 +551,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // delete user record by id
         db.delete(TABLE_WALKINGACTIVITY, COLUMN_WALKINGACTIVITY_ID + " = ?",
                 new String[]{String.valueOf(walkingActivity.getWalkingID())});
+        db.close();
+
+    }
+
+    // method to delete walking activity record
+    public void deleteAllUserWalkingActivity(int userID) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        // delete user record by id
+        db.delete(TABLE_WALKINGACTIVITY, COLUMN_WALKINGACTIVITY_USERID + " = ?",
+                new String[]{String.valueOf(userID)});
         db.close();
 
     }
