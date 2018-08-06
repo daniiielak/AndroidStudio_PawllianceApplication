@@ -121,7 +121,7 @@
 
 
     <Button
-        android:id="@+id/WalkingActivityUpdateDescriptionButton"
+        android:id="@+id/MyWalkingActivityDeleteWalkingActivityButton"
         android:layout_width="wrap_content"
         android:layout_height="18dp"
         android:layout_alignParentEnd="true"

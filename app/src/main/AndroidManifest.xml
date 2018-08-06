@@ -151,7 +151,11 @@
         <activity
             android:name=".activities.MyWalkingActivitiesLoginArea"
             android:parentActivityName=".activities.LoginAreaMain" />
-        <activity android:name=".popups.PopUpDeleteWalkingActivity"></activity>
+
+        <!-- POP UP DELETE WALKING ACTIVITIES -->
+        <activity
+            android:name=".popups.PopUpDeleteWalkingActivity"
+            android:parentActivityName=".activities.LoginAreaMain"/>
     </application>
 
 </manifest>

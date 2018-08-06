@@ -24,6 +24,7 @@ public class PopUpThanksForTheDogWalk extends AppCompatActivity implements View.
 
     private Button popUpThanksForTheDogWalkBackToCockpitButton;
     private Button popUpThanksForTheDogWalkEditDescriptionButton;
+    private Button popUpThanksForTheDogWalkDeleteWalkingActivityButton;
     private TextView popUpThanksForTheDogWalkWalkedDogOwnerDogTextView;
     private TextView popUpThanksForTheDogWalkWalkedDogOwnerDateTextView;
     private TextView popUpThanksForTheDogWalkWalkedDogOwnerDistanceTextView;
@@ -51,6 +52,7 @@ public class PopUpThanksForTheDogWalk extends AppCompatActivity implements View.
 
         popUpThanksForTheDogWalkBackToCockpitButton = (Button) findViewById(R.id.PopUpThanksForTheDogWalkBackToCockpitButton);
         popUpThanksForTheDogWalkEditDescriptionButton = (Button) findViewById(R.id.PopUpThanksForTheDogWalkEditDescriptionButton);
+        popUpThanksForTheDogWalkDeleteWalkingActivityButton = (Button) findViewById(R.id.PopUpThanksForTheDogWalkDeleteWalkingActivityButton);
 
         // get user-email and walkingID for DB
         Intent previousLoginAreaIntent = getIntent();
@@ -102,6 +104,7 @@ public class PopUpThanksForTheDogWalk extends AppCompatActivity implements View.
     public void initListener() {
         popUpThanksForTheDogWalkBackToCockpitButton.setOnClickListener(this);
         popUpThanksForTheDogWalkEditDescriptionButton.setOnClickListener(this);
+        popUpThanksForTheDogWalkDeleteWalkingActivityButton.setOnClickListener(this);
     }
 
     /**
@@ -136,6 +139,20 @@ public class PopUpThanksForTheDogWalk extends AppCompatActivity implements View.
                 editWalkingDescriptionPopUp.putExtra("ownersEmailForPassOn", userEmail);
                 editWalkingDescriptionPopUp.putExtra("walkingIDForPassOn", passOnWalkingID);
                 startActivity(editWalkingDescriptionPopUp);
+                break;
+
+            case R.id.PopUpThanksForTheDogWalkDeleteWalkingActivityButton:
+                // storing the user email for pass on to next class
+                previousIntent = getIntent();
+                b = previousIntent.getExtras();
+                userEmail = (String) b.get("ownersEmailForPassOn");
+                passOnWalkingID = currentWalkingActivity.getWalkingID();
+
+                //Intent for description popup class
+                Intent deleteWalkingActivityIntent = new Intent (activity, PopUpDeleteWalkingActivity.class);
+                deleteWalkingActivityIntent.putExtra("ownersEmailForPassOn", userEmail);
+                deleteWalkingActivityIntent.putExtra("walkingIDForPassOn", passOnWalkingID);
+                startActivity(deleteWalkingActivityIntent);
                 break;
         }
     }

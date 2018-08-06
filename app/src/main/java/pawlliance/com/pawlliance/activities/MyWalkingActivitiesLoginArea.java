@@ -18,6 +18,7 @@ public class MyWalkingActivitiesLoginArea extends AppCompatActivity implements V
     private final AppCompatActivity activity = MyWalkingActivitiesLoginArea.this;
 
     private Button myWalkingActivitiesBackToMainAreaButton;
+    private Button myWalkingActivityDeleteWalkingActivityButton;
     private ListView listViewMyWalkingActivities;
 
     private DatabaseHelper databaseHelper;
@@ -38,6 +39,7 @@ public class MyWalkingActivitiesLoginArea extends AppCompatActivity implements V
      */
     private void initViews() {
         myWalkingActivitiesBackToMainAreaButton = (Button) findViewById(R.id.MyWalkingActivitiesBackToMainAreaButton);
+        myWalkingActivityDeleteWalkingActivityButton = (Button) findViewById(R.id.MyWalkingActivityDeleteWalkingActivityButton);
         listViewMyWalkingActivities = (ListView) findViewById(R.id.ListViewMyWalkingActivities);
 
         // store user email address by getting the extra from login activity
@@ -60,6 +62,7 @@ public class MyWalkingActivitiesLoginArea extends AppCompatActivity implements V
      */
     private void initListener() {
         myWalkingActivitiesBackToMainAreaButton.setOnClickListener(this);;
+        //myWalkingActivityDeleteWalkingActivityButton.setOnClickListener(this);
     }
 
 
@@ -77,6 +80,8 @@ public class MyWalkingActivitiesLoginArea extends AppCompatActivity implements V
                 backToMainAreaActivityIntent.putExtra("ownersEmailForPassOn", userEmail);
                 startActivity(backToMainAreaActivityIntent);
                 break;
+            //case R.id.MyWalkingActivityDeleteWalkingActivityButton:
+
         }
     }
 
