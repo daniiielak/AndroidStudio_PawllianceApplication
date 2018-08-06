@@ -118,4 +118,6 @@ public class PopUpEditDescription extends AppCompatActivity implements View.OnCl
                 break;
         }
     }
+
+    // DNC - class closing tag
 }

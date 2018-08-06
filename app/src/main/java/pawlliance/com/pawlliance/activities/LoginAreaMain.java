@@ -16,7 +16,7 @@ public class LoginAreaMain extends AppCompatActivity implements View.OnClickList
     // set all variables for input fields and layouts
     TextView loginAreaEmailTextView;
     Button loginAreaLetsGoForAWalkButton;
-    Button loginAreaMyPawllianceBuddiesButton;
+    Button loginAreaMyWalkingActivitiesButton;
     Button loginAreaFindNewFurryFriendsButton;
     Button loginAreaUpdateProfileButton;
 
@@ -36,7 +36,7 @@ public class LoginAreaMain extends AppCompatActivity implements View.OnClickList
     private void initViews(){
 
         loginAreaLetsGoForAWalkButton = (Button) findViewById(R.id.LoginAreaLetsGoForAWalkButton);
-        loginAreaMyPawllianceBuddiesButton = (Button) findViewById(R.id.LoginAreaMyPawllianceBuddiesButton);
+        loginAreaMyWalkingActivitiesButton = (Button) findViewById(R.id.LoginAreaMyWalkingActivitiesButton);
         loginAreaFindNewFurryFriendsButton = (Button) findViewById(R.id.LoginAreaFindNewFurryFriendsButton);
         loginAreaUpdateProfileButton = (Button) findViewById(R.id.LoginAreaUpdateProfileButton);
 
@@ -54,7 +54,7 @@ public class LoginAreaMain extends AppCompatActivity implements View.OnClickList
      */
     private void initListener(){
         loginAreaLetsGoForAWalkButton.setOnClickListener(this);
-        loginAreaMyPawllianceBuddiesButton.setOnClickListener(this);
+        loginAreaMyWalkingActivitiesButton.setOnClickListener(this);
         loginAreaFindNewFurryFriendsButton.setOnClickListener(this);
         loginAreaUpdateProfileButton.setOnClickListener(this);
     }
@@ -79,28 +79,36 @@ public class LoginAreaMain extends AppCompatActivity implements View.OnClickList
                 startActivity(mapsActivityIntent);
                 break;
 
-            case R.id.LoginAreaMyPawllianceBuddiesButton:
+            case R.id.LoginAreaMyWalkingActivitiesButton:
+                // storing the user email for pass on to next class
+                previousLoginAreaIntent = getIntent();
+                b = previousLoginAreaIntent.getExtras();
+                userEmail = (String) b.get("ownersEmailForPassOn");
+                //Intent for new friends class
+                Intent myPawllianceActivities = new Intent(activity, MyWalkingActivitiesLoginArea.class);
+                myPawllianceActivities.putExtra("ownersEmailForPassOn", userEmail);
+                startActivity(myPawllianceActivities);
                 break;
 
             case R.id.LoginAreaFindNewFurryFriendsButton:
                 // storing the user email for pass on to next class
-                Intent previousLoginAreaIntent2 = getIntent();
-                Bundle b2 = previousLoginAreaIntent2.getExtras();
-                String userEmail2 = (String) b2.get("ownersEmailForPassOn");
+                previousLoginAreaIntent = getIntent();
+                b = previousLoginAreaIntent.getExtras();
+                userEmail = (String) b.get("ownersEmailForPassOn");
                 //Intent for new friends class
                 Intent findNewFriendsActivityIntent = new Intent(activity, MyPawllianceFriendsLoginArea.class);
-                findNewFriendsActivityIntent.putExtra("ownersEmailForPassOn", userEmail2);
+                findNewFriendsActivityIntent.putExtra("ownersEmailForPassOn", userEmail);
                 startActivity(findNewFriendsActivityIntent);
                 break;
 
             case R.id.LoginAreaUpdateProfileButton:
                 // storing the user email for pass on to next class
-                Intent previousLoginAreaIntent3 = getIntent();
-                Bundle b3 = previousLoginAreaIntent3.getExtras();
-                String userEmail3 = (String) b3.get("ownersEmailForPassOn");
+                previousLoginAreaIntent = getIntent();
+                b = previousLoginAreaIntent.getExtras();
+                userEmail = (String) b.get("ownersEmailForPassOn");
                 //Intent for new friends class
                 Intent updateProfileActivityIntent = new Intent(activity, EditProfileInformationMainLoginArea.class);
-                updateProfileActivityIntent.putExtra("ownersEmailForPassOn", userEmail3);
+                updateProfileActivityIntent.putExtra("ownersEmailForPassOn", userEmail);
                 startActivity(updateProfileActivityIntent);
                 break;
         }

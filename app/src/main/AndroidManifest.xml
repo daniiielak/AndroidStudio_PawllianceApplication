@@ -31,6 +31,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
 
         <!-- APP ENTRY POINT ACTIVITY -->
         <activity android:name=".activities.AppEntryPoint">
@@ -138,7 +141,17 @@
         <activity
             android:name=".popups.PopUpThanksForTheDogWalk"
             android:parentActivityName=".activities.LoginAreaMain" />
-        <activity android:name=".popups.PopUpEditWalkingDescription"></activity>
+
+        <!-- POPUP THANKS EDIT WALKING DESCRIPTION -->
+        <activity
+            android:name=".popups.PopUpEditWalkingDescription"
+            android:parentActivityName=".popups.PopUpThanksForTheDogWalk" />
+
+        <!-- MY WALKING ACTIVITIES -->
+        <activity
+            android:name=".activities.MyWalkingActivitiesLoginArea"
+            android:parentActivityName=".activities.LoginAreaMain" />
+        <activity android:name=".popups.PopUpDeleteWalkingActivity"></activity>
     </application>
 
 </manifest>

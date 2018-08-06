@@ -672,6 +672,246 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
     }
 
+
+    /*
+    * ArrayList
+    *
+- walkingactivity_walkingdescription
+     *
+     */
+
+    // method to return all walking activity walking dates
+    public ArrayList<String> getAllWalkingActivityWalkingDates(int userID){
+        // array of columns to fetch
+        String[] columns = {
+                COLUMN_WALKINGACTIVITY_WALKINGDATE,
+        };
+
+        // sorting orders
+        String sortOrder = COLUMN_WALKINGACTIVITY_WALKINGDATE + " DESC";
+
+        // selection
+        String selectionArgs[] = {userID + ""};
+        String selection = COLUMN_WALKINGACTIVITY_USERID + "=?";
+
+        ArrayList<String> walkingActivityWalkingDatesList = new ArrayList<String>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        //query the user table
+        Cursor cursor = db.query(TABLE_WALKINGACTIVITY, //Table to query
+                columns,    //columns to return
+                selection,        //columns for the WHERE clause whereClause
+                selectionArgs,        //The values for the WHERE clause
+                null,       //group the rows
+                null,       //filter by row groups
+                sortOrder); //The sort order
+
+        // Traversing through all rows and adding to list
+        if (cursor.moveToFirst()){
+            do {
+                WalkingActivity walkingActivity = new WalkingActivity();
+                walkingActivity.setWalkingDate(cursor.getString(cursor.getColumnIndex(COLUMN_WALKINGACTIVITY_WALKINGDATE)));
+                String walkingDate = walkingActivity.getWalkingDate();
+
+                //adding new user record to the list
+                walkingActivityWalkingDatesList.add(walkingDate);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+
+        // return user List
+        return walkingActivityWalkingDatesList;
+    }
+
+
+    // method to return all walking activity dogs
+    public ArrayList<String> getAllWalkingActivityDogs(int userID){
+        // array of columns to fetch
+        String[] columns = {
+                COLUMN_WALKINGACTIVITY_DOG,
+        };
+
+        // sorting orders
+        String sortOrder = COLUMN_WALKINGACTIVITY_WALKINGDATE + " DESC";
+
+        // selection
+        String selectionArgs[] = {userID + ""};
+        String selection = COLUMN_WALKINGACTIVITY_USERID + "=?";
+
+        ArrayList<String> walkingActivityDogsList = new ArrayList<String>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        //query the user table
+        Cursor cursor = db.query(TABLE_WALKINGACTIVITY, //Table to query
+                columns,    //columns to return
+                selection,        //columns for the WHERE clause
+                selectionArgs,        //The values for the WHERE clause
+                null,       //group the rows
+                null,       //filter by row groups
+                sortOrder); //The sort order
+
+        // Traversing through all rows and adding to list
+        if (cursor.moveToFirst()){
+            do {
+                WalkingActivity walkingActivity = new WalkingActivity();
+                walkingActivity.setDog(cursor.getString(cursor.getColumnIndex(COLUMN_WALKINGACTIVITY_DOG)));
+                String walkingDog = walkingActivity.getDog();
+
+                //adding new user record to the list
+                walkingActivityDogsList.add(walkingDog);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+
+        // return user List
+        return walkingActivityDogsList;
+    }
+
+
+    // method to return all walking activity total walking time
+    public ArrayList<Double> getAllWalkingActivityTotalWalkingTime(int userID){
+        // array of columns to fetch
+        String[] columns = {
+                COLUMN_WALKINGACTIVITY_TOTALWALKINGTIME,
+        };
+
+        // sorting orders
+        String sortOrder = COLUMN_WALKINGACTIVITY_WALKINGDATE + " DESC";
+
+        // selection
+        String selectionArgs[] = {userID + ""};
+        String selection = COLUMN_WALKINGACTIVITY_USERID + "=?";
+
+        ArrayList<Double> walkingActivityWalkingTimeList= new ArrayList<Double>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        //query the user table
+        Cursor cursor = db.query(TABLE_WALKINGACTIVITY, //Table to query
+                columns,    //columns to return
+                selection,        //columns for the WHERE clause
+                selectionArgs,        //The values for the WHERE clause
+                null,       //group the rows
+                null,       //filter by row groups
+                sortOrder); //The sort order
+
+        // Traversing through all rows and adding to list
+        if (cursor.moveToFirst()){
+            do {
+                WalkingActivity walkingActivity = new WalkingActivity();
+                walkingActivity.setTotalWalkingTime(Double.parseDouble(cursor.getString(cursor.getColumnIndex(COLUMN_WALKINGACTIVITY_TOTALWALKINGTIME))));
+                double totalWalkingTime = walkingActivity.getTotalWalkingTime();
+
+                //adding new user record to the list
+                walkingActivityWalkingTimeList.add(totalWalkingTime);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+
+        // return user List
+        return walkingActivityWalkingTimeList;
+    }
+
+
+
+    // method to return all walking activity total walking time
+    public ArrayList<Double> getAllWalkingActivityTotalWalkingDistance(int userID){
+        // array of columns to fetch
+        String[] columns = {
+                COLUMN_WALKINGACTIVITY_TOTALWALKINGDISTANCE,
+        };
+
+        // sorting orders
+        String sortOrder = COLUMN_WALKINGACTIVITY_WALKINGDATE + " DESC";
+
+        // selection
+        String selectionArgs[] = {userID + ""};
+        String selection = COLUMN_WALKINGACTIVITY_USERID + "=?";
+
+        ArrayList<Double> walkingActivityWalkingDistanceList= new ArrayList<Double>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        //query the user table
+        Cursor cursor = db.query(TABLE_WALKINGACTIVITY, //Table to query
+                columns,    //columns to return
+                selection,        //columns for the WHERE clause
+                selectionArgs,        //The values for the WHERE clause
+                null,       //group the rows
+                null,       //filter by row groups
+                sortOrder); //The sort order
+
+        // Traversing through all rows and adding to list
+        if (cursor.moveToFirst()){
+            do {
+                WalkingActivity walkingActivity = new WalkingActivity();
+                walkingActivity.setTotalWalkingDistance(Double.parseDouble(cursor.getString(cursor.getColumnIndex(COLUMN_WALKINGACTIVITY_TOTALWALKINGDISTANCE))));
+                double totalWalkingDistance = walkingActivity.getTotalWalkingDistance();
+
+                //adding new user record to the list
+                walkingActivityWalkingDistanceList.add(totalWalkingDistance);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+
+        // return user List
+        return walkingActivityWalkingDistanceList;
+    }
+
+
+    // method to return all walking activity description
+    public ArrayList<String> getAllWalkingActivityDescriptions(int userID){
+        // array of columns to fetch
+        String[] columns = {
+                COLUMN_WALKINGACTIVITY_WALKINGDESCRIPTION,
+        };
+
+        // sorting orders
+        String sortOrder = COLUMN_WALKINGACTIVITY_WALKINGDATE + " DESC";
+
+        // selection
+        String selectionArgs[] = {userID + ""};
+        String selection = COLUMN_WALKINGACTIVITY_USERID + "=?";
+
+        ArrayList<String> walkingActivityDescriptionList = new ArrayList<String>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        //query the user table
+        Cursor cursor = db.query(TABLE_WALKINGACTIVITY, //Table to query
+                columns,    //columns to return
+                selection,        //columns for the WHERE clause
+                selectionArgs,        //The values for the WHERE clause
+                null,       //group the rows
+                null,       //filter by row groups
+                sortOrder); //The sort order
+
+        // Traversing through all rows and adding to list
+        if (cursor.moveToFirst()){
+            do {
+                WalkingActivity walkingActivity = new WalkingActivity();
+                walkingActivity.setWalkingDescription(cursor.getString(cursor.getColumnIndex(COLUMN_WALKINGACTIVITY_WALKINGDESCRIPTION)));
+                String walkingDescription  = walkingActivity.getWalkingDescription();
+
+                //adding new user record to the list
+                walkingActivityDescriptionList.add(walkingDescription);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+
+        // return user List
+        return walkingActivityDescriptionList;
+    }
+
+
+
     // method to delete walking activity record
     public void deleteWalkingActivity(WalkingActivity walkingActivity) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -691,7 +931,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
 
     }
-
 
     /**
      * This method is for the AndroidDataBaseHelper to show data

@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:id="@+id/LayoutWalkingActivitiesWalkingDateStandard"
+        android:layout_width="90dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/ubuntu_medium"
+        android:text="Date:"
+        android:textColor="@color/colorFontMain"
+        android:textSize="14sp" />
+
+
+    <TextView
+        android:id="@+id/LayoutWalkingActivityDate"
+        android:layout_width="161dp"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/LayoutWalkingActivitiesWalkingDateStandard"
+        android:layout_toEndOf="@+id/LayoutWalkingActivitiesWalkingDateStandard"
+        android:fontFamily="@font/ubuntu_medium"
+        android:text="Date"
+        android:textColor="@color/colorFontHint"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/LayoutWalkingActivityDogStandard"
+        android:layout_width="90dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/LayoutWalkingActivitiesWalkingDateStandard"
+        android:layout_below="@+id/LayoutWalkingActivitiesWalkingDateStandard"
+        android:fontFamily="@font/ubuntu_medium"
+        android:text="Dog:"
+        android:textColor="@color/colorFontMain"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/LayoutWalkingActivityDog"
+        android:layout_width="161dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/LayoutWalkingActivitiesWalkingDateStandard"
+        android:layout_toEndOf="@+id/LayoutWalkingActivitiesWalkingDateStandard"
+        android:fontFamily="@font/ubuntu_medium"
+        android:text="Dog"
+        android:textColor="@color/colorFontHint"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/LayoutWalkingActivityTotalWalkingTimeStandard"
+        android:layout_width="90dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/LayoutWalkingActivitiesWalkingDateStandard"
+        android:layout_below="@+id/LayoutWalkingActivityDogStandard"
+        android:fontFamily="@font/ubuntu_medium"
+        android:text="Minutes:"
+        android:textColor="@color/colorFontMain"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/LayoutWalkingActivitiesTotalWalkingTime"
+        android:layout_width="161dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/LayoutWalkingActivityDogStandard"
+        android:layout_toEndOf="@+id/LayoutWalkingActivitiesWalkingDateStandard"
+        android:fontFamily="@font/ubuntu_medium"
+        android:text="Minutes"
+        android:textColor="@color/colorFontHint"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/LayoutWalkingActivitiesTotalDistanceStandard"
+        android:layout_width="90dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/LayoutWalkingActivitiesWalkingDateStandard"
+        android:layout_below="@+id/LayoutWalkingActivityTotalWalkingTimeStandard"
+        android:fontFamily="@font/ubuntu_medium"
+        android:text="Meters:"
+        android:textColor="@color/colorFontMain"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/LayoutWalkingActivitiesTotalDistance"
+        android:layout_width="162dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/LayoutWalkingActivityTotalWalkingTimeStandard"
+        android:layout_toEndOf="@+id/LayoutWalkingActivitiesWalkingDateStandard"
+        android:fontFamily="@font/ubuntu_medium"
+        android:text="Meters"
+        android:textColor="@color/colorFontHint"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/LayoutWalkingActivitiesWalkingDescriptionStandard"
+        android:layout_width="90dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/LayoutWalkingActivitiesWalkingDateStandard"
+        android:layout_alignTop="@+id/LayoutWalkingActivitiesWalkingDescription"
+        android:fontFamily="@font/ubuntu_medium"
+        android:text="Description:"
+        android:textColor="@color/colorFontMain"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/LayoutWalkingActivitiesWalkingDescription"
+        android:layout_width="162dp"
+        android:layout_height="60dp"
+        android:layout_below="@+id/LayoutWalkingActivitiesTotalDistanceStandard"
+        android:layout_toEndOf="@+id/LayoutWalkingActivitiesWalkingDateStandard"
+        android:fontFamily="@font/ubuntu_medium"
+        android:text="Description"
+        android:textColor="@color/colorFontHint"
+        android:textSize="14sp" />
+
+
+    <Button
+        android:id="@+id/WalkingActivityUpdateDescriptionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="18dp"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/PawllianceFriendsImageView"
+        android:layout_marginEnd="25dp"
+        android:background="@color/colorPrimary"
+        android:elevation="0dp"
+        android:fontFamily="@font/ubuntu_bold"
+        android:text="Delete"
+        android:textAllCaps="false"
+        android:textColor="@color/colorFontWhite"
+        android:textSize="12dp" />
+
+    <ImageView
+        android:id="@+id/PawllianceFriendsImageView"
+        android:layout_width="142dp"
+        android:layout_height="101dp"
+        android:layout_alignTop="@+id/LayoutWalkingActivitiesWalkingDateStandard"
+        android:layout_marginStart="1dp"
+        android:layout_toEndOf="@+id/LayoutWalkingActivityDate"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.394"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.803"
+        app:srcCompat="@drawable/dogwalkexamplemap" />
+
+
+</RelativeLayout>

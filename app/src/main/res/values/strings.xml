@@ -100,6 +100,9 @@
     <!-- FIND NEW FRIENDS LOGIN MAIN AREA MAIN -->
     <string name="FindFriendsActivityHeadline">Find new Pawlliance Friends in your area</string>
 
+    <!-- MY WALKING ACTIVITIES LOGIN MAIN AREA MAIN -->
+    <string name="MyWalkingActivitiesHeadline">Get an overview of your walking activites: </string>
+
     <!-- EDIT PROFILE INFORMATION LOGIN MAIN AREA MAIN -->
     <string name="EditProfileInformationHeadline">Your Pawlliance Profile</string>
     <string name="EditProfileInformationEmail">Email:</string>

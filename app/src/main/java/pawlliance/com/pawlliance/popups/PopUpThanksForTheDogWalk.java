@@ -125,7 +125,6 @@ public class PopUpThanksForTheDogWalk extends AppCompatActivity implements View.
                 break;
 
             case R.id.PopUpThanksForTheDogWalkEditDescriptionButton:
-
                 // storing the user email for pass on to next class
                 previousIntent = getIntent();
                 b = previousIntent.getExtras();
