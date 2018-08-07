@@ -14,10 +14,12 @@ public class LoginAreaMain extends AppCompatActivity implements View.OnClickList
     private final AppCompatActivity activity = LoginAreaMain.this;
 
     // set all variables for input fields and layouts
-    TextView loginAreaEmailTextView;
-    Button loginAreaLetsGoForAWalkButton;
-    Button loginAreaMyWalkingActivitiesButton;
-    Button loginAreaFindNewFurryFriendsButton;
+    private TextView loginAreaEmailTextView;
+    private Button loginAreaLetsGoForAWalkButton;
+    private Button loginAreaMyWalkingActivitiesButton;
+    private Button loginAreaFindNewFurryFriendsButton;
+    private Button loginAreaLogoutButton;
+
     Button loginAreaUpdateProfileButton;
 
 
@@ -39,6 +41,7 @@ public class LoginAreaMain extends AppCompatActivity implements View.OnClickList
         loginAreaMyWalkingActivitiesButton = (Button) findViewById(R.id.LoginAreaMyWalkingActivitiesButton);
         loginAreaFindNewFurryFriendsButton = (Button) findViewById(R.id.LoginAreaFindNewFurryFriendsButton);
         loginAreaUpdateProfileButton = (Button) findViewById(R.id.LoginAreaUpdateProfileButton);
+        loginAreaLogoutButton = (Button) findViewById(R.id.LoginAreaLogoutButton);
 
         // set text view to user email address by getting the extra from login activity
         String userEmail = "You're logged in!";
@@ -57,6 +60,7 @@ public class LoginAreaMain extends AppCompatActivity implements View.OnClickList
         loginAreaMyWalkingActivitiesButton.setOnClickListener(this);
         loginAreaFindNewFurryFriendsButton.setOnClickListener(this);
         loginAreaUpdateProfileButton.setOnClickListener(this);
+        loginAreaLogoutButton.setOnClickListener(this);
     }
 
     /**
@@ -87,7 +91,7 @@ public class LoginAreaMain extends AppCompatActivity implements View.OnClickList
                 //Intent for new friends class
                 Intent myPawllianceActivities = new Intent(activity, MyWalkingActivitiesLoginArea.class);
                 myPawllianceActivities.putExtra("ownersEmailForPassOn", userEmail);
-                startActivity(myPawllianceActivities);
+                startActivityForResult(myPawllianceActivities, 1);
                 break;
 
             case R.id.LoginAreaFindNewFurryFriendsButton:
@@ -110,6 +114,11 @@ public class LoginAreaMain extends AppCompatActivity implements View.OnClickList
                 Intent updateProfileActivityIntent = new Intent(activity, EditProfileInformationMainLoginArea.class);
                 updateProfileActivityIntent.putExtra("ownersEmailForPassOn", userEmail);
                 startActivity(updateProfileActivityIntent);
+                break;
+
+            case R.id.LoginAreaLogoutButton:
+                Intent logoutIntent = new Intent(activity, AppEntryPoint.class);
+                startActivity(logoutIntent);
                 break;
         }
     }

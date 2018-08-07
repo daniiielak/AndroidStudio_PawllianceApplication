@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 
@@ -11,6 +12,8 @@ import java.util.ArrayList;
 
 import pawlliance.com.pawlliance.R;
 import pawlliance.com.pawlliance.model.User;
+import pawlliance.com.pawlliance.popups.PopUpDeleteWalkingActivity;
+import pawlliance.com.pawlliance.popups.PopUpThanksForTheDogWalk;
 import pawlliance.com.pawlliance.sql.DatabaseHelper;
 
 public class MyWalkingActivitiesLoginArea extends AppCompatActivity implements View.OnClickListener{
@@ -61,7 +64,7 @@ public class MyWalkingActivitiesLoginArea extends AppCompatActivity implements V
      * This method is to initialize listeners
      */
     private void initListener() {
-        myWalkingActivitiesBackToMainAreaButton.setOnClickListener(this);;
+        myWalkingActivitiesBackToMainAreaButton.setOnClickListener(this);
         //myWalkingActivityDeleteWalkingActivityButton.setOnClickListener(this);
     }
 
@@ -79,6 +82,8 @@ public class MyWalkingActivitiesLoginArea extends AppCompatActivity implements V
                 Intent backToMainAreaActivityIntent = new Intent(activity, LoginAreaMain.class);
                 backToMainAreaActivityIntent.putExtra("ownersEmailForPassOn", userEmail);
                 startActivity(backToMainAreaActivityIntent);
+                setResult(RESULT_OK, backToMainAreaActivityIntent);
+                finish();
                 break;
             //case R.id.MyWalkingActivityDeleteWalkingActivityButton:
 
@@ -104,6 +109,24 @@ public class MyWalkingActivitiesLoginArea extends AppCompatActivity implements V
 
         WalkingActivityListAdapter adapter = new WalkingActivityListAdapter(this, walkingActivitiesWalkingDatesList, walkingActivitiesDogsList, walkingActivitiesTotalWalkingTimeList, walkingActivitiesTotalWalkingDistanceList, walkingActivitiesDescriptionList);
         listViewMyWalkingActivities.setAdapter(adapter);
+
+        listViewMyWalkingActivities.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent deleteWalkIntent = new Intent(getApplicationContext(), PopUpDeleteWalkingActivity.class);
+
+                // storing the user email for pass on to next class
+                Intent previousMainAreaIntent = getIntent();
+                Bundle b = previousMainAreaIntent.getExtras();
+                String userEmail = (String) b.get("ownersEmailForPassOn");
+                //int passOnWalkingID = (Integer) b.get("walkingIDForPassOn");
+
+                //Intent for previous class
+                deleteWalkIntent.putExtra("ownersEmailForPassOn", userEmail);
+                deleteWalkIntent.putExtra("walkingIDForPassOn", i);
+                startActivity(deleteWalkIntent);
+            }
+        });
     }
 
     // DNC - class closing tag
