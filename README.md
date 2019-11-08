@@ -4,7 +4,7 @@
 The objective of this project is to develop an Android Application named "Pawlliance" that enables users to live-track their dog walks via GPS on a Google Maps Interface.
 The application was developed in Android Studio (using Java) as a final personal project for my Computer Sciences studies at National College of Ireland. 
 
-## Introction to Pawlliance
+## Introduction to Pawlliance
 The idea for Pawlliance came, when I read an article about weekly excercise requirements of different dog breeds and therefore, wanted to get an idea, how much time and distance I am walking my Pomsky Neila each week.
 Pawlliance enables user to sign up for an account and then live track their dog walks via their phone's GPS in a Google Maps interface. The objective of this application is also to connect dog owners with each other and set up dog walking dates or play dates for their puppies. 
 
